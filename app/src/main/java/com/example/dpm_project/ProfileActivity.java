@@ -1,9 +1,13 @@
 package com.example.dpm_project;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ProfileActivity extends AppCompatActivity {
     private EditText editText_Id;
@@ -18,6 +22,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
 
+
         editText_Id = findViewById(R.id.edit_id);
         editText_Name = findViewById(R.id.edit_name);
         editText_Email = findViewById(R.id.edit_email);
@@ -25,6 +30,8 @@ public class ProfileActivity extends AppCompatActivity {
         editText_Phone = findViewById(R.id.edit_phone);
         editText_Pathway = findViewById(R.id.edit_pathway);
 
-
     }
+
+
+
 }
