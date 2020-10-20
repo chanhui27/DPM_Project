@@ -8,14 +8,14 @@ import android.os.Bundle;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
-public class HomeActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_main);
 
-        openDisclaimer();
+        //openDisclaimer();
 
         //toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -29,7 +29,7 @@ public class HomeActivity extends AppCompatActivity {
         alertDialoguilder.setPositiveButton("ACCEPT", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(HomeActivity.this,"you accepted it", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this,"you accepted it", Toast.LENGTH_LONG).show();
             }
         });
 
