@@ -22,6 +22,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
 
+
         editText_Id = findViewById(R.id.edit_id);
         editText_Name = findViewById(R.id.edit_name);
         editText_Email = findViewById(R.id.edit_email);
@@ -31,27 +32,6 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    public void openDialog(View view) {
-        AlertDialog.Builder alertDialoguilder = new AlertDialog.Builder(this);
-        alertDialoguilder.setMessage(R.string.disclamer);
-
-        alertDialoguilder.setPositiveButton("ACCEPT", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(ProfileActivity.this,"you accepted it", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        alertDialoguilder.setNegativeButton("Decline", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        });
-
-        AlertDialog alertDialog = alertDialoguilder.create();
-        alertDialog.show();
-    }
 
 
 }
