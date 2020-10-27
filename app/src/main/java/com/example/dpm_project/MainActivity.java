@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         openDisclaimer();
 
         //toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
 
         //testing popup screen
         pathwaybutton = findViewById(R.id.PathwayBtn);
@@ -44,36 +44,29 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //toolbar
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-      /*  Toolbar toolbar = findViewById(R.id.toolbar2);
->>>>>>> Stashed changes
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*Toolbar toolbar = findViewById(R.id.toolbar2);
-        //drawer = findViewById(R.id.drawer_layout);
+        //Toolbar toolbar = findViewById(R.id.toolbar2);
+        drawer = findViewById(R.id.drawer_layout);
 
-        //ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-             //   R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-       // drawer.addDrawerListener(toggle);
-        //toggle.syncState(); */
-
-    }
-        /*ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
-        toggle.syncState();*/
+        toggle.syncState();
+    }
 
+
+        /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.stu_menu, menu);
         return true;
-    }
+    }*/
 
 
-     /*
-    @Override
-=======
+
     /*@Override
 >>>>>>> Stashed changes
     public void onBackPressed() {
@@ -108,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+    /*
     //Stu_Menu option clicks
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -131,5 +125,5 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
+    }*/
 }

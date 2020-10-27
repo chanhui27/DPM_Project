@@ -15,32 +15,19 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashscreen);
 
-<<<<<<< Updated upstream
 
-        /* New Handler to start the Home-Activity
-         * and close this Splash-Screen after some seconds.*/
-=======
         // New Handler to start the Home-Activity
-         // and close this Splash-Screen after some seconds.
->>>>>>> Stashed changes
-        new Handler().postDelayed(new Runnable(){
+        // and close this Splash-Screen after some seconds.
+
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 /* Create an Intent that will start the Home-Activity. */
-                Intent mainIntent = new Intent(SplashScreen.this, HomeActivity.class);
+                Intent mainIntent = new Intent(SplashScreen.this, MainActivity.class);
                 startActivity(mainIntent);
                 finish();
             }
         }, SPLASH_DISPLAY_LENGTH);
-<<<<<<< Updated upstream
-
-
-
-
-=======
->>>>>>> Stashed changes
     }
-
-
 
 }
