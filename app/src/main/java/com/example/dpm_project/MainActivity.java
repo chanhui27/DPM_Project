@@ -1,30 +1,27 @@
 package com.example.dpm_project;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-<<<<<<< Updated upstream
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-=======
 import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
->>>>>>> Stashed changes
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 
 public class MainActivity extends AppCompatActivity {
-<<<<<<< Updated upstream
-=======
+
     private DrawerLayout drawer;
     private Button pathwaybutton;
->>>>>>> Stashed changes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +29,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         openDisclaimer();
-<<<<<<< Updated upstream
 
         //toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
-=======
 
         //testing popup screen
         pathwaybutton = findViewById(R.id.PathwayBtn);
@@ -62,14 +57,11 @@ public class MainActivity extends AppCompatActivity {
        // drawer.addDrawerListener(toggle);
         //toggle.syncState(); */
 
-<<<<<<< Updated upstream
     }
-=======
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+        /*ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();*/
->>>>>>> Stashed changes
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -78,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-<<<<<<< Updated upstream
+
      /*
     @Override
 =======

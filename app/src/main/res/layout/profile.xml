@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
+    <include
+        android:id= "@+id/toolbar"
+        layout="@layout/toolbar"
+        />
     <!--Photo-->
     <ImageView
         android:id="@+id/photo"
