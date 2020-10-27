@@ -9,11 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Disclaimer"
-            android:theme="@style/AppTheme.PopMe"></activity>
+        <activity
+            android:name=".Disclaimer"
+            android:theme="@style/AppTheme.PopMe" />
         <activity android:name=".ManagerMain" />
         <activity android:name=".ManagerPassword" />
         <activity android:name=".BrowsePathway" />
+        <activity android:name=".Student"/>
         <activity android:name=".MainActivity" />
         <activity android:name=".SplashScreen">
             <intent-filter>

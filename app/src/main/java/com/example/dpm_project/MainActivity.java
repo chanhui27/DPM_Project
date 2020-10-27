@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawer;
     private Button pathwaybutton;
     private Button managerButton;
+    private Button studentButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         pathwaybutton = findViewById(R.id.PathwayBtn);
         managerButton = findViewById(R.id.ManagerBtn);
+        studentButton = findViewById(R.id.StudentBtn);
 
         //testing popup screen
         //go to pathway screen: for now it is just testing popup
@@ -50,6 +52,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //go to student screen
+        studentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sIntent = new Intent(getApplicationContext(),Student.class);
+                startActivity(sIntent);
+            }
+        });
 
         //go to manager screen
         managerButton.setOnClickListener(new View.OnClickListener() {
