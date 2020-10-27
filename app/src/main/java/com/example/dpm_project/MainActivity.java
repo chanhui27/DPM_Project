@@ -3,26 +3,21 @@ package com.example.dpm_project;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.PopupMenu;
 import android.widget.Toast;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 
 public class MainActivity extends AppCompatActivity {
-
     private DrawerLayout drawer;
     private Button pathwaybutton;
-
+    private Button managerButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +27,11 @@ public class MainActivity extends AppCompatActivity {
 
         //toolbar
         //Toolbar toolbar = findViewById(R.id.toolbar);
-
         //testing popup screen
         pathwaybutton = findViewById(R.id.PathwayBtn);
+        managerButton = findViewById(R.id.ManagerBtn);
+
+        //go to pathway screen: for now it is just testing popup
         pathwaybutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,32 +40,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //go to student screen
+
+        //go to manager screen
+        managerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mIntent = new Intent(getApplicationContext(), ManagerPassword.class);
+                startActivity(mIntent);
+            }
+        });
+
         //toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+     /*   Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Toolbar toolbar = findViewById(R.id.toolbar2);
         drawer = findViewById(R.id.drawer_layout);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        toggle.syncState();*/
+
+
     }
 
-
-        /*
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.stu_menu, menu);
-        return true;
-    }*/
-
-
-
-    /*@Override
->>>>>>> Stashed changes
     public void onBackPressed() {
         if(drawer.isDrawerOpen(GravityCompat.START)){
             drawer.closeDrawer(GravityCompat.START);
@@ -76,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
 
-    }*/
+    }
 
     //popup disclaimer
     public void openDisclaimer() {
@@ -100,30 +98,4 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alertDialog = alertDialoguilder.create();
         alertDialog.show();
     }
-
-    /*
-    //Stu_Menu option clicks
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.Home: {
-                // do your home stuff
-                return true;
-            }
-            case R.id.About: {
-                // do your about stuff
-                return true;
-            }
-            case R.id.Profile: {
-                // do your profile stuff
-                return true;
-            }
-            case R.id.Track: {
-                // do your track stuff
-                return true;
-            }
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }*/
 }
