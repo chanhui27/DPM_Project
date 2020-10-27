@@ -15,9 +15,14 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashscreen);
 
+<<<<<<< Updated upstream
 
         /* New Handler to start the Home-Activity
          * and close this Splash-Screen after some seconds.*/
+=======
+        // New Handler to start the Home-Activity
+         // and close this Splash-Screen after some seconds.
+>>>>>>> Stashed changes
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
@@ -27,10 +32,13 @@ public class SplashScreen extends AppCompatActivity {
                 finish();
             }
         }, SPLASH_DISPLAY_LENGTH);
+<<<<<<< Updated upstream
 
 
 
 
+=======
+>>>>>>> Stashed changes
     }
 
 
