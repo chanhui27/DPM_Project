@@ -26,11 +26,20 @@ public class MainActivity extends AppCompatActivity {
         openDisclaimer();
 
         //toolbar
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //testing popup screen
+      /*Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawer = findViewById(R.id.drawer_layout);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();*/
+
         pathwaybutton = findViewById(R.id.PathwayBtn);
         managerButton = findViewById(R.id.ManagerBtn);
 
+        //testing popup screen
         //go to pathway screen: for now it is just testing popup
         pathwaybutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,19 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(mIntent);
             }
         });
-
-        //toolbar
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-     /*   Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        drawer = findViewById(R.id.drawer_layout);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();*/
-
 
     }
 
