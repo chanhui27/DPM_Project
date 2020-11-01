@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,8 +18,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".PopActivity"
-            android:theme="@style/AppTheme.PopMe"></activity>
+        <activity
+            android:name=".PopActivity"
+            android:theme="@style/AppTheme.PopMe" />
         <activity android:name=".ModuleActivity"
             android:parentActivityName=".MainActivity"/>
 

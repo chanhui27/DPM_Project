@@ -7,18 +7,21 @@
     android:id="@+id/pathway_toolbar">
 
     <ImageView
+        android:id="@+id/hamburger_menu"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginRight="30dp"
-        android:src="@drawable/ic_hamburger_menu" />
+        android:layout_marginEnd="30dp"
+        android:src="@drawable/ic_hamburger_menu"
+         />
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp"
         android:adjustViewBounds="true"
-        android:src="@drawable/winteclogo" />
+        android:src="@drawable/winteclogo"
+         />
 
     <TextView
         android:id="@+id/Degree_title"
@@ -27,15 +30,17 @@
         android:gravity="center"
         android:text="Pathways"
         android:textColor="@android:color/black"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <ImageView
+        android:id="@+id/chevron_back_circle"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="right"
-        android:layout_marginRight="16dp"
-        android:src="@drawable/ic_chevron_back_circle" />
+        android:layout_gravity="end"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_chevron_back_circle"
+         />
 
 
 </androidx.appcompat.widget.Toolbar>

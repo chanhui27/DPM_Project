@@ -16,26 +16,63 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#e5e0cc"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pathway_toolbar">
-
         <Spinner
-
-            android:id="@+id/spinner1"
-            android:layout_width="wrap_content"
+            android:id="@+id/pathway_spinner"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:spinnerMode="dropdown"
+            android:layout_weight="4"
+            android:backgroundTint="@color/blackColor"
             android:entries="@array/pathways_array"
+            android:paddingStart="5dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="20dp"
+            android:spinnerMode="dropdown"
             app:layout_constraintTop_toTopOf="parent"
              />
+        <Spinner
+            android:id="@+id/year_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blackColor"
+            android:entries="@array/years_array"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:spinnerMode="dropdown"
+            android:layout_weight="3"
+             />
+
+        <Spinner
+            android:id="@+id/semester_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blackColor"
+            android:entries="@array/semesters_array"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:spinnerMode="dropdown"
+            android:layout_weight="4"
+            />
+
+
 
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pathway_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constrainedHeight="true"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/linear_layout"
-        tools:listitem="@layout/module_item"/>
+        tools:listitem="@layout/module_item" />
+
+
 
 
     <!--<Spinner

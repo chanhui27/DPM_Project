@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="Degree Program Mapper"
             android:textColor="@color/whiteColor"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:text="Developed by \n\t\t\t\tIMD"
             android:textColor="@color/whiteColor"
-            android:textSize="15dp"
+            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:ignore="MissingConstraints" />
 
