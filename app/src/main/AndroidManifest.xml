@@ -20,6 +20,8 @@
 
         <activity android:name=".PopActivity"
             android:theme="@style/AppTheme.PopMe"></activity>
+        <activity android:name=".ModuleActivity"
+            android:parentActivityName=".MainActivity"/>
 
     </application>
 

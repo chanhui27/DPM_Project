@@ -16,8 +16,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawer;
-    private Button pathwaybutton;
     private Button managerButton;
+    private Button pathwayButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,19 +28,17 @@ public class MainActivity extends AppCompatActivity {
         //toolbar
         //Toolbar toolbar = findViewById(R.id.toolbar);
         //testing popup screen
-        pathwaybutton = findViewById(R.id.PathwayBtn);
         managerButton = findViewById(R.id.ManagerBtn);
+        pathwayButton = findViewById(R.id.PathwayBtn);
 
-        //go to pathway screen: for now it is just testing popup
-        pathwaybutton.setOnClickListener(new View.OnClickListener() {
+        pathwayButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), PopActivity.class);
-                startActivity(intent);
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ModuleActivity.class));
             }
         });
 
-        //go to student screen
+
 
         //go to manager screen
         managerButton.setOnClickListener(new View.OnClickListener() {
