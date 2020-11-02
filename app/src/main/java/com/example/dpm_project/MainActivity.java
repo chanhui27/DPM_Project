@@ -16,9 +16,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawer;
-    private Button pathwaybutton;
     private Button managerButton;
-    private Button studentButton;
+    private Button pathwayButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,38 +26,19 @@ public class MainActivity extends AppCompatActivity {
         openDisclaimer();
 
         //toolbar
-      /*Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        drawer = findViewById(R.id.drawer_layout);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();*/
-
-        pathwaybutton = findViewById(R.id.PathwayBtn);
-        managerButton = findViewById(R.id.ManagerBtn);
-        studentButton = findViewById(R.id.StudentBtn);
-
+        //Toolbar toolbar = findViewById(R.id.toolbar);
         //testing popup screen
-        //go to pathway screen: for now it is just testing popup
-        pathwaybutton.setOnClickListener(new View.OnClickListener() {
+        managerButton = findViewById(R.id.ManagerBtn);
+        pathwayButton = findViewById(R.id.PathwayBtn);
+
+        pathwayButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), PopActivity.class);
-                startActivity(intent);
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ModuleActivity.class));
             }
         });
 
-        //go to student screen
-        studentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent sIntent = new Intent(getApplicationContext(),Student.class);
-                startActivity(sIntent);
-            }
-        });
+
 
         //go to manager screen
         managerButton.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +48,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(mIntent);
             }
         });
+
+        //toolbar
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+     /*   Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawer = findViewById(R.id.drawer_layout);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();*/
+
 
     }
 

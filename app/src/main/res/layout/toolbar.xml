@@ -24,8 +24,12 @@
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_alignParentStart="true"
-        android:paddingLeft="16dp"/>
+        android:layout_alignParentStart="true" />
+
+    
+
+
+
 
 
 

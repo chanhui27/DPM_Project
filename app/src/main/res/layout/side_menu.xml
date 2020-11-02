@@ -13,10 +13,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include
-            android:id= "@+id/toolbar"
-            layout="@layout/toolbar"
-            />
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/yellowColor"
+            android:id="@+id/toolbar2"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:elevation="4dp"/>
 
         <FrameLayout
             android:id="@+id/fragment_container"
@@ -25,14 +29,6 @@
             />
 
     </LinearLayout>
-
-
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:id="@+id/nav_view"
-        app:menu="@menu/student_menu"/>
     
 
 
