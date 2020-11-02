@@ -3,6 +3,7 @@ package com.example.dpm_project;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/*
 @Entity(tableName = "module_table")
 public class Module {
     @PrimaryKey(autoGenerate = true)
@@ -35,5 +36,38 @@ public class Module {
 
     public int getIsCompleted() {
         return isCompleted;
+	}
+*/
+
+public class Module {
+    private String module;
+    private String moduledesc;
+    private String moduleCode;
+
+
+    public Module(){}
+
+    public String getModule() {
+        return module;
+    }
+
+    public void setModule(String module) {
+        this.module = module;
+    }
+
+    public String getModuledesc() {
+        return moduledesc;
+    }
+
+    public void setModuledesc(String moduledesc) {
+        this.moduledesc = moduledesc;
+    }
+
+    public String getModuleCode() {
+        return moduleCode;
+    }
+
+    public void setModuleCode(String moduleCode) {
+        this.moduleCode = moduleCode;
     }
 }

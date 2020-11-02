@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "243447531910",
+    "firebase_url": "https://dpm-project-9f0ae.firebaseio.com",
+    "project_id": "dpm-project-9f0ae",
+    "storage_bucket": "dpm-project-9f0ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243447531910:android:12a009bd83fd19414e4407",
+        "android_client_info": {
+          "package_name": "com.example.dpm_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "243447531910-kua8gnged10de7f5qr7oiq6vam5db4c4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyuecrDt0G2yAWxRZNX-7ZX6BWrmEV9NQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "243447531910-kua8gnged10de7f5qr7oiq6vam5db4c4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
