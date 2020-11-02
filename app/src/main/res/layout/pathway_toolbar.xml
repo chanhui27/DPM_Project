@@ -2,31 +2,45 @@
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/yellowColor"
     android:elevation="4dp"
-    android:id="@+id/toolbar"
-    >
+    android:id="@+id/pathway_toolbar">
+
+    <ImageView
+        android:id="@+id/hamburger_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="30dp"
+        android:src="@drawable/ic_hamburger_menu"
+         />
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
         android:adjustViewBounds="true"
-        android:src="@drawable/winteclogo" />
+        android:src="@drawable/winteclogo"
+         />
 
     <TextView
         android:id="@+id/Degree_title"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="Degree Program Mapper"
         android:gravity="center"
+        android:text="Pathways"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_alignParentStart="true"
-        android:paddingLeft="16dp"/>
+        android:textStyle="bold" />
 
+    <ImageView
+        android:id="@+id/chevron_back_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_chevron_back_circle"
+         />
 
 
 </androidx.appcompat.widget.Toolbar>
