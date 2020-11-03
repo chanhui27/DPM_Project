@@ -14,7 +14,8 @@
         <activity android:name=".ManagerPassword"
             android:parentActivityName=".MainActivity"/>
         <activity android:name=".MainActivity" />
-        <activity android:name=".SplashScreen">
+        <activity android:name=".SplashScreen"
+            android:theme="@style/MyThemeNoBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

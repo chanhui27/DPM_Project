@@ -11,7 +11,7 @@
         layout="@layout/toolbar"
         />
     <!--Photo-->
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/photo"
         android:layout_width="100dp"
         android:layout_height="100dp"
