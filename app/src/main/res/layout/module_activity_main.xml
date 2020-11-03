@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#e5e0cc">
 
     <include
         android:id="@+id/pathway_toolbar"
@@ -12,55 +13,57 @@
         tools:layout_editor_absoluteY="0dp" />
 
     <LinearLayout
-        android:id="@+id/linear_layout"
+        android:id="@+id/pathway_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#e5e0cc"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pathway_toolbar">
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/pathway_toolbar">
+
         <Spinner
             android:id="@+id/pathway_spinner"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
             android:backgroundTint="@color/blackColor"
-            android:entries="@array/pathways_array"
+            android:gravity="center"
             android:paddingStart="5dp"
-            android:paddingTop="20dp"
+            android:paddingTop="10dp"
             android:paddingEnd="5dp"
-            android:paddingBottom="20dp"
+            android:paddingBottom="10dp"
             android:spinnerMode="dropdown"
-            app:layout_constraintTop_toTopOf="parent"
-             />
+            app:layout_constraintTop_toBottomOf="@id/pathway_toolbar" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/year_semester_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pathway_linear_layout">
+
         <Spinner
             android:id="@+id/year_spinner"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blackColor"
             android:entries="@array/years_array"
             android:paddingStart="5dp"
+            android:paddingTop="10dp"
             android:paddingEnd="5dp"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:spinnerMode="dropdown"
-            android:layout_weight="3"
-             />
+            android:paddingBottom="10dp"
+            android:spinnerMode="dropdown" />
 
         <Spinner
             android:id="@+id/semester_spinner"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blackColor"
             android:entries="@array/semesters_array"
             android:paddingStart="5dp"
+            android:paddingTop="10dp"
             android:paddingEnd="5dp"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:spinnerMode="dropdown"
-            android:layout_weight="4"
-            />
-
+            android:paddingBottom="10dp"
+            android:spinnerMode="dropdown" />
 
 
     </LinearLayout>
@@ -68,11 +71,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pathway_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/linear_layout"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/year_semester_linear_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
         tools:listitem="@layout/module_item" />
-
-
 
 
     <!--<Spinner

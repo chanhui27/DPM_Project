@@ -1,10 +1,13 @@
-package com.example.dpm_project;
+package com.example.dpm_project.viewmodels;
 
 import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+
+import com.example.dpm_project.models.Module;
+import com.example.dpm_project.repositories.ModuleRepository;
 
 import java.util.List;
 

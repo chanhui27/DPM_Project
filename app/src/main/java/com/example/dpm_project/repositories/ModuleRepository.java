@@ -1,8 +1,12 @@
-package com.example.dpm_project;
+package com.example.dpm_project.repositories;
 
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
+
+import com.example.dpm_project.ModuleDatabase;
+import com.example.dpm_project.dao.ModuleDao;
+import com.example.dpm_project.models.Module;
 
 import java.util.List;
 import java.util.concurrent.Executor;
