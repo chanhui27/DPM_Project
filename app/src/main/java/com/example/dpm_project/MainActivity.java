@@ -10,14 +10,18 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawer;
     private Button managerButton;
     private Button pathwayButton;
+    private static final int DIALOG_ID=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         managerButton = findViewById(R.id.ManagerBtn);
         pathwayButton = findViewById(R.id.PathwayBtn);
 
-        pathwayButton.setOnClickListener(new View.OnClickListener() {
+       /* pathwayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             //public void onClick(View view) {
             //    startActivity(new Intent(MainActivity.this, ModuleActivity.class));
@@ -41,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), BrowsePathway.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
 
 
@@ -81,8 +85,12 @@ public class MainActivity extends AppCompatActivity {
 
     //popup disclaimer
     public void openDisclaimer() {
+        LayoutInflater adbInflater = LayoutInflater.from(this);
         AlertDialog.Builder alertDialoguilder = new AlertDialog.Builder(this);
+        alertDialoguilder.setTitle("                     Disclaimer");
         alertDialoguilder.setMessage(R.string.disclamer);
+
+
 
         alertDialoguilder.setPositiveButton("ACCEPT", new DialogInterface.OnClickListener() {
             @Override

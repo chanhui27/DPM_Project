@@ -30,6 +30,8 @@ public class ProfileActivity extends AppCompatActivity {
         editText_Phone = findViewById(R.id.edit_phone);
         editText_Pathway = findViewById(R.id.edit_pathway);
 
+
+
     }
 
 
