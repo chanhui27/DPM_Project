@@ -25,6 +25,9 @@
             android:name=".PopActivity"
             android:theme="@style/AppTheme.PopMe" />
 
+        <activity android:name=".ModuleActivity"
+            android:parentActivityName=".MainActivity"/>
+
     </application>
 
 </manifest>
