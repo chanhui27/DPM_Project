@@ -39,6 +39,7 @@ public class ManagerPassword extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent goIntent = new Intent(ManagerPassword.this, MainActivity.class);
+                startActivity(goIntent);
             }
         });
 

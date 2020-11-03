@@ -4,23 +4,9 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string-array name="pathways_array">
-        <item>Pathways</item>
         <item>Database Architecture</item>
         <item>Network Engineering</item>
         <item>Software Engineering</item>
         <item>Web Development</item>
     </string-array>
-    <string-array name="years_array">
-        <item>Year</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-    <string-array name="semesters_array">
-        <item>Semester</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
