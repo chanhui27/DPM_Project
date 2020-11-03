@@ -27,7 +27,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        openDisclaimer();
+
+        if(DIALOG_ID ==1) {
+            openDisclaimer();
+            DIALOG_ID++;
+        }
+
 
 
         //toolbar
@@ -38,12 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
         pathwayButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            //public void onClick(View view) {
-            //    startActivity(new Intent(MainActivity.this, ModuleActivity.class));
-
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ModuleActivity.class);
-                startActivity(intent);
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ModuleActivity.class));
             }
         });
 
