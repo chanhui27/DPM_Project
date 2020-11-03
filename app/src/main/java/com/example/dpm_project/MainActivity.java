@@ -36,16 +36,16 @@ public class MainActivity extends AppCompatActivity {
         managerButton = findViewById(R.id.ManagerBtn);
         pathwayButton = findViewById(R.id.PathwayBtn);
 
-       /* pathwayButton.setOnClickListener(new View.OnClickListener() {
+        pathwayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             //public void onClick(View view) {
             //    startActivity(new Intent(MainActivity.this, ModuleActivity.class));
 
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), BrowsePathway.class);
+                Intent intent = new Intent(getApplicationContext(), ModuleActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
 
 
 
