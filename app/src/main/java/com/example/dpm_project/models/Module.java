@@ -1,4 +1,4 @@
-package com.example.dpm_project;
+package com.example.dpm_project.models;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -6,9 +6,14 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "module_table")
 public class Module {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private int moduleId;
     private String code;
     private String title;
+
+    public void setIsCompleted(int isCompleted) {
+        this.isCompleted = isCompleted;
+    }
+
     private int isCompleted;
 
     public Module(String code, String title, int isCompleted) {
@@ -17,12 +22,12 @@ public class Module {
         this.isCompleted = isCompleted;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setModuleId(int moduleId) {
+        this.moduleId = moduleId;
     }
 
-    public int getId() {
-        return id;
+    public int getModuleId() {
+        return moduleId;
     }
 
     public String getCode() {

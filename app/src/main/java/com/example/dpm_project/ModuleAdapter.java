@@ -1,12 +1,16 @@
 package com.example.dpm_project;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.dpm_project.models.Module;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +29,11 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ModuleHold
     @Override
     public void onBindViewHolder(@NonNull ModuleHolder holder, int position) {
         Module currentModule = modules.get(position);
+        if (currentModule.getIsCompleted() == 1){
+            holder.relativeLayout.setBackgroundColor(Color.GREEN);
+        }else{
+            holder.relativeLayout.setBackgroundColor(0xEBEBEB);
+        }
         holder.textViewCode.setText(currentModule.getCode());
         holder.textViewTitle.setText(currentModule.getTitle());
     }
@@ -39,14 +48,20 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ModuleHold
         notifyDataSetChanged();
     }
 
+    public Module getModuleAt(int adapterPosition) {
+        return modules.get(adapterPosition);
+    }
+
     class ModuleHolder extends RecyclerView.ViewHolder {
         private TextView textViewCode;
         private TextView textViewTitle;
+        private RelativeLayout relativeLayout;
 
         public ModuleHolder(View itemView) {
             super(itemView);
             textViewCode = itemView.findViewById(R.id.text_view_module_code);
             textViewTitle = itemView.findViewById(R.id.text_view_module_title);
+            relativeLayout = itemView.findViewById(R.id.cardview_relative_layout);
 
         }
 
