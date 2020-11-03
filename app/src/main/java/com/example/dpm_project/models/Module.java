@@ -9,6 +9,11 @@ public class Module {
     private int moduleId;
     private String code;
     private String title;
+    private String aim;
+    private int level;
+    private int year;
+    private String coRequisite;
+    private int semester;
 
     public void setIsCompleted(int isCompleted) {
         this.isCompleted = isCompleted;
@@ -16,10 +21,15 @@ public class Module {
 
     private int isCompleted;
 
-    public Module(String code, String title, int isCompleted) {
+    public Module(String code, String title, int isCompleted, String aim, int level, int year, String coRequisite, int semester) {
         this.code = code;
         this.title = title;
         this.isCompleted = isCompleted;
+        this.aim = aim;
+        this.level = level;
+        this.year = year;
+        this.coRequisite = coRequisite;
+        this.semester = semester;
     }
 
     public void setModuleId(int moduleId) {
@@ -40,5 +50,23 @@ public class Module {
 
     public int getIsCompleted() {
         return isCompleted;
+    }
+
+    public String getAim(){ return aim;}
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public String getCoRequisite(){
+        return coRequisite;
+    }
+
+    public int getSemester(){
+        return semester;
     }
 }
