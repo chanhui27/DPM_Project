@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -25,10 +26,11 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText editText_Address;
     private EditText editText_Phone;
     private EditText editText_Pathway;
+    private Button cancelButton;
     private CircleImageView profileImage;
     private static final int PICK_IMAGE = 1;
     Uri imageUri;
-    private Uri resultUri;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,34 +45,37 @@ public class ProfileActivity extends AppCompatActivity {
         editText_Phone = findViewById(R.id.edit_phone);
         editText_Pathway = findViewById(R.id.edit_pathway);
 
+        cancelButton = findViewById(R.id.profileCancelbtn);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cIntent = new Intent(ProfileActivity.this, MainActivity.class);
+                startActivity(cIntent);
+            }
+        });
+
+        //get image from gallery
         profileImage = (CircleImageView) findViewById(R.id.photo);
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent gallery = new Intent();
-                gallery.setType("image/*");
-                gallery.setAction(Intent.ACTION_GET_CONTENT);
-
-                startActivityForResult(Intent.createChooser(gallery, "Sellect Picture"), PICK_IMAGE);
+                openGallery();
             }
         });
+    }
 
-
+    private void openGallery() {
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(gallery, PICK_IMAGE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == PICK_IMAGE && resultCode == RESULT_OK && data != null) {
+        if(resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
             imageUri = data.getData();
-            try {
-
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), resultUri);
-                profileImage.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            profileImage.setImageURI(imageUri);
         }
     }
 

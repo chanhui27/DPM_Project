@@ -30,6 +30,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawer;
     private Button managerButton;
+    private Button studentButton;
     private Button pathwayButton;
 
 
@@ -53,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
         //testing popup screen
         managerButton = findViewById(R.id.ManagerBtn);
         pathwayButton = findViewById(R.id.PathwayBtn);
+        studentButton = findViewById(R.id.StudentBtn);
 
+        //pathway
         pathwayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +64,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        //student
+        studentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+            }
+        });
 
         //go to manager screen
         managerButton.setOnClickListener(new View.OnClickListener() {
