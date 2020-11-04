@@ -5,9 +5,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,6 +27,13 @@ import java.util.List;
 public class ModuleActivity extends AppCompatActivity {
     //private ModuleViewModel moduleViewModel;
     private PathwayViewModel pathwayViewModel;
+
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+    //String code, String title, int isCompleted, String aim, int level, int year, String coRequisite, int semester
+    private EditText popModuleCode, popModuleTitle, popDescription, popModuleLevel, popCredit, popPreRequisite, popCoRequisite, popStream;
+    private Button popEdit, popDelete;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -108,5 +118,12 @@ public class ModuleActivity extends AppCompatActivity {
 
                 attachToRecyclerView(recyclerView);
     }*/
+
+        
+    }
+
+    public void createNewPopDialog(){
+        dialogBuilder = new AlertDialog.Builder(this);
+        final View popUpView = getLayoutInflater().inflate(R.layout.pathwaypopup, null);
     }
 }
