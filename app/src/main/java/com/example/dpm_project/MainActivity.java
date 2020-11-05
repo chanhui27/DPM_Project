@@ -46,9 +46,6 @@ public class MainActivity extends AppCompatActivity {
             openDisclaimer();
         }
 
-
-
-
         //toolbar
         //Toolbar toolbar = findViewById(R.id.toolbar);
         //testing popup screen
@@ -68,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         studentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+                startActivity(new Intent(MainActivity.this,StudentModuleActivity.class));
             }
         });
 
