@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -29,17 +30,20 @@ import java.util.List;
 public class StudentModuleActivity extends AppCompatActivity {
     //private ModuleViewModel moduleViewModel;
     private PathwayViewModel pathwayViewModel;
-
+    private TextView menuText;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.student_module_activity_main);
 
-        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-        boolean firstStart = prefs.getBoolean("firstStart", true);
+        menuText = findViewById(R.id.Degree_title);
+        menuText.setText("Student");
+
+        boolean firstStart = true;
 
         if(firstStart){
             openProfile();
+            firstStart = false;
         }
 
 
@@ -87,20 +91,14 @@ public class StudentModuleActivity extends AppCompatActivity {
     }
     //popup disclaimer
     public void openProfile() {
-        LayoutInflater adbInflater = LayoutInflater.from(this);
         AlertDialog.Builder alertDialoguilder = new AlertDialog.Builder(this);
         alertDialoguilder.setMessage("Would you like to create a profile?");
-
-
 
         alertDialoguilder.setPositiveButton("Create", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(StudentModuleActivity.this, ProfileActivity.class);
-                SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putBoolean("firstStart", false);
-                editor.apply();
+
                 startActivity(intent);
             }
 
@@ -116,7 +114,5 @@ public class StudentModuleActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = alertDialoguilder.create();
         alertDialog.show();
-
-
     }
 }

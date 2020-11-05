@@ -13,6 +13,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -20,6 +21,7 @@ import java.io.IOException;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity {
+    private TextView menuText;
     private EditText editText_Id;
     private EditText editText_Name;
     private EditText editText_Email;
@@ -37,6 +39,8 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
 
+        menuText = findViewById(R.id.Degree_title);
+        menuText.setText("Student");
 
         editText_Id = findViewById(R.id.edit_id);
         editText_Name = findViewById(R.id.edit_name);

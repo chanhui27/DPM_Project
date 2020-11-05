@@ -7,17 +7,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class ManagerPassword extends AppCompatActivity {
     private EditText tPwd;
     private Button btnConfirm;
     private Button btnCancel;
-
+    private TextView menuText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_password);
+        menuText = findViewById(R.id.Degree_title);
+        menuText.setText("Manager");
 
         tPwd = findViewById(R.id.edit_id);
         btnConfirm = findViewById(R.id.ConfirmBtn);
