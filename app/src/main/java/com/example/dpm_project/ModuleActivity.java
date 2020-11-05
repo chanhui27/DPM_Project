@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -28,11 +29,10 @@ public class ModuleActivity extends AppCompatActivity {
     //private ModuleViewModel moduleViewModel;
     private PathwayViewModel pathwayViewModel;
 
-    private AlertDialog.Builder dialogBuilder;
-    private AlertDialog dialog;
-    //String code, String title, int isCompleted, String aim, int level, int year, String coRequisite, int semester
-    private EditText popModuleCode, popModuleTitle, popDescription, popModuleLevel, popCredit, popPreRequisite, popCoRequisite, popStream;
-    private Button popEdit, popDelete;
+   // private AlertDialog.Builder dialogBuilder;
+    //private AlertDialog dialog;
+   // private TextView popModuleCode, popModuleTitle, popDescription, popModuleLevel, popCredit, popPreRequisite, popCoRequisite, popStream;
+    //private Button popEdit, popDelete;
 
 
     @Override
@@ -61,6 +61,7 @@ public class ModuleActivity extends AppCompatActivity {
                         for (PathwayWithModules p : pathwayWithModules) {
                             if (selectedPathway[0].pathwayId == p.pathway.pathwayId) {
                                 adapter.setModules(p.modules);
+                                //createNewPopDialog();
                                 break;
                             }
                         }
@@ -117,7 +118,7 @@ public class ModuleActivity extends AppCompatActivity {
         }).
 
                 attachToRecyclerView(recyclerView);
-    }*/
+    }
 
         
     }
@@ -125,5 +126,18 @@ public class ModuleActivity extends AppCompatActivity {
     public void createNewPopDialog(){
         dialogBuilder = new AlertDialog.Builder(this);
         final View popUpView = getLayoutInflater().inflate(R.layout.pathwaypopup, null);
+        popModuleCode = (TextView) popUpView.findViewById(R.id.popModuleCode2);
+        popModuleTitle = (TextView) popUpView.findViewById(R.id.popModuleTitle2);
+        popDescription = (TextView) popUpView.findViewById(R.id.popDescription2);
+        popModuleLevel = (TextView) popUpView.findViewById(R.id.popModuleLevel2);
+        popCredit = (TextView) popUpView.findViewById(R.id.popCredit2);
+        popPreRequisite = (TextView) popUpView.findViewById(R.id.popPreRequisite2);
+        popCoRequisite = (TextView) popUpView.findViewById(R.id.popCoRequisite2);
+        popStream = (TextView) popUpView.findViewById(R.id.popStream2);
+
+        dialogBuilder.setView(popUpView);
+        dialog = dialogBuilder.create();
+        dialog.show();
+        */
     }
 }
