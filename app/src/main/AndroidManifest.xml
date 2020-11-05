@@ -30,6 +30,9 @@
         <activity android:name=".ModuleActivity"
             android:parentActivityName=".MainActivity"/>
 
+        <activity android:name=".StudentModuleActivity"
+            android:parentActivityName=".MainActivity"/>
+
     </application>
 
 </manifest>
