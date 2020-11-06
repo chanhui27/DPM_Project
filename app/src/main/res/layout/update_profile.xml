@@ -11,10 +11,10 @@
         layout="@layout/toolbar"
         />
 
-    <!--Photo-->
 
+    <!--Photo-->
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/photo"
+        android:id="@+id/updatephoto"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/ic_person"
@@ -24,9 +24,9 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.136" />
-    <!--ID-->
+
     <TextView
-        android:id="@+id/text_id"
+        android:id="@+id/updatetext_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -38,9 +38,10 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.277" />
+    <!--ID-->
 
     <EditText
-        android:id="@+id/edit_id"
+        android:id="@+id/updateedit_id"
         android:layout_width="190dp"
         android:layout_height="40dp"
         android:inputType="number"
@@ -53,7 +54,7 @@
 
     <!--Name-->
     <TextView
-        android:id="@+id/text_name"
+        android:id="@+id/updatetext_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name:"
@@ -66,7 +67,7 @@
         app:layout_constraintVertical_bias="0.366" />
 
     <EditText
-        android:id="@+id/edit_name"
+        android:id="@+id/updateedit_name"
         android:layout_width="190dp"
         android:layout_height="40dp"
         android:inputType="text"
@@ -77,10 +78,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.373" />
 
-    <!--Email-->
 
+    <!--Email-->
     <TextView
-        android:id="@+id/text_email"
+        android:id="@+id/updatetext_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -94,7 +95,7 @@
         app:layout_constraintVertical_bias="0.431" />
 
     <EditText
-        android:id="@+id/edit_email"
+        android:id="@+id/updateedit_email"
         android:layout_width="190dp"
         android:layout_height="40dp"
         android:inputType="textEmailAddress"
@@ -106,8 +107,9 @@
         app:layout_constraintVertical_bias="0.451" />
 
     <!--Phone-->
+
     <TextView
-        android:id="@+id/text_phone"
+        android:id="@+id/updatetext_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -121,7 +123,7 @@
         app:layout_constraintVertical_bias="0.51" />
 
     <EditText
-        android:id="@+id/edit_phone"
+        android:id="@+id/updateedit_phone"
         android:layout_width="190dp"
         android:layout_height="40dp"
         android:inputType="number"
@@ -134,7 +136,7 @@
 
     <!--Address-->
     <TextView
-        android:id="@+id/text_address"
+        android:id="@+id/updatetext_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Address:"
@@ -147,7 +149,7 @@
         app:layout_constraintVertical_bias="0.605" />
 
     <EditText
-        android:id="@+id/edit_address"
+        android:id="@+id/updateedit_address"
         android:layout_width="190dp"
         android:layout_height="40dp"
         android:inputType="text"
@@ -158,16 +160,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.616" />
 
-
-
-
-    <!--save button-->
+    <!--update button-->
     <Button
-        android:id="@+id/profileSavebtn"
+        android:id="@+id/profileUpdatebtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/roundedbutton"
-        android:text="Save"
+        android:text="Update"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.204"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -177,7 +176,7 @@
         android:onClick="save"/>
     <!--cancel button-->
     <Button
-        android:id="@+id/profileCancelbtn"
+        android:id="@+id/updateprofileCancelbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/roundedbutton"

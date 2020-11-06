@@ -31,19 +31,16 @@ public class StudentModuleActivity extends AppCompatActivity {
     //private ModuleViewModel moduleViewModel;
     private PathwayViewModel pathwayViewModel;
     private TextView menuText;
+    boolean accepted = true;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.student_module_activity_main);
 
-        menuText = findViewById(R.id.Degree_title);
-        menuText.setText("Student");
 
-        boolean firstStart = true;
-
-        if(firstStart){
+        if(accepted) {
             openProfile();
-            firstStart = false;
         }
 
 
@@ -89,7 +86,7 @@ public class StudentModuleActivity extends AppCompatActivity {
             }
         });
     }
-    //popup disclaimer
+    //popup profile
     public void openProfile() {
         AlertDialog.Builder alertDialoguilder = new AlertDialog.Builder(this);
         alertDialoguilder.setMessage("Would you like to create a profile?");
@@ -97,22 +94,22 @@ public class StudentModuleActivity extends AppCompatActivity {
         alertDialoguilder.setPositiveButton("Create", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
                 Intent intent = new Intent(StudentModuleActivity.this, ProfileActivity.class);
-
                 startActivity(intent);
-            }
 
+            }
         });
 
         alertDialoguilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent goIntent = new Intent(StudentModuleActivity.this, MainActivity.class);
-                startActivity(goIntent);
+                dialog.dismiss();
             }
         });
 
         AlertDialog alertDialog = alertDialoguilder.create();
         alertDialog.show();
+        accepted = false;
     }
 }

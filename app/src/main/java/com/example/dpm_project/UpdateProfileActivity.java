@@ -1,12 +1,6 @@
 package com.example.dpm_project;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -15,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -25,7 +22,7 @@ import java.io.InputStreamReader;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProfileActivity extends AppCompatActivity {
+public class UpdateProfileActivity extends AppCompatActivity {
     private TextView menuText;
     private EditText editText_Id;
     private EditText editText_Name;
@@ -68,7 +65,7 @@ public class ProfileActivity extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cIntent = new Intent(ProfileActivity.this, StudentModuleActivity.class);
+                Intent cIntent = new Intent(UpdateProfileActivity.this, StudentModuleActivity.class);
                 startActivity(cIntent);
             }
         });
@@ -91,44 +88,35 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
-    public void save(View v) {
-        String id = editText_Id.getText().toString();
-        String name = editText_Name.getText().toString();
-        String email = editText_Email.getText().toString();
-        String address = editText_Address.getText().toString();
-        String phone = editText_Phone.getText().toString();
-        String uri = profileImage.toString();
+    public void load(View v) {
+        FileInputStream fis = null;
 
-        FileOutputStream fos = null;
+        try{
+            fis = openFileInput(FILE_NAME);
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            String text;
 
-        try {
-            fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
-            fos.write(id.getBytes());
-            fos.write(name.getBytes());
-            fos.write(email.getBytes());
-            fos.write(address.getBytes());
-            fos.write(phone.getBytes());
-            fos.write(uri.getBytes());
+            while ((text = br.readLine()) != null) {
+                sb.append(text).append("\n");
+            }
+            editText_Id.setText(sb.toString());
+            editText_Name.setText(sb.toString());
 
-            Toast.makeText(this, "Saved to " + getFilesDir() + "/" + FILE_NAME,
-                    Toast.LENGTH_LONG).show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (IOException e) {
+        } finally  {
+            if(fis != null) {
+                try{
+                    fis.close();
+                } catch(IOException e) {
                     e.printStackTrace();
                 }
             }
         }
-
-        Intent intent = new Intent(ProfileActivity.this, StudentModuleActivity.class);
-        startActivity(intent);
-
     }
 
 }
