@@ -41,19 +41,19 @@ public class UpdateProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile);
+        setContentView(R.layout.update_profile);
 
         menuText = findViewById(R.id.Degree_title);
         menuText.setText("Student");
 
-        editText_Id = findViewById(R.id.edit_id);
-        editText_Name = findViewById(R.id.edit_name);
-        editText_Email = findViewById(R.id.edit_email);
-        editText_Address = findViewById(R.id.edit_address);
-        editText_Phone = findViewById(R.id.edit_phone);
+        editText_Id = findViewById(R.id.updateedit_id);
+        editText_Name = findViewById(R.id.updateedit_name);
+        editText_Email = findViewById(R.id.updateedit_email);
+        editText_Address = findViewById(R.id.updateedit_address);
+        editText_Phone = findViewById(R.id.updateedit_phone);
 
         //get image from gallery
-        profileImage = (CircleImageView) findViewById(R.id.photo);
+        profileImage = (CircleImageView) findViewById(R.id.updatephoto);
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +61,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
             }
         });
 
-        cancelButton = findViewById(R.id.profileCancelbtn);
+        cancelButton = findViewById(R.id.updateprofileCancelbtn);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

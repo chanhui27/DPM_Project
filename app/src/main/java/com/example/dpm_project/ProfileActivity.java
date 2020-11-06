@@ -128,7 +128,5 @@ public class ProfileActivity extends AppCompatActivity {
 
         Intent intent = new Intent(ProfileActivity.this, StudentModuleActivity.class);
         startActivity(intent);
-
     }
-
 }

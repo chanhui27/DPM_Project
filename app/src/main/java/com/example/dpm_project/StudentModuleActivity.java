@@ -31,15 +31,16 @@ public class StudentModuleActivity extends AppCompatActivity {
     //private ModuleViewModel moduleViewModel;
     private PathwayViewModel pathwayViewModel;
     private TextView menuText;
-    boolean accepted = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.student_module_activity_main);
 
+        SharedPreferences prefs = getSharedPreferences("don'tshow", MODE_PRIVATE);
+        boolean first = prefs.getBoolean("first", true);
 
-        if(accepted) {
+        if(first) {
             openProfile();
         }
 
@@ -94,7 +95,10 @@ public class StudentModuleActivity extends AppCompatActivity {
         alertDialoguilder.setPositiveButton("Create", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                SharedPreferences prefs = getSharedPreferences("don'tshow", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putBoolean("first", false);
+                editor.apply();
                 Intent intent = new Intent(StudentModuleActivity.this, ProfileActivity.class);
                 startActivity(intent);
 
@@ -110,6 +114,5 @@ public class StudentModuleActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = alertDialoguilder.create();
         alertDialog.show();
-        accepted = false;
     }
 }
