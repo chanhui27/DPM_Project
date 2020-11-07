@@ -1,6 +1,7 @@
 package com.example.dpm_project;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ public class ManagerPassword extends AppCompatActivity {
     private Button btnConfirm;
     private Button btnCancel;
     private TextView menuText;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

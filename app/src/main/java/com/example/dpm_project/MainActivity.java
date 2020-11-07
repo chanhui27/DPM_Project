@@ -3,6 +3,7 @@ package com.example.dpm_project;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,8 @@ import android.provider.MediaStore;
 import android.security.identity.AccessControlProfileId;
 import android.text.Layout;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -40,14 +43,19 @@ public class MainActivity extends AppCompatActivity {
     private Button pathwayButton;
     private TextView menuText;
 
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        menuText = findViewById(R.id.Degree_title);
-        menuText.setText("Degree Program Mapper");
+        mToolbar = findViewById(R.id.toolbar);
+        mToolbar.setTitle("Degree Program Mapper");
+        mToolbar.setTitleMarginStart(170);
+        setSupportActionBar(mToolbar);
+        /*menuText = findViewById(R.id.Degree_title);
+        menuText.setText("Degree Program Mapper");*/
 
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firstStart", true);
@@ -116,8 +124,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.draw_menu,menu);
+        return true;
 
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_home:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.menu_about:
+                Intent intent2 = new Intent(this,about.class);
+                startActivity(intent2);
+                return true;
+
+            case R.id.menu_profile:
+                Intent intent3 = new Intent(this,ProfileActivity.class);
+                startActivity(intent3);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     //popup disclaimer
     public void openDisclaimer() {
@@ -152,5 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 
 }

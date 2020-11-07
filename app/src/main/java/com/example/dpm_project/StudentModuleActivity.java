@@ -4,15 +4,22 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +28,7 @@ import com.example.dpm_project.models.Module;
 import com.example.dpm_project.models.Pathway;
 import com.example.dpm_project.models.PathwayWithModules;
 import com.example.dpm_project.viewmodels.PathwayViewModel;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,36 +37,26 @@ public class StudentModuleActivity extends AppCompatActivity {
     //private ModuleViewModel moduleViewModel;
     private PathwayViewModel pathwayViewModel;
     private TextView menuText;
-    //variables
-   /* DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    Toolbar toolbar;*/
-
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.student_module_activity_main);
 
+
+        mToolbar = findViewById(R.id.toolbar);
+        mToolbar.setTitle("Student");
+        mToolbar.setTitleMarginStart(400);
+        setSupportActionBar(mToolbar);
+
+        //sharedPReferences to keep the creating part is showing once
         SharedPreferences prefs = getSharedPreferences("don'tshow", MODE_PRIVATE);
         boolean first = prefs.getBoolean("first", true);
 
         if(first) {
             openProfile();
         }
-
-      /*  //hooks
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
-        toolbar = findViewById(R.id.st_toolbar);
-
-        //tool bar
-        setSupportActionBar(toolbar);
-
-        //navigation drawer menu
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();*/
 
 
         RecyclerView recyclerView = findViewById(R.id.student_pathway_recyclerview);
@@ -130,5 +128,35 @@ public class StudentModuleActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = alertDialoguilder.create();
         alertDialog.show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.draw_menu,menu);
+        return true;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_home:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.menu_about:
+                Intent intent2 = new Intent(this,about.class);
+                startActivity(intent2);
+                return true;
+
+            case R.id.menu_profile:
+                Intent intent3 = new Intent(this,ProfileActivity.class);
+                startActivity(intent3);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

@@ -1,8 +1,10 @@
 package com.example.dpm_project;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,6 +12,9 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,7 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText editText_Email;
     private EditText editText_Address;
     private EditText editText_Phone;
-
+    private Toolbar mToolbar;
     private Button cancelButton;
     private CircleImageView profileImage;
     private static final int PICK_IMAGE = 1;
@@ -46,8 +51,10 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
 
-        menuText = findViewById(R.id.Degree_title);
-        menuText.setText("Student");
+        mToolbar = findViewById(R.id.toolbar);
+        mToolbar.setTitle("Student");
+        mToolbar.setTitleMarginStart(400);
+        setSupportActionBar(mToolbar);
 
         editText_Id = findViewById(R.id.edit_id);
         editText_Name = findViewById(R.id.edit_name);
@@ -128,5 +135,35 @@ public class ProfileActivity extends AppCompatActivity {
 
         Intent intent = new Intent(ProfileActivity.this, StudentModuleActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.draw_menu,menu);
+        return true;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_home:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.menu_about:
+                Intent intent2 = new Intent(this,about.class);
+                startActivity(intent2);
+                return true;
+
+            case R.id.menu_profile:
+                Intent intent3 = new Intent(this,ProfileActivity.class);
+                startActivity(intent3);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

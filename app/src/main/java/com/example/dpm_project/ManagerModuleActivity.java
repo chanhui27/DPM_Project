@@ -4,15 +4,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,10 +34,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
     //private ModuleViewModel moduleViewModel;
     private PathwayViewModel pathwayViewModel;
     private TextView menuText;
-    //variables
-   /* DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    Toolbar toolbar;*/
+    private Toolbar mToolbar;
 
 
     @Override
@@ -40,20 +42,11 @@ public class ManagerModuleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manager_module_activity_main);
 
-
-      /*  //hooks
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
-        toolbar = findViewById(R.id.st_toolbar);
-
-        //tool bar
-        setSupportActionBar(toolbar);
-
-        //navigation drawer menu
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();*/
-
+        //toolbar
+        mToolbar = findViewById(R.id.toolbar);
+        mToolbar.setTitle("Manager");
+        mToolbar.setTitleMarginStart(300);
+        setSupportActionBar(mToolbar);
 
         RecyclerView recyclerView = findViewById(R.id.manager_pathway_recyclerview);
         Spinner spinner = findViewById(R.id.manager_pathway_spinner);
@@ -96,6 +89,37 @@ public class ManagerModuleActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    //toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.draw_menu,menu);
+        return true;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_home:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.menu_about:
+                Intent intent2 = new Intent(this,about.class);
+                startActivity(intent2);
+                return true;
+
+            case R.id.menu_profile:
+                Intent intent3 = new Intent(this,ProfileActivity.class);
+                startActivity(intent3);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }
