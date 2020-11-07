@@ -1,5 +1,7 @@
+
 package com.example.dpm_project;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -18,10 +20,14 @@ import android.provider.MediaStore;
 import android.security.identity.AccessControlProfileId;
 import android.text.Layout;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.io.IOException;
 
@@ -32,12 +38,16 @@ public class MainActivity extends AppCompatActivity {
     private Button managerButton;
     private Button studentButton;
     private Button pathwayButton;
+    private TextView menuText;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        menuText = findViewById(R.id.Degree_title);
+        menuText.setText("Degree Program Mapper");
 
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firstStart", true);
@@ -61,6 +71,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*pathwayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, DrawMenu.class));
+            }
+        });*/
+
+
         //student
         studentButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +98,8 @@ public class MainActivity extends AppCompatActivity {
 
         //toolbar
         //Toolbar toolbar = findViewById(R.id.toolbar);
-     /*   Toolbar toolbar = findViewById(R.id.toolbar);
+
+        /*Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
@@ -91,19 +110,14 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();*/
 
 
+
+
+
     }
 
 
 
-    @Override
-    public void onBackPressed() {
-        if(drawer.isDrawerOpen(GravityCompat.START)){
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
 
-    }
 
     //popup disclaimer
     public void openDisclaimer() {
@@ -138,4 +152,5 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 }

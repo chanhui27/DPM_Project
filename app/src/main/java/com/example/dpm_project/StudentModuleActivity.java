@@ -4,13 +4,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -31,6 +29,11 @@ public class StudentModuleActivity extends AppCompatActivity {
     //private ModuleViewModel moduleViewModel;
     private PathwayViewModel pathwayViewModel;
     private TextView menuText;
+    //variables
+   /* DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar toolbar;*/
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,6 +46,19 @@ public class StudentModuleActivity extends AppCompatActivity {
         if(first) {
             openProfile();
         }
+
+      /*  //hooks
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        toolbar = findViewById(R.id.st_toolbar);
+
+        //tool bar
+        setSupportActionBar(toolbar);
+
+        //navigation drawer menu
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();*/
 
 
         RecyclerView recyclerView = findViewById(R.id.student_pathway_recyclerview);
