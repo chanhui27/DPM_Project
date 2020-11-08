@@ -4,20 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e5e0cc">
+    android:background="#0000">
+
 
     <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+    <!--<include
         android:id="@+id/pathway_toolbar"
         layout="@layout/pathway_toolbar"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteY="0dp" />-->
 
     <LinearLayout
         android:id="@+id/pathway_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/pathway_toolbar">
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <Spinner
             android:id="@+id/pathway_spinner"
