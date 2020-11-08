@@ -54,8 +54,10 @@ public class MainActivity extends AppCompatActivity {
         mToolbar.setTitle("Degree Program Mapper");
         mToolbar.setTitleMarginStart(170);
         setSupportActionBar(mToolbar);
-        /*menuText = findViewById(R.id.Degree_title);
-        menuText.setText("Degree Program Mapper");*/
+        /*
+        menuText = findViewById(R.id.Degree_title);
+
+        menuText.setText("Degree Program Mapper"); */
 
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firstStart", true);
