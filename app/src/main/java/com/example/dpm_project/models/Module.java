@@ -14,6 +14,8 @@ public class Module {
     private String credit;
     private int year;
     private String coRequisite;
+    private String preRequisite;
+    private String stream;
     private int semester;
 
     public void setIsCompleted(int isCompleted) {
@@ -22,7 +24,7 @@ public class Module {
 
     private int isCompleted;
 
-    public Module(String code, String title, int isCompleted, String aim, String level, String credit, int year, String coRequisite, int semester) {
+    public Module(String code, String title, int isCompleted, String aim, String level, String credit, int year, String coRequisite, String preRequisite, String stream, int semester) {
         this.code = code;
         this.title = title;
         this.isCompleted = isCompleted;
@@ -31,7 +33,10 @@ public class Module {
         this.credit = credit;
         this.year = year;
         this.coRequisite = coRequisite;
+        this.preRequisite = preRequisite;
+        this.stream=stream;
         this.semester = semester;
+
     }
 
 
@@ -46,6 +51,14 @@ public class Module {
         this.coRequisite = coRequisite;
         this.semester = semester;
     }*/
+
+    public String getStream() {
+        return stream;
+    }
+
+    public void setStream(String stream) {
+        this.stream = stream;
+    }
 
     public void setModuleId(int moduleId) {
         this.moduleId = moduleId;
@@ -85,5 +98,13 @@ public class Module {
 
     public int getSemester(){
         return semester;
+    }
+
+    public String getPreRequisite() {
+        return preRequisite;
+    }
+
+    public void setPreRequisite(String preRequisite) {
+        this.preRequisite = preRequisite;
     }
 }

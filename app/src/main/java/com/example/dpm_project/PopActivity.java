@@ -25,21 +25,22 @@ public class PopActivity extends AppCompatActivity {
     public static final String EXTRA_CORE = "com.example.dpm_project.EXTRA_CORE";
     public static final String EXTRA_STREAM = "com.example.dpm_project.EXTRA_STREAM";
 
-    private TextView code, title, desc, level, pre, core, stream;
+    private TextView code, title, desc, level,credit, core,pre, stream;
     private ImageButton exit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop);
-        screensize();
+        //screensize();
 
         code = findViewById(R.id.popModuleCode2);
         title = findViewById(R.id.popModuleTitle2);
         desc = findViewById(R.id.popDescription2);
         level = findViewById(R.id.popModuleLevel2);
-        pre = findViewById(R.id.popPreRequisite2);
+        credit = findViewById(R.id.popCredit2);
         core = findViewById(R.id.popCoRequisite2);
+        pre= findViewById(R.id.popPreRequisite2);
         stream = findViewById(R.id.popStream2);
         exit = findViewById(R.id.popClose);
 
@@ -50,7 +51,9 @@ public class PopActivity extends AppCompatActivity {
             title.setText(intent.getStringExtra(EXTRA_TITLE));
             desc.setText(intent.getStringExtra(EXTRA_DESC));
             level.setText(intent.getStringExtra(EXTRA_LEVEL));
+            credit.setText(intent.getStringExtra(EXTRA_CREDIT));
             core.setText(intent.getStringExtra(EXTRA_CORE));
+            pre.setText(intent.getStringExtra(EXTRA_PRE));
             stream.setText(intent.getStringExtra(EXTRA_STREAM));
         }
 
@@ -58,8 +61,6 @@ public class PopActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                /*Intent intent2 = new Intent(PopActivity.this, ModuleActivity.class);
-                startActivity(intent2);*/
             }
         });
 

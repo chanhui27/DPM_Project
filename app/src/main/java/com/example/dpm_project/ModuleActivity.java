@@ -144,6 +144,8 @@ public class ModuleActivity extends AppCompatActivity {
                 intent.putExtra(PopActivity.EXTRA_LEVEL, module.getLevel());
                 intent.putExtra(PopActivity.EXTRA_CREDIT, module.getCredit());
                 intent.putExtra(PopActivity.EXTRA_CORE, module.getCoRequisite());
+                intent.putExtra(PopActivity.EXTRA_PRE, module.getPreRequisite());
+                intent.putExtra(PopActivity.EXTRA_STREAM, module.getStream());
                 startActivityForResult(intent, VIEW_REQUEST );
             }
         });
@@ -160,8 +162,10 @@ public class ModuleActivity extends AppCompatActivity {
             String level = data.getStringExtra(PopActivity.EXTRA_LEVEL);
             String credits = data.getStringExtra(PopActivity.EXTRA_CREDIT);
             String core = data.getStringExtra(PopActivity.EXTRA_CORE);
+            String pre = data.getStringExtra(PopActivity.EXTRA_PRE);
+            String stream = data.getStringExtra(PopActivity.EXTRA_STREAM);
 
-            Module module = new Module(code,title,1,desc,level,credits,1,core,1);
+            Module module = new Module(code,title,1,desc,level,credits,1,core,pre,stream,1);
             moduleViewModel.insert(module);
 
         }
@@ -188,10 +192,10 @@ public class ModuleActivity extends AppCompatActivity {
                 startActivity(intent2);
                 return true;
 
-            case R.id.menu_profile:
+            /*case R.id.menu_profile:
                 Intent intent3 = new Intent(this,ProfileActivity.class);
                 startActivity(intent3);
-                return true;
+                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }
