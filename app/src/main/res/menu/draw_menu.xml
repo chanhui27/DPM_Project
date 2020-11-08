@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+<!--    tools:showIn="navigation_view">-->
+
+<!--    <group android:checkableBehavior="single">-->
+<!--        <item android:id="@+id/menu_home"-->
+<!--            android:title="Home"/>-->
+<!--        <item android:id="@+id/menu_about"-->
+<!--            android:title="About"/>-->
+<!--        <item android:id="@+id/menu_profile"-->
+<!--            android:title="Profile"/>-->
+<!--        <item android:id="@+id/menu_track"-->
+<!--            android:title="Track"/>-->
+<!--    </group>-->
+
+    <item android:id="@+id/menu_home"
+        android:orderInCategory="100"
+        android:title="Home"
+        app:showAsAction="never" />
+    <item android:id="@+id/menu_about"
+        android:orderInCategory="200"
+        android:title="About"
+        app:showAsAction="never" />
+    <item android:id="@+id/menu_profile"
+        android:orderInCategory="300"
+        android:title="Profile"
+        app:showAsAction="never" />
+</menu>

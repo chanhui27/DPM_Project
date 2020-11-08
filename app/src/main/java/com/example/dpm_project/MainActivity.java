@@ -1,5 +1,6 @@
 package com.example.dpm_project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,15 +13,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private DrawerLayout drawer;
+    //private DrawerLayout drawer;
     private Button managerButton;
     private Button pathwayButton;
+    private Toolbar mTopToolbar;
     private static final int DIALOG_ID=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +34,15 @@ public class MainActivity extends AppCompatActivity {
 
         openDisclaimer();
 
-
-        //toolbar
+        mTopToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mTopToolbar);
+       //toolbar
         //Toolbar toolbar = findViewById(R.id.toolbar);
+        mTopToolbar.setTitle("Degree Program Mapper");
+        mTopToolbar.setLogo(R.drawable.winteclogo);
+        setSupportActionBar(mTopToolbar);
+
+
         //testing popup screen
         managerButton = findViewById(R.id.ManagerBtn);
         pathwayButton = findViewById(R.id.PathwayBtn);
@@ -73,15 +84,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        if(drawer.isDrawerOpen(GravityCompat.START)){
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-
-    }
+//    @Override
+//    public void onBackPressed() {
+//        if(drawer.isDrawerOpen(GravityCompat.START)){
+//            drawer.closeDrawer(GravityCompat.START);
+//        } else {
+//            super.onBackPressed();
+//        }
+//
+//    }
 
     //popup disclaimer
     public void openDisclaimer() {
@@ -108,5 +119,31 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = alertDialoguilder.create();
         alertDialog.show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.draw_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_home:
+                Toast.makeText(this, "Item 1 selected", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.menu_about:
+                Toast.makeText(this, "Item 2 selected", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.menu_profile:
+                Toast.makeText(this, "Item 3 selected", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+
     }
 }

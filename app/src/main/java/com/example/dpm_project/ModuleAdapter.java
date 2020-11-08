@@ -36,6 +36,7 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ModuleHold
         }
         holder.textViewCode.setText(currentModule.getCode());
         holder.textViewTitle.setText(currentModule.getTitle());
+
     }
 
     @Override
@@ -66,4 +67,6 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ModuleHold
         }
 
     }
+
+
 }
