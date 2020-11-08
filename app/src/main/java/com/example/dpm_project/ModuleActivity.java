@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dpm_project.models.Module;
 import com.example.dpm_project.models.Pathway;
 import com.example.dpm_project.models.PathwayWithModules;
+import com.example.dpm_project.viewmodels.ModuleViewModel;
 import com.example.dpm_project.viewmodels.PathwayViewModel;
 import com.google.android.material.navigation.NavigationView;
 
@@ -38,6 +40,8 @@ public class ModuleActivity extends AppCompatActivity {
     //menu
     private DrawerLayout drawer;
     private Toolbar mToolbar;
+    public static final int VIEW_REQUEST=1;
+    private ModuleViewModel moduleViewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,11 +55,14 @@ public class ModuleActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.pathway_recyclerview);
         Spinner spinner = findViewById(R.id.pathway_spinner);
+
         final Pathway[] selectedPathway = new Pathway[1];
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
+
         ModuleAdapter adapter = new ModuleAdapter();
         recyclerView.setAdapter(adapter);
+
         pathwayViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(PathwayViewModel.class);
         pathwayViewModel.getAllPathways().observe(this, pathways -> {
             ArrayAdapter<Pathway> spinnerAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, pathways);
@@ -124,10 +131,40 @@ public class ModuleActivity extends AppCompatActivity {
                 moduleViewModel.update(module);
                 Toast.makeText(ModuleActivity.this, isCompleted ? "Module incompleted" : "Module completed", Toast.LENGTH_SHORT).show();
             }
-        }).
-
-                attachToRecyclerView(recyclerView);
+        }).attachToRecyclerView(recyclerView);
     }*/
+        //clicking change
+        adapter.setOnItemClickListener(new ModuleAdapter.OnITemClickListener() {
+            @Override
+            public void onItemClick(Module module) {
+                Intent intent = new Intent(ModuleActivity.this, PopActivity.class);
+                intent.putExtra(PopActivity.EXTRA_CODE, module.getCode());
+                intent.putExtra(PopActivity.EXTRA_TITLE, module.getTitle());
+                intent.putExtra(PopActivity.EXTRA_DESC, module.getAim());
+                intent.putExtra(PopActivity.EXTRA_LEVEL, module.getLevel());
+                intent.putExtra(PopActivity.EXTRA_CREDIT, module.getCredit());
+                intent.putExtra(PopActivity.EXTRA_CORE, module.getCoRequisite());
+                startActivityForResult(intent, VIEW_REQUEST );
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode ==VIEW_REQUEST && resultCode == RESULT_OK) {
+            String code = data.getStringExtra(PopActivity.EXTRA_CODE);
+            String title = data.getStringExtra(PopActivity.EXTRA_TITLE);
+            String desc = data.getStringExtra(PopActivity.EXTRA_DESC);
+            String level = data.getStringExtra(PopActivity.EXTRA_LEVEL);
+            String credits = data.getStringExtra(PopActivity.EXTRA_CREDIT);
+            String core = data.getStringExtra(PopActivity.EXTRA_CORE);
+
+            Module module = new Module(code,title,1,desc,level,credits,1,core,1);
+            moduleViewModel.insert(module);
+
+        }
     }
 
     @Override

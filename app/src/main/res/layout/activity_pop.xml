@@ -45,6 +45,7 @@
         android:id="@+id/popModuleCode2"
         android:layout_width="190dp"
         android:layout_height="29dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.773"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -72,6 +73,7 @@
         android:id="@+id/popModuleTitle2"
         android:layout_width="190dp"
         android:layout_height="29dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.773"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -79,32 +81,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.215" />
 
-    <!--    Pop Description-->
-
-    <TextView
-        android:id="@+id/popDescription1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Aim: "
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.277" />
-
-    <TextView
-        android:id="@+id/popDescription2"
-        android:layout_width="190dp"
-        android:layout_height="29dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.773"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.293" />
 
     <!--    Pop ModuleLevel-->
 
@@ -126,6 +102,7 @@
         android:id="@+id/popModuleLevel2"
         android:layout_width="190dp"
         android:layout_height="29dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.773"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -153,6 +130,7 @@
         android:id="@+id/popCredit2"
         android:layout_width="190dp"
         android:layout_height="29dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.773"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -182,6 +160,7 @@
         android:id="@+id/popPreRequisite2"
         android:layout_width="190dp"
         android:layout_height="29dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.773"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -209,6 +188,7 @@
         android:id="@+id/popCoRequisite2"
         android:layout_width="190dp"
         android:layout_height="29dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.773"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -236,12 +216,41 @@
         android:id="@+id/popStream2"
         android:layout_width="190dp"
         android:layout_height="29dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.773"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.726" />
+
+    <!--    Pop Description-->
+
+    <TextView
+        android:id="@+id/popDescription1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Aim: "
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.799" />
+
+    <TextView
+        android:id="@+id/popDescription2"
+        android:layout_width="190dp"
+        android:layout_height="29dp"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.773"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.806" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

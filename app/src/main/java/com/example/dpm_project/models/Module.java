@@ -10,8 +10,8 @@ public class Module {
     private String code;
     private String title;
     private String aim;
-    private int level;
-    private int credit;
+    private String level;
+    private String credit;
     private int year;
     private String coRequisite;
     private int semester;
@@ -22,7 +22,7 @@ public class Module {
 
     private int isCompleted;
 
-    public Module(String code, String title, int isCompleted, String aim, int level, int credit, int year, String coRequisite, int semester) {
+    public Module(String code, String title, int isCompleted, String aim, String level, String credit, int year, String coRequisite, int semester) {
         this.code = code;
         this.title = title;
         this.isCompleted = isCompleted;
@@ -33,6 +33,19 @@ public class Module {
         this.coRequisite = coRequisite;
         this.semester = semester;
     }
+
+
+    /*public Module(String code, String title, int isCompleted, String aim, String level, String credit, int year, String coRequisite, int semester) {
+        this.code = code;
+        this.title = title;
+        this.isCompleted = isCompleted;
+        this.aim = aim;
+        this.level = level;
+        this.credit = credit;
+        this.year = year;
+        this.coRequisite = coRequisite;
+        this.semester = semester;
+    }*/
 
     public void setModuleId(int moduleId) {
         this.moduleId = moduleId;
@@ -60,11 +73,11 @@ public class Module {
         return year;
     }
 
-    public int getLevel() {
+    public String getLevel() {
         return level;
     }
 
-    public int getCredit(){return credit;}
+    public String getCredit(){return credit;}
 
     public String getCoRequisite(){
         return coRequisite;

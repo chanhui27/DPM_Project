@@ -101,6 +101,8 @@ public class StudentModuleActivity extends AppCompatActivity {
             }
         });
     }
+
+
     //popup profile
     public void openProfile() {
         AlertDialog.Builder alertDialoguilder = new AlertDialog.Builder(this);
