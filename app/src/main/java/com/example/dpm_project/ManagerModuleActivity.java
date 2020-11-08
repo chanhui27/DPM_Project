@@ -55,7 +55,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-       ManagerModuleAdapter adapter = new ManagerModuleAdapter();
+        ManagerModuleAdapter adapter = new ManagerModuleAdapter();
         recyclerView.setAdapter(adapter);
 
         pathwayViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(PathwayViewModel.class);

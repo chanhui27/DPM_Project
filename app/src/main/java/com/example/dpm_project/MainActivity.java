@@ -81,13 +81,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*pathwayButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, DrawMenu.class));
-            }
-        });*/
-
 
         //student
         studentButton.setOnClickListener(new View.OnClickListener() {
@@ -105,23 +98,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(mIntent);
             }
         });
-
-        //toolbar
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-
-        /*Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        drawer = findViewById(R.id.drawer_layout);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();*/
-
-
-
-
 
     }
 
@@ -187,9 +163,6 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alertDialog = alertDialoguilder.create();
         alertDialog.show();
 
-
     }
-
-
 
 }

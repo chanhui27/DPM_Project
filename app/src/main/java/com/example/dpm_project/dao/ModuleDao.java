@@ -12,7 +12,7 @@ import com.example.dpm_project.models.Module;
 import java.util.List;
 
 @Dao
-public interface ModuleDao {
+public  interface  ModuleDao {
     @Insert
     void insert(Module module);
     @Update

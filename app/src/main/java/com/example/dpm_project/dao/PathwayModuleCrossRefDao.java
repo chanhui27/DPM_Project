@@ -9,6 +9,4 @@ public interface PathwayModuleCrossRefDao {
     @Insert
     void insert(PathwayModuleCrossRef pathwayModuleCrossRef);
 
-
-
 }

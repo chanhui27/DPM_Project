@@ -6,12 +6,12 @@ import androidx.room.Relation;
 
 import java.util.List;
 
-public class PathwayWithModules {
-    @Embedded public Pathway pathway;
+public class ModuleWithPathways {
+    @Embedded public Module module;
     @Relation(
-            parentColumn = "pathwayId",
-            entityColumn = "moduleId",
+            parentColumn = "moduleId",
+            entityColumn = "pathwayId",
             associateBy = @Junction(PathwayModuleCrossRef.class)
     )
-    public List<Module> modules;
+    public List<Pathway> pathways;
 }

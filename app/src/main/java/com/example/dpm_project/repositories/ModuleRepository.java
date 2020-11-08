@@ -20,7 +20,7 @@ public class ModuleRepository {
     public ModuleRepository(Application application){
         ModuleDatabase database = ModuleDatabase.getInstance(application);
         moduleDao = database.moduleDao();
-        allModules = moduleDao.getAllModules();
+        allModules = moduleDao . getAllModules ();
     }
 
     public void insert(Module module){
