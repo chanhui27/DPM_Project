@@ -1,8 +1,6 @@
 package com.example.dpm_project;
 
 import android.content.Context;
-import android.net.Network;
-import android.os.Environment;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -45,6 +43,13 @@ public abstract class ModuleDatabase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
             Executors.newSingleThreadExecutor().execute(() -> {
+
+
+                instance.pathwayDao().insert(new Pathway("Database Architecture"));
+                instance.pathwayDao().insert(new Pathway("Network Engineering"));
+                instance.pathwayDao().insert(new Pathway("Software Engineering"));
+                instance.pathwayDao().insert(new Pathway("Web Development"));
+
                 // Modules for all pathways indexing from 1 to 14
                 instance.moduleDao().insert(new Module("COMP501", "IT Operations", 0));
                 instance.moduleDao().insert(new Module("COMP502", "Fundamentals of Programming and Problem Solving", 0));
@@ -60,11 +65,12 @@ public abstract class ModuleDatabase extends RoomDatabase {
                 instance.moduleDao().insert(new Module("COMP602", "Web Development", 0));
                 instance.moduleDao().insert(new Module("INFO602", "Business, Interpersonal Communications & Technical Writing", 0));
                 instance.moduleDao().insert(new Module("BIZM701", "Business Essentials for IT Professionals", 0));
-                //id = 15
+
+                // id = 15
                 instance.moduleDao().insert(new Module("COMP615", "Data Centre Infrastructure", 0));
                 //id = 16
                 instance.moduleDao().insert(new Module("COMP605", "Data Structures & Algorithms", 0));
-                // id = 17
+                //id = 17
                 instance.moduleDao().insert(new Module("COMP603", "The Web Environment", 0));
                 // id = 18
                 instance.moduleDao().insert(new Module("INFO603", "Systems Administration", 0));
@@ -123,20 +129,18 @@ public abstract class ModuleDatabase extends RoomDatabase {
                 // id = 45
                 instance.moduleDao().insert(new Module("COMP713", "Web Development Project", 0));
 
-                instance.pathwayDao().insert(new Pathway("Database Architecture"));
-                instance.pathwayDao().insert(new Pathway("Network Engineering"));
-                instance.pathwayDao().insert(new Pathway("Software Engineering"));
-                instance.pathwayDao().insert(new Pathway("Web Development"));
                 for (int i = 1; i <= 4; i++) {
                     for (int j = 1; j <= 14; j++) {
                         instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(i, j));
                     }
                 }
+
                 for (int i = 1; i <= 4; i++) {
                     for (int j = 41; j <= 42; j++) {
                         instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(i, j));
                     }
                 }
+
                 instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(2, 15));
                 instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(3, 16));
                 instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(1, 16));

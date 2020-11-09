@@ -26,8 +26,4 @@ public interface PathwayDao {
 
     @Query("SELECT * FROM pathway_table")
     LiveData<List<Pathway>> getAllPathways();
-
-    @Transaction
-    @Query("SELECT * FROM pathway_table")
-    LiveData<List<PathwayWithModules>> getPathwayWithModules();
 }

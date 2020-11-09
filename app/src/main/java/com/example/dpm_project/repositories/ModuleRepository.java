@@ -7,6 +7,8 @@ import androidx.lifecycle.LiveData;
 import com.example.dpm_project.ModuleDatabase;
 import com.example.dpm_project.dao.ModuleDao;
 import com.example.dpm_project.models.Module;
+import com.example.dpm_project.models.ModuleWithPathways;
+import com.example.dpm_project.models.PathwayWithModules;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -15,12 +17,15 @@ import java.util.concurrent.Executors;
 public class ModuleRepository {
     private ModuleDao moduleDao;
     private LiveData<List<Module>> allModules;
+    private LiveData<List<ModuleWithPathways>> modulesWithPathways;
     private Executor executor = Executors.newSingleThreadExecutor();
 
     public ModuleRepository(Application application){
         ModuleDatabase database = ModuleDatabase.getInstance(application);
         moduleDao = database.moduleDao();
         allModules = moduleDao.getAllModules();
+        modulesWithPathways = moduleDao.getModuleWithPathways();
+
     }
 
     public void insert(Module module){
@@ -35,6 +40,9 @@ public class ModuleRepository {
     }
     public LiveData<List<Module>> getAllModules() {
         return allModules;
+    }
+    public LiveData<List<ModuleWithPathways>> getModulesWithPathways(){
+        return modulesWithPathways;
     }
 
 }
