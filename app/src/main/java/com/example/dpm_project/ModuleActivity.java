@@ -1,6 +1,7 @@
 package com.example.dpm_project;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,10 +21,11 @@ import com.example.dpm_project.viewmodels.PathwayViewModel;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ModuleActivity extends AppCompatActivity {
     private ModuleViewModel moduleViewModel;
-    private PathwayViewModel pathwayViewModel;
+    //    private PathwayViewModel pathwayViewModel;
     private ModuleAdapter adapter;
     private List<ModuleWithPathways> modules;
 
@@ -32,6 +34,7 @@ public class ModuleActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.module_activity_main);
+
         RecyclerView recyclerView = findViewById(R.id.pathway_recyclerview);
         Spinner pathwaySpinner = findViewById(R.id.pathway_spinner);
         Spinner yearSpinner = findViewById(R.id.year_spinner);
@@ -44,43 +47,31 @@ public class ModuleActivity extends AppCompatActivity {
 
 
         String[][] semesters = new String[][]{new String[]{"All semesters", "Semester 1", "Semester 2", "Semester 3", "Semester 4", "Semester 5", "Semester 6"},
-                new String[]{"Semester 1", "Semester 2"}, new String[]{"Semester 3", "Semester 4"}, new String[]{"Semester 5", "Semester 6"}};
+                new String[]{"All semesters", "Semester 1", "Semester 2"}, new String[]{"All semesters", "Semester 3", "Semester 4"}, new String[]{"All semesters", "Semester 5", "Semester 6"}};
+        semesterSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, semesters[0]));
 
-        yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                semesterSpinner.setAdapter(new ArrayAdapter<>(ModuleActivity.this, android.R.layout.simple_spinner_dropdown_item, semesters[pos]));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         adapter = new ModuleAdapter();
         recyclerView.setAdapter(adapter);
         moduleViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(ModuleViewModel.class);
-        pathwayViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(PathwayViewModel.class);
+        moduleViewModel.getModulesWithPathways().observe(this, mwps -> {
+            this.modules = mwps;
+        });
+//        pathwayViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(PathwayViewModel.class);
         List<String> pathways = Arrays.asList(getResources().getStringArray(R.array.pathways_array));
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, pathways);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pathwaySpinner.setAdapter(spinnerAdapter);
 
-        moduleViewModel.getModulesWithPathways().observe(this, mwps -> {
-            this.modules = mwps;
-        });
-
-
 
         pathwaySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                /*pathway_id = i;
-                getModules(pathway_id);*/
-                getModules(i);
+                int year = yearSpinner.getSelectedItemPosition();
+                int semester = semesterSpinner.getSelectedItemPosition();
+                updateModules(i, year, semester);
 
             }
 
@@ -89,6 +80,44 @@ public class ModuleActivity extends AppCompatActivity {
 
             }
         });
+
+        yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                semesterSpinner.setAdapter(new ArrayAdapter<>(ModuleActivity.this, android.R.layout.simple_spinner_dropdown_item, semesters[pos]));
+                int semester = semesterSpinner.getSelectedItemPosition();
+                int pathway_id = pathwaySpinner.getSelectedItemPosition();
+                updateModules(pathway_id, pos, semester);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+        semesterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                int year = yearSpinner.getSelectedItemPosition();
+                int pathway_id = pathwaySpinner.getSelectedItemPosition();
+                updateModules(pathway_id, year, i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+
+
+
+
+
+
 
 
 
@@ -193,25 +222,62 @@ public class ModuleActivity extends AppCompatActivity {
     }*/
     }
 
-    private void getModules(int pathway_id) {
-        List<Module> result;
-        if (pathway_id == 0) {
-            result = modules.stream()
-                    .map(m -> m.module)
-                    .collect(Collectors.toList());
-        }else{
-            result = modules.stream()
-                    .filter(mwps -> mwps.pathways.stream()
-                            .anyMatch(p -> p.pathwayId == pathway_id))
-                    .map(m -> m.module)
-                    .collect(Collectors.toList());
-        }
-        adapter.setModules(result);
+    private void updateModules(int pathway_id, int year, int semester) {
+        List<Module> byPathway = getModulesByPathway(pathway_id);
+        List<Module> byYear = getModulesByYear(year);
+        List<Module> bySemester = getModulesBySemester(year, semester);
+        byPathway.retainAll(byYear);
+        bySemester.retainAll(byPathway);
+        adapter.setModules(bySemester);
     }
 
-   /* private void getModules(int pathway_id) {
-        pathwayViewModel.getPathwayWithModules(pathway_id).observe(this, this::updateModules);
-    }*/
+    private List<Module> getModulesByYear(int year) {
+        Stream<ModuleWithPathways> result;
+        if (year == 0) {
+            result = modules.stream();
+        } else {
+            result = modules.stream().filter(mwps -> mwps.module.getYear() == year);
+        }
+        List<Module> collect = result.map(m -> m.module).collect(Collectors.toList());
+        Log.d("ModulesBy_Year", String.valueOf(collect.size()));
+        return collect;
 
+    }
+
+    private List<Module> getModulesByPathway(int pathway_id) {
+        Stream<ModuleWithPathways> result;
+        if (pathway_id == 0) {
+            result = modules.stream();
+        } else {
+            result = modules.stream().filter(mwps -> mwps.pathways.stream().anyMatch(p -> p.pathwayId == pathway_id));
+        }
+        List<Module> collect = result.map(m -> m.module).collect(Collectors.toList());
+        Log.d("ModulesBy_Year", String.valueOf(collect.size()));
+        return collect;
+    }
+
+
+    /* private void getModules(int pathway_id) {
+         pathwayViewModel.getPathwayWithModules(pathway_id).observe(this, this::updateModules);
+     }*/
+    private List<Module> getModulesBySemester(int year, int semester) {
+        Stream<ModuleWithPathways> result;
+        if (semester != 0) {
+            if (year == 0) {
+                int real_year = semester / 2 + semester % 2;
+                int real_semester = semester == 5 ? 1 : semester / 3 + semester % 3;
+                result = modules.stream()
+                        .filter(mwps -> mwps.module.getSemester() == real_semester && mwps.module.getYear() == real_year);
+
+            } else {
+                result = modules.stream().filter(mwps -> mwps.module.getYear() == year && mwps.module.getSemester() == semester);
+            }
+        } else {
+            result = modules.stream();
+        }
+        return result.map(m -> m.module).collect(Collectors.toList());
+
+
+    }
 
 }
