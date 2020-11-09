@@ -1,8 +1,6 @@
 package com.example.dpm_project;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,7 +13,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
@@ -31,10 +28,10 @@ import com.example.dpm_project.viewmodels.PathwayViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManagerModuleActivity extends AppCompatActivity {
+public class ManagerUpdateModuleActivity extends AppCompatActivity {
     //private ModuleViewModel moduleViewModel;
     private PathwayViewModel pathwayViewModel;
-    public static final int VIEW_REQUEST=1;
+   // public static final int VIEW_REQUEST=1;
     public static final int EDIT_REQUEST=2;
     private ModuleViewModel moduleViewModel;
     private TextView menuText;
@@ -44,7 +41,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.manager_module_activity_main);
+        setContentView(R.layout.manager_update_module_activity_main);
 
         //toolbar
         mToolbar = findViewById(R.id.toolbar);
@@ -52,14 +49,14 @@ public class ManagerModuleActivity extends AppCompatActivity {
         mToolbar.setTitleMarginStart(300);
         setSupportActionBar(mToolbar);
 
-        RecyclerView recyclerView = findViewById(R.id.manager_pathway_recyclerview);
-        Spinner spinner = findViewById(R.id.manager_pathway_spinner);
+        RecyclerView recyclerView = findViewById(R.id.manager_update_pathway_recyclerview);
+        Spinner spinner = findViewById(R.id.manager_update_pathway_spinner);
 
         final Pathway[] selectedPathway = new Pathway[1];
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        ManagerModuleAdapter adapter = new ManagerModuleAdapter();
+        ManageUpdateModuleAdapter adapter = new ManageUpdateModuleAdapter();
         recyclerView.setAdapter(adapter);
 
         pathwayViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(PathwayViewModel.class);
@@ -72,7 +69,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 selectedPathway[0] = (Pathway) spinner.getSelectedItem();
-                pathwayViewModel.getPathwayWithModules().observe(ManagerModuleActivity.this, pathwayWithModules -> {
+                pathwayViewModel.getPathwayWithModules().observe(ManagerUpdateModuleActivity.this, pathwayWithModules -> {
                     if (selectedPathway[0] != null) {
                         for (PathwayWithModules p : pathwayWithModules) {
                             if (selectedPathway[0].pathwayId == p.pathway.pathwayId) {
@@ -98,7 +95,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new ModuleAdapter.OnITemClickListener() {
             @Override
             public void onItemClick(Module module) {
-                Intent intent = new Intent(ManagerModuleActivity.this, ManagePopActivity.class);
+                Intent intent = new Intent(ManagerUpdateModuleActivity.this, ManagePopActivity.class);
                 intent.putExtra(ManagePopActivity.EXTRA_CODE, module.getCode());
                 intent.putExtra(ManagePopActivity.EXTRA_TITLE, module.getTitle());
                 intent.putExtra(ManagePopActivity.EXTRA_DESC, module.getAim());
@@ -107,7 +104,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
                 intent.putExtra(ManagePopActivity.EXTRA_CORE, module.getCoRequisite());
                 intent.putExtra(ManagePopActivity.EXTRA_PRE, module.getPreRequisite());
                 intent.putExtra(ManagePopActivity.EXTRA_STREAM, module.getStream());
-                startActivityForResult(intent, VIEW_REQUEST );
+                startActivityForResult(intent, EDIT_REQUEST );
             }
         });
 
@@ -116,7 +113,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode ==VIEW_REQUEST && resultCode == RESULT_OK) {
+        if(requestCode ==EDIT_REQUEST && resultCode == RESULT_OK) {
             String code = data.getStringExtra(ManagePopActivity.EXTRA_CODE);
             String title = data.getStringExtra(ManagePopActivity.EXTRA_TITLE);
             String desc = data.getStringExtra(ManagePopActivity.EXTRA_DESC);
