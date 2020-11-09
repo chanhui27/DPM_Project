@@ -32,8 +32,13 @@
 
         <activity android:name=".StudentModuleActivity"
             android:parentActivityName=".MainActivity"/>
+
         <activity android:name=".ManagerModuleActivity" />
+
         <activity android:name=".about"/>
+
+        <activity android:name=".ManagePopActivity"/>
+
 
     </application>
 

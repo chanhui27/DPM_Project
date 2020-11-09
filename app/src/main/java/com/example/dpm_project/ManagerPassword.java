@@ -22,8 +22,11 @@ public class ManagerPassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_password);
-        menuText = findViewById(R.id.Degree_title);
-        menuText.setText("Manager");
+        mToolbar = findViewById(R.id.toolbar);
+        mToolbar.setTitle("Manager");
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setLogo(R.mipmap.wintec_logo);
+
         tPwd = findViewById(R.id.edit_pwd);
         btnConfirm = findViewById(R.id.ConfirmBtn);
         btnCancel = findViewById(R.id.CancelBtn);

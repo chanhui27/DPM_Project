@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,6 +36,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
     //private ModuleViewModel moduleViewModel;
     private PathwayViewModel pathwayViewModel;
     public static final int VIEW_REQUEST=1;
+    public static final int EDIT_REQUEST=2;
     private ModuleViewModel moduleViewModel;
     private TextView menuText;
     private Toolbar mToolbar;
@@ -48,8 +50,8 @@ public class ManagerModuleActivity extends AppCompatActivity {
         //toolbar
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("Manager");
-        mToolbar.setTitleMarginStart(300);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setLogo(R.mipmap.wintec_logo);;
 
         RecyclerView recyclerView = findViewById(R.id.manager_pathway_recyclerview);
         Spinner spinner = findViewById(R.id.manager_pathway_spinner);
@@ -97,16 +99,17 @@ public class ManagerModuleActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new ModuleAdapter.OnITemClickListener() {
             @Override
             public void onItemClick(Module module) {
-                Intent intent = new Intent(ManagerModuleActivity.this, PopActivity.class);
-                intent.putExtra(PopActivity.EXTRA_CODE, module.getCode());
-                intent.putExtra(PopActivity.EXTRA_TITLE, module.getTitle());
-                intent.putExtra(PopActivity.EXTRA_DESC, module.getAim());
-                intent.putExtra(PopActivity.EXTRA_LEVEL, module.getLevel());
-                intent.putExtra(PopActivity.EXTRA_CREDIT, module.getCredit());
-                intent.putExtra(PopActivity.EXTRA_CORE, module.getCoRequisite());
-                intent.putExtra(PopActivity.EXTRA_PRE, module.getPreRequisite());
-                intent.putExtra(PopActivity.EXTRA_STREAM, module.getStream());
-                startActivityForResult(intent, VIEW_REQUEST );
+                Intent intent = new Intent(ManagerModuleActivity.this, ManagePopActivity.class);
+                intent.putExtra(ManagePopActivity.EXTRA_ID, module.getModuleId());
+                intent.putExtra(ManagePopActivity.EXTRA_CODE, module.getCode());
+                intent.putExtra(ManagePopActivity.EXTRA_TITLE, module.getTitle());
+                intent.putExtra(ManagePopActivity.EXTRA_DESC, module.getAim());
+                intent.putExtra(ManagePopActivity.EXTRA_LEVEL, module.getLevel());
+                intent.putExtra(ManagePopActivity.EXTRA_CREDIT, module.getCredit());
+                intent.putExtra(ManagePopActivity.EXTRA_CORE, module.getCoRequisite());
+                intent.putExtra(ManagePopActivity.EXTRA_PRE, module.getPreRequisite());
+                intent.putExtra(ManagePopActivity.EXTRA_STREAM, module.getStream());
+                startActivityForResult(intent, EDIT_REQUEST );
             }
         });
 
@@ -116,17 +119,41 @@ public class ManagerModuleActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode ==VIEW_REQUEST && resultCode == RESULT_OK) {
-            String code = data.getStringExtra(PopActivity.EXTRA_CODE);
-            String title = data.getStringExtra(PopActivity.EXTRA_TITLE);
-            String desc = data.getStringExtra(PopActivity.EXTRA_DESC);
-            String level = data.getStringExtra(PopActivity.EXTRA_LEVEL);
-            String credits = data.getStringExtra(PopActivity.EXTRA_CREDIT);
-            String core = data.getStringExtra(PopActivity.EXTRA_CORE);
-            String pre = data.getStringExtra(PopActivity.EXTRA_PRE);
-            String stream = data.getStringExtra(PopActivity.EXTRA_STREAM);
+            String code = data.getStringExtra(ManagePopActivity.EXTRA_CODE);
+            String title = data.getStringExtra(ManagePopActivity.EXTRA_TITLE);
+            String desc = data.getStringExtra(ManagePopActivity.EXTRA_DESC);
+            String level = data.getStringExtra(ManagePopActivity.EXTRA_LEVEL);
+            String credits = data.getStringExtra(ManagePopActivity.EXTRA_CREDIT);
+            String core = data.getStringExtra(ManagePopActivity.EXTRA_CORE);
+            String pre = data.getStringExtra(ManagePopActivity.EXTRA_PRE);
+            String stream = data.getStringExtra(ManagePopActivity.EXTRA_STREAM);
 
             Module module = new Module(code,title,1,desc,level,credits,1,core,pre,stream,1);
             moduleViewModel.insert(module);
+
+        }
+        else if(requestCode == EDIT_REQUEST && resultCode == RESULT_OK) {
+            int id = data.getIntExtra(ManagePopActivity.EXTRA_ID, -1);
+
+            if(id == -1) {
+                Toast.makeText(this, "can't update", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            String code = data.getStringExtra(ManagePopActivity.EXTRA_CODE);
+            String title = data.getStringExtra(ManagePopActivity.EXTRA_TITLE);
+            String desc = data.getStringExtra(ManagePopActivity.EXTRA_DESC);
+            String level = data.getStringExtra(ManagePopActivity.EXTRA_LEVEL);
+            String credits = data.getStringExtra(ManagePopActivity.EXTRA_CREDIT);
+            String core = data.getStringExtra(ManagePopActivity.EXTRA_CORE);
+            String pre = data.getStringExtra(ManagePopActivity.EXTRA_PRE);
+            String stream = data.getStringExtra(ManagePopActivity.EXTRA_STREAM);
+
+            Module module = new Module(code,title,1,desc,level,credits,1,core,pre,stream,1);
+            module.setModuleId(id);
+            moduleViewModel.update(module);
+
+            Toast.makeText(this, "updated", Toast.LENGTH_SHORT).show();
+
 
         }
 

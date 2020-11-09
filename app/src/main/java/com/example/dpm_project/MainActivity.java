@@ -52,8 +52,11 @@ public class MainActivity extends AppCompatActivity {
 
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("Degree Program Mapper");
-        mToolbar.setTitleMarginStart(170);
+
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setLogo(R.mipmap.wintec_logo);
+
+
         /*
         menuText = findViewById(R.id.Degree_title);
 
