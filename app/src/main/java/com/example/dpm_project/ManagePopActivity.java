@@ -9,11 +9,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Update;
 
 public class ManagePopActivity extends AppCompatActivity {
+    public static final String EXTRA_ID = "com.eample.dpm_project.EXTRA_ID";
     public static final String EXTRA_CODE = "com.example.dpm_project.EXTRA_CODE";
     public static final String EXTRA_TITLE = "com.example.dpm_project.EXTRA_TITLE";
     public static final String EXTRA_DESC = "com.example.dpm_project.EXTRA_DESC";
@@ -25,28 +26,28 @@ public class ManagePopActivity extends AppCompatActivity {
 
     private TextView code, title, desc, level,credit, core,pre, stream;
     private ImageButton exit;
-    private Button update;
+    private Button saving, cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_popmanager);
-        //screensize();
+        setContentView(R.layout.activity_popmanagerupdate);
 
-        code = findViewById(R.id.mModuleCode2);
-        title = findViewById(R.id.mModuleTitle2);
-        desc = findViewById(R.id.mDescription2);
-        level = findViewById(R.id.mModuleLevel2);
-        credit = findViewById(R.id.mCredit2);
-        core = findViewById(R.id.mCoRequisite2);
-        pre= findViewById(R.id.mPreRequisite2);
-        stream = findViewById(R.id.mStream2);
-        exit = findViewById(R.id.mpopClose);
-        update = findViewById(R.id.edit_update);
+        code = findViewById(R.id.muModuleCode2);
+        title = findViewById(R.id.muModuleTitle2);
+        desc = findViewById(R.id.muDescription2);
+        level = findViewById(R.id.muModuleLevel2);
+        credit = findViewById(R.id.muCredit2);
+        core = findViewById(R.id.muCoRequisite2);
+        pre= findViewById(R.id.muPreRequisite2);
+        stream = findViewById(R.id.muStream2);
+        exit = findViewById(R.id.muClose);
+        saving = findViewById(R.id.edit_save);
+        cancel = findViewById(R.id.edit_cancel);
 
         Intent intent = getIntent();
 
-        if(intent.hasExtra(EXTRA_CODE)) {
+        if(intent.hasExtra(EXTRA_ID)) {
             code.setText(intent.getStringExtra(EXTRA_CODE));
             title.setText(intent.getStringExtra(EXTRA_TITLE));
             desc.setText(intent.getStringExtra(EXTRA_DESC));
@@ -65,33 +66,54 @@ public class ManagePopActivity extends AppCompatActivity {
         });
 
 
-        update.setOnClickListener(new View.OnClickListener() {
+        saving.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent upintent = new Intent(ManagePopActivity.this, UpdatePopActivity.class);
-                startActivity(upintent);
+                savePop();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
 
+    private void savePop() {
+        String updateCode = code.getText().toString();
+        String updateTitle = title.getText().toString();
+        String updateDesc = desc.getText().toString();
+        String updateLevel = level.getText().toString();
+        String updateCredit = credit.getText().toString();
+        String updateCore = core.getText().toString();
+        String updatePre = pre.getText().toString();
+        String updateStream = stream.getText().toString();
 
+        if(updateCode.trim().isEmpty() || updateTitle.trim().isEmpty() || updateDesc.trim().isEmpty() || updateLevel.trim().isEmpty() ||
+                updateCredit.trim().isEmpty() ||updateStream.trim().isEmpty()){
+            Toast.makeText(this,"Please insert details", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Intent data = new Intent();
+        data.putExtra(EXTRA_CODE, updateCode);
+        data.putExtra(EXTRA_TITLE, updateTitle);
+        data.putExtra(EXTRA_DESC, updateDesc);
+        data.putExtra(EXTRA_LEVEL, updateLevel);
+        data.putExtra(EXTRA_CREDIT, updateCredit);
+        data.putExtra(EXTRA_CORE, updateCore);
+        data.putExtra(EXTRA_PRE, updatePre);
+        data.putExtra(EXTRA_STREAM, updateStream);
 
-    public void screensize() {
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int id = getIntent().getIntExtra(EXTRA_ID, -1);
+        if(id != -1) {
+            data.putExtra(EXTRA_ID, id);
+        }
 
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-
-        getWindow().setLayout((int)(width*.8), (int)(height*.9));
-
-        WindowManager.LayoutParams params = getWindow().getAttributes();
-
-        params.gravity = Gravity.CENTER;
-        params.x=0;
-        params.y = -20;
-
-        getWindow().setAttributes((params));
+        setResult(RESULT_OK,data);
+        finish();
     }
+
 
 }

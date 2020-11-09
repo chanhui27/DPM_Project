@@ -37,11 +37,8 @@
 
         <activity android:name=".about"/>
 
-        <activity android:name=".UpdatePopActivity"/>
-
-        <activity android:name=".ManagerUpdateModuleActivity"/>
-
         <activity android:name=".ManagePopActivity"/>
+
 
     </application>
 

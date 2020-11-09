@@ -21,8 +21,8 @@ public class about extends AppCompatActivity {
 
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("About");
-        mToolbar.setTitleMarginStart(400);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setLogo(R.mipmap.wintec_logo);
     }
 
 

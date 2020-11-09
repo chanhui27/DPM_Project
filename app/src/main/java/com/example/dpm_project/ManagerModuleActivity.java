@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -49,8 +50,8 @@ public class ManagerModuleActivity extends AppCompatActivity {
         //toolbar
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("Manager");
-        mToolbar.setTitleMarginStart(300);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setLogo(R.mipmap.wintec_logo);;
 
         RecyclerView recyclerView = findViewById(R.id.manager_pathway_recyclerview);
         Spinner spinner = findViewById(R.id.manager_pathway_spinner);
@@ -99,6 +100,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
             @Override
             public void onItemClick(Module module) {
                 Intent intent = new Intent(ManagerModuleActivity.this, ManagePopActivity.class);
+                intent.putExtra(ManagePopActivity.EXTRA_ID, module.getModuleId());
                 intent.putExtra(ManagePopActivity.EXTRA_CODE, module.getCode());
                 intent.putExtra(ManagePopActivity.EXTRA_TITLE, module.getTitle());
                 intent.putExtra(ManagePopActivity.EXTRA_DESC, module.getAim());
@@ -107,7 +109,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
                 intent.putExtra(ManagePopActivity.EXTRA_CORE, module.getCoRequisite());
                 intent.putExtra(ManagePopActivity.EXTRA_PRE, module.getPreRequisite());
                 intent.putExtra(ManagePopActivity.EXTRA_STREAM, module.getStream());
-                startActivityForResult(intent, VIEW_REQUEST );
+                startActivityForResult(intent, EDIT_REQUEST );
             }
         });
 
@@ -128,6 +130,30 @@ public class ManagerModuleActivity extends AppCompatActivity {
 
             Module module = new Module(code,title,1,desc,level,credits,1,core,pre,stream,1);
             moduleViewModel.insert(module);
+
+        }
+        else if(requestCode == EDIT_REQUEST && resultCode == RESULT_OK) {
+            int id = data.getIntExtra(ManagePopActivity.EXTRA_ID, -1);
+
+            if(id == -1) {
+                Toast.makeText(this, "can't update", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            String code = data.getStringExtra(ManagePopActivity.EXTRA_CODE);
+            String title = data.getStringExtra(ManagePopActivity.EXTRA_TITLE);
+            String desc = data.getStringExtra(ManagePopActivity.EXTRA_DESC);
+            String level = data.getStringExtra(ManagePopActivity.EXTRA_LEVEL);
+            String credits = data.getStringExtra(ManagePopActivity.EXTRA_CREDIT);
+            String core = data.getStringExtra(ManagePopActivity.EXTRA_CORE);
+            String pre = data.getStringExtra(ManagePopActivity.EXTRA_PRE);
+            String stream = data.getStringExtra(ManagePopActivity.EXTRA_STREAM);
+
+            Module module = new Module(code,title,1,desc,level,credits,1,core,pre,stream,1);
+            module.setModuleId(id);
+            moduleViewModel.update(module);
+
+            Toast.makeText(this, "updated", Toast.LENGTH_SHORT).show();
+
 
         }
 

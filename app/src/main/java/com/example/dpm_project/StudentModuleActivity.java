@@ -39,7 +39,6 @@ public class StudentModuleActivity extends AppCompatActivity {
     private PathwayViewModel pathwayViewModel;
     public static final int VIEW_REQUEST=1;
     private ModuleViewModel moduleViewModel;
-    private TextView menuText;
     private Toolbar mToolbar;
 
     @Override
@@ -50,8 +49,8 @@ public class StudentModuleActivity extends AppCompatActivity {
 
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("Student");
-        mToolbar.setTitleMarginStart(400);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setLogo(R.mipmap.wintec_logo);
 
         //sharedPReferences to keep the creating part is showing once
         SharedPreferences prefs = getSharedPreferences("don'tshow", MODE_PRIVATE);
