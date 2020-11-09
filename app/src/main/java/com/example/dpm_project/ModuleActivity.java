@@ -1,7 +1,6 @@
 package com.example.dpm_project;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -9,30 +8,24 @@ import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dpm_project.models.Module;
 import com.example.dpm_project.models.ModuleWithPathways;
-import com.example.dpm_project.models.Pathway;
 import com.example.dpm_project.viewmodels.ModuleViewModel;
 import com.example.dpm_project.viewmodels.PathwayViewModel;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Observable;
 import java.util.stream.Collectors;
 
 public class ModuleActivity extends AppCompatActivity {
     private ModuleViewModel moduleViewModel;
     private PathwayViewModel pathwayViewModel;
-    private Pathway selectedPathway;
-    private int selectedYear;
-    private int selectedSemester;
-
+    private ModuleAdapter adapter;
+    private List<ModuleWithPathways> modules;
 
 
     @Override
@@ -50,8 +43,8 @@ public class ModuleActivity extends AppCompatActivity {
         yearSpinner.setAdapter(yearSpinnerAdapter);
 
 
-        String[][] semesters = new String[][]{new String[]{"Semester", "1", "2", "3", "4", "5", "6"},
-                new String[]{"1", "2"}, new String[]{"3", "4"}, new String[]{"5", "6"}};
+        String[][] semesters = new String[][]{new String[]{"All semesters", "Semester 1", "Semester 2", "Semester 3", "Semester 4", "Semester 5", "Semester 6"},
+                new String[]{"Semester 1", "Semester 2"}, new String[]{"Semester 3", "Semester 4"}, new String[]{"Semester 5", "Semester 6"}};
 
         yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -67,19 +60,49 @@ public class ModuleActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-        ModuleAdapter adapter = new ModuleAdapter();
+        adapter = new ModuleAdapter();
         recyclerView.setAdapter(adapter);
+        moduleViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(ModuleViewModel.class);
         pathwayViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(PathwayViewModel.class);
-        pathwayViewModel.getAllPathways().observe(this, pathways -> {
-            ArrayAdapter<Pathway> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, pathways);
-            spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            pathwaySpinner.setAdapter(spinnerAdapter);
+        List<String> pathways = Arrays.asList(getResources().getStringArray(R.array.pathways_array));
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, pathways);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pathwaySpinner.setAdapter(spinnerAdapter);
 
+        moduleViewModel.getModulesWithPathways().observe(this, mwps -> {
+            this.modules = mwps;
         });
 
-        moduleViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(ModuleViewModel.class);
+
+
+        pathwaySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                /*pathway_id = i;
+                getModules(pathway_id);*/
+                getModules(i);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+       /* moduleViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(ModuleViewModel.class);
         moduleViewModel.getPathway().observe(this, p -> {
-            adapter.setModules(moduleViewModel.getFilteredModules());
+            adapter.setModules(moduleViewModel.getFilteredModules());*/
 /*
             selectedYear = (int) yearSpinner.getSelectedItemPosition();
             selectedSemester = (int) semesterSpinner.getSelectedItemPosition();
@@ -90,24 +113,8 @@ public class ModuleActivity extends AppCompatActivity {
 
 //                Log.d("filteredModules", String.valueOf(filteredModules.size()));
 
-        });
-
-        pathwaySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-
-    {
-        @Override
-        public void onItemSelected (AdapterView < ? > adapterView, View view,int i, long l){
-        selectedPathway = (Pathway) pathwaySpinner.getSelectedItem();
-        moduleViewModel.setPathway(selectedPathway);
 
 
-    }
-
-        @Override
-        public void onNothingSelected (AdapterView < ? > adapterView){
-
-    }
-    });
 
 
 
@@ -184,5 +191,27 @@ public class ModuleActivity extends AppCompatActivity {
 
                 attachToRecyclerView(recyclerView);
     }*/
-}
+    }
+
+    private void getModules(int pathway_id) {
+        List<Module> result;
+        if (pathway_id == 0) {
+            result = modules.stream()
+                    .map(m -> m.module)
+                    .collect(Collectors.toList());
+        }else{
+            result = modules.stream()
+                    .filter(mwps -> mwps.pathways.stream()
+                            .anyMatch(p -> p.pathwayId == pathway_id))
+                    .map(m -> m.module)
+                    .collect(Collectors.toList());
+        }
+        adapter.setModules(result);
+    }
+
+   /* private void getModules(int pathway_id) {
+        pathwayViewModel.getPathwayWithModules(pathway_id).observe(this, this::updateModules);
+    }*/
+
+
 }
