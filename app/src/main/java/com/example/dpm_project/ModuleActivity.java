@@ -240,10 +240,8 @@ public class ModuleActivity extends AppCompatActivity {
     }
 
     private List<Module> getModulesByPathway(int pathway_id) {
-        Stream<ModuleWithPathways> result;
-        if (pathway_id == 0) {
-            result = modules.stream();
-        } else {
+        Stream<ModuleWithPathways> result = modules.stream();
+        if (pathway_id != 0) {
             result = modules.stream().filter(mwps -> mwps.pathways.stream().anyMatch(p -> p.pathwayId == pathway_id));
         }
         return result.map(m -> m.module).collect(Collectors.toList());
@@ -252,14 +250,8 @@ public class ModuleActivity extends AppCompatActivity {
     private List<Module> getModulesBySemester(int year, int semester) {
         Stream<ModuleWithPathways> result = modules.stream();
         if (semester != 0) {
-            int real_year, real_semester;
-            if (year == 0) {
-                real_year = semester / 2 + semester % 2;
-                real_semester = semester == 5 ? 1 : semester / 3 + semester % 3;
-            } else {
-                real_year = year;
-                real_semester = semester;
-            }
+            int real_year = year == 0 ? semester / 2 + semester % 2 : year;
+            int real_semester = year == 0 ? semester == 5 ? 1 : semester / 3 + semester % 3 : semester;
             result = modules.stream()
                     .filter(mwps -> mwps.module.getSemester() == real_semester && mwps.module.getYear() == real_year);
         }
