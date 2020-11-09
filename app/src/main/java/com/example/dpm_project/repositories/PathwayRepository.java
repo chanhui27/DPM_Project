@@ -22,7 +22,7 @@ public class PathwayRepository {
     public PathwayRepository(Application application) {
         ModuleDatabase database = ModuleDatabase.getInstance(application);
         pathwayDao = database.pathwayDao();
-        allPathways = pathwayDao.getAllPathways();
+        allPathways = pathwayDao . getAllPathways ();
         allModules = pathwayDao.getPathwayWithModules();
     }
 

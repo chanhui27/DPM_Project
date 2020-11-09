@@ -10,10 +10,12 @@ public class Module {
     private String code;
     private String title;
     private String aim;
-    private int level;
-    private int credit;
+    private String level;
+    private String credit;
     private int year;
     private String coRequisite;
+    private String preRequisite;
+    private String stream;
     private int semester;
 
     public void setIsCompleted(int isCompleted) {
@@ -22,7 +24,23 @@ public class Module {
 
     private int isCompleted;
 
-    public Module(String code, String title, int isCompleted, String aim, int level, int credit, int year, String coRequisite, int semester) {
+    public Module(String code, String title, int isCompleted, String aim, String level, String credit, int year, String coRequisite, String preRequisite, String stream, int semester) {
+        this.code = code;
+        this.title = title;
+        this.isCompleted = isCompleted;
+        this.aim = aim;
+        this.level = level;
+        this.credit = credit;
+        this.year = year;
+        this.coRequisite = coRequisite;
+        this.preRequisite = preRequisite;
+        this.stream=stream;
+        this.semester = semester;
+
+    }
+
+
+    /*public Module(String code, String title, int isCompleted, String aim, String level, String credit, int year, String coRequisite, int semester) {
         this.code = code;
         this.title = title;
         this.isCompleted = isCompleted;
@@ -32,6 +50,14 @@ public class Module {
         this.year = year;
         this.coRequisite = coRequisite;
         this.semester = semester;
+    }*/
+
+    public String getStream() {
+        return stream;
+    }
+
+    public void setStream(String stream) {
+        this.stream = stream;
     }
 
     public void setModuleId(int moduleId) {
@@ -60,11 +86,11 @@ public class Module {
         return year;
     }
 
-    public int getLevel() {
+    public String getLevel() {
         return level;
     }
 
-    public int getCredit(){return credit;}
+    public String getCredit(){return credit;}
 
     public String getCoRequisite(){
         return coRequisite;
@@ -72,5 +98,13 @@ public class Module {
 
     public int getSemester(){
         return semester;
+    }
+
+    public String getPreRequisite() {
+        return preRequisite;
+    }
+
+    public void setPreRequisite(String preRequisite) {
+        this.preRequisite = preRequisite;
     }
 }

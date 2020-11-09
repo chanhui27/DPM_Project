@@ -11,12 +11,12 @@ import com.example.dpm_project.repositories.ModuleRepository;
 
 import java.util.List;
 
-public class ModuleViewModel extends AndroidViewModel {
+public  class  ModuleViewModel  extends  AndroidViewModel {
 
     private ModuleRepository repository;
     private LiveData<List<Module>> allModules;
 
-    public ModuleViewModel(@NonNull Application application) {
+    public  ModuleViewModel ( @NonNull  Application  application ) {
         super(application);
         repository = new ModuleRepository(application);
         allModules = repository.getAllModules();
@@ -40,4 +40,3 @@ public class ModuleViewModel extends AndroidViewModel {
         return allModules;
     }
 }
-
