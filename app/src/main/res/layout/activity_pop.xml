@@ -7,14 +7,27 @@
     android:orientation="vertical"
     tools:context=".PopActivity">
 
-    <include
+    <!--<include
         android:id= "@+id/toolbar"
         layout="@layout/toolbar"
-        />
+        />-->
 
     <!--    private EditText popModuleCode, popModuleTitle, popDescription, popModuleLevel, popCredit, popPreRequisite, popCoRequisite, popStream;-->
 
     <!--    Module Code-->
+
+    <ImageButton
+        android:id="@+id/popClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundedbutton"
+        android:src="@drawable/ic_cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
 
     <TextView
         android:id="@+id/popModuleCode1"

@@ -23,6 +23,7 @@ import java.util.List;
 public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ModuleHolder> {
     private List<Module> modules = new ArrayList<>();
 
+    private OnITemClickListener listener;
 
 
     @NonNull
@@ -71,8 +72,27 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ModuleHold
             textViewTitle = itemView.findViewById(R.id.text_view_module_title);
             relativeLayout = itemView.findViewById(R.id.cardview_relative_layout);
 
+            //click item
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if(listener!=null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(modules.get(position));
+                    }
+                }
+            });
+
         }
 
+    }
+
+    public interface OnITemClickListener {
+        void onItemClick(Module module);
+    }
+
+    public void setOnItemClickListener(OnITemClickListener listener) {
+        this.listener = listener;
     }
 
 

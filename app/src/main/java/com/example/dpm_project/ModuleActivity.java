@@ -128,7 +128,16 @@ public class ModuleActivity extends AppCompatActivity {
 
                 attachToRecyclerView(recyclerView);
     }*/
+        //clicking change
+        adapter.setOnItemClickListener(new ModuleAdapter.OnITemClickListener() {
+            @Override
+            public void onItemClick(Module module) {
+                Intent intent = new Intent(ModuleActivity.this, PopActivity.class);
+
+            }
+        });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

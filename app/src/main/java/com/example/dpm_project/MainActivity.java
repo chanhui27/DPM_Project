@@ -185,9 +185,6 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alertDialog = alertDialoguilder.create();
         alertDialog.show();
 
-
     }
-
-
 
 }
