@@ -81,20 +81,9 @@ public class StudentModuleActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 selectedPathway[0] = (Pathway) spinner.getSelectedItem();
-                pathwayViewModel.getPathwayWithModules().observe(StudentModuleActivity.this, pathwayWithModules -> {
-                    if (selectedPathway[0] != null) {
-                        for (PathwayWithModules p : pathwayWithModules) {
-                            if (selectedPathway[0].pathwayId == p.pathway.pathwayId) {
-                                adapter.setModules(p.modules);
-                                break;
-                            }
-                        }
-                    } else {
-                        List<Module> result = new ArrayList<>();
-                        pathwayWithModules.forEach(p -> result.addAll((p.modules)));
-                        adapter.setModules(result);
-                    }
-                });
+                pathwayViewModel.getPathwayWithModules(selectedPathway[0].pathwayId).observe(StudentModuleActivity.this, modules -> adapter.setModules(modules)
+
+                );
             }
 
             @Override

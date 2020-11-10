@@ -35,8 +35,8 @@ import java.util.List;
 public class ManagerModuleActivity extends AppCompatActivity {
     //private ModuleViewModel moduleViewModel;
     private PathwayViewModel pathwayViewModel;
-    public static final int VIEW_REQUEST=1;
-    public static final int EDIT_REQUEST=2;
+    public static final int VIEW_REQUEST = 1;
+    public static final int EDIT_REQUEST = 2;
     private ModuleViewModel moduleViewModel;
     private TextView menuText;
     private Toolbar mToolbar;
@@ -51,7 +51,8 @@ public class ManagerModuleActivity extends AppCompatActivity {
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("Manager");
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setLogo(R.mipmap.wintec_logo);;
+        getSupportActionBar().setLogo(R.mipmap.wintec_logo);
+        ;
 
         RecyclerView recyclerView = findViewById(R.id.manager_pathway_recyclerview);
         Spinner spinner = findViewById(R.id.manager_pathway_spinner);
@@ -73,20 +74,8 @@ public class ManagerModuleActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 selectedPathway[0] = (Pathway) spinner.getSelectedItem();
-                pathwayViewModel.getPathwayWithModules().observe(ManagerModuleActivity.this, pathwayWithModules -> {
-                    if (selectedPathway[0] != null) {
-                        for (PathwayWithModules p : pathwayWithModules) {
-                            if (selectedPathway[0].pathwayId == p.pathway.pathwayId) {
-                                adapter.setModules(p.modules);
-                                break;
-                            }
-                        }
-                    } else {
-                        List<Module> result = new ArrayList<>();
-                        pathwayWithModules.forEach(p -> result.addAll((p.modules)));
-                        adapter.setModules(result);
-                    }
-                });
+                pathwayViewModel.getPathwayWithModules(selectedPathway[0].pathwayId).observe(ManagerModuleActivity.this, modules -> adapter.setModules(modules));
+
             }
 
             @Override
@@ -109,7 +98,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
                 intent.putExtra(ManagePopActivity.EXTRA_CORE, module.getCoRequisite());
                 intent.putExtra(ManagePopActivity.EXTRA_PRE, module.getPreRequisite());
                 intent.putExtra(ManagePopActivity.EXTRA_STREAM, module.getStream());
-                startActivityForResult(intent, EDIT_REQUEST );
+                startActivityForResult(intent, EDIT_REQUEST);
             }
         });
 
@@ -118,7 +107,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode ==VIEW_REQUEST && resultCode == RESULT_OK) {
+        if (requestCode == VIEW_REQUEST && resultCode == RESULT_OK) {
             String code = data.getStringExtra(ManagePopActivity.EXTRA_CODE);
             String title = data.getStringExtra(ManagePopActivity.EXTRA_TITLE);
             String desc = data.getStringExtra(ManagePopActivity.EXTRA_DESC);
@@ -128,14 +117,13 @@ public class ManagerModuleActivity extends AppCompatActivity {
             String pre = data.getStringExtra(ManagePopActivity.EXTRA_PRE);
             String stream = data.getStringExtra(ManagePopActivity.EXTRA_STREAM);
 
-            Module module = new Module(code,title,1,desc,level,credits,1,core,pre,stream,1);
+            Module module = new Module(code, title, 1, desc, level, credits, 1, core, pre, stream, 1);
             moduleViewModel.insert(module);
 
-        }
-        else if(requestCode == EDIT_REQUEST && resultCode == RESULT_OK) {
+        } else if (requestCode == EDIT_REQUEST && resultCode == RESULT_OK) {
             int id = data.getIntExtra(ManagePopActivity.EXTRA_ID, -1);
 
-            if(id == -1) {
+            if (id == -1) {
                 Toast.makeText(this, "can't update", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -148,7 +136,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
             String pre = data.getStringExtra(ManagePopActivity.EXTRA_PRE);
             String stream = data.getStringExtra(ManagePopActivity.EXTRA_STREAM);
 
-            Module module = new Module(code,title,1,desc,level,credits,1,core,pre,stream,1);
+            Module module = new Module(code, title, 1, desc, level, credits, 1, core, pre, stream, 1);
             module.setModuleId(id);
             moduleViewModel.update(module);
 
@@ -163,7 +151,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.draw_menu,menu);
+        inflater.inflate(R.menu.draw_menu, menu);
         return true;
 
     }
@@ -177,7 +165,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
                 return true;
 
             case R.id.menu_about:
-                Intent intent2 = new Intent(this,about.class);
+                Intent intent2 = new Intent(this, about.class);
                 startActivity(intent2);
                 return true;
 
