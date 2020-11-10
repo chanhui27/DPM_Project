@@ -22,7 +22,7 @@ import com.example.dpm_project.models.StudentPathway;
 
 import java.util.concurrent.Executors;
 
-@Database(entities = {Module.class, Student.class, Pathway.class, PathwayModuleCrossRef.class}, version = 1)
+@Database(entities = {Module.class, Student.class, Pathway.class, PathwayModuleCrossRef.class}, version = 2)
 public abstract class ModuleDatabase extends RoomDatabase {
     private static ModuleDatabase instance;
 

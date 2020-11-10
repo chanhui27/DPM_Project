@@ -40,7 +40,7 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity {
-    List<StudentPathway> students;
+    private List<StudentPathway> students;
     private EditText editText_Id;
     private EditText editText_Name;
     private EditText editText_Email;
@@ -51,7 +51,7 @@ public class ProfileActivity extends AppCompatActivity {
     private Button saveButton;
     private CircleImageView profileImage;
     private static final int PICK_IMAGE = 1;
-    Uri imageUri;
+    private Uri imageUri;
 
     private Student student;
     private StudentViewModel studentViewModel;
@@ -94,32 +94,24 @@ public class ProfileActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save();
-                Toast.makeText(ProfileActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+                if (save()) {
+                    Toast.makeText(ProfileActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
         });
 
         //view model
         studentViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(StudentViewModel.class);
         studentViewModel.getAllStudent().observe(this, sp -> {
-            Log.d("STPW_", String.valueOf(sp.size()));
-            if(sp.size() != 0) {
-                student = sp.get(0).student;
+            if (sp.size() != 0) {
+                this.student = sp.get(0).student;
+                setStudentProfile();
             }
-
-            this.students = sp;});
+        });
 
         //testing update profile
-     /*   if(student != null) {
-
-            editText_Id.setText(student.getStudentId());
-            editText_Name.setText(student.getName());
-            editText_Email.setText(student.getEmail());
-            editText_Address.setText(student.getAddress());
-            editText_Phone.setText(student.getPhone());
-            profileImage.setImageURI(Uri.parse(student.getImageUrl()));
-
-        }else {
+         /*else {
 
             editText_Id.setText("");
             editText_Name.setText("");
@@ -131,8 +123,15 @@ public class ProfileActivity extends AppCompatActivity {
         }*/
 
 
+    }
 
-
+    private void setStudentProfile() {
+        editText_Id.setText(student.getStudentId());
+        editText_Name.setText(student.getName());
+        editText_Email.setText(student.getEmail());
+        editText_Address.setText(student.getAddress());
+        editText_Phone.setText(student.getPhone());
+        profileImage.setImageURI(Uri.parse(student.getImageUrl()));
     }
 
     @Override
@@ -147,37 +146,42 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void openGallery() {
-        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        Intent gallery = new Intent(Intent.ACTION_OPEN_DOCUMENT, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
     }
 
-    private void save() {
-        Log.d("STUDENT_", String.valueOf(students.size()));
-        if (students.size() == 0) {
-            String id = editText_Id.getText().toString();
-            String name = editText_Name.getText().toString();
-            String email = editText_Email.getText().toString();
-            String address = editText_Address.getText().toString();
-            String phone = editText_Phone.getText().toString();
-            String url = imageUri.toString();
+    private boolean save() {
+        String id = editText_Id.getText().toString();
+        String name = editText_Name.getText().toString();
+        String email = editText_Email.getText().toString();
+        String address = editText_Address.getText().toString();
+        String phone = editText_Phone.getText().toString();
 
-
-            if (email.trim().isEmpty()) {
-                Toast.makeText(this, "Please insert email", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            //create student
-            Student student1 = new Student(id, name, email, address, phone, url);
-
-            studentViewModel.insert(student1);
-
-            finish();
-        }else{
-
-            studentViewModel.update(student);
+        if (student == null && imageUri == null) {
+            Toast.makeText(this, "Please select the photo", Toast.LENGTH_SHORT).show();
+            return false;
         }
+        String url = imageUri == null ? student.getImageUrl() : imageUri.toString();
+
+
+        if (email.trim().isEmpty()) {
+            Toast.makeText(this, "Please insert email", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        //create student
+        Student student1 = new Student(id, name, email, address, phone, url);
+        ;
+        if (this.student == null) {
+            studentViewModel.insert(student1);
+        } else {
+            student1.setSid(this.student.getSid());
+            studentViewModel.update(student1);
+        }
+
+        return true;
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
