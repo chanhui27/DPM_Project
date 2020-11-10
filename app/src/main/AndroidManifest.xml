@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dpm_project">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -9,9 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".ProfileActivity"/>
+        <activity android:name=".ManagerMain"/>
+        <activity android:name=".ManagerPassword"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".MainActivity" />
-        <activity android:name=".SplashScreen">
+        <activity android:name=".SplashScreen"
+            android:theme="@style/MyThemeNoBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -21,8 +26,19 @@
         <activity
             android:name=".PopActivity"
             android:theme="@style/AppTheme.PopMe" />
+
         <activity android:name=".ModuleActivity"
             android:parentActivityName=".MainActivity"/>
+
+        <activity android:name=".StudentModuleActivity"
+            android:parentActivityName=".MainActivity"/>
+
+        <activity android:name=".ManagerModuleActivity" />
+
+        <activity android:name=".about"/>
+
+        <activity android:name=".ManagePopActivity"/>
+
 
     </application>
 

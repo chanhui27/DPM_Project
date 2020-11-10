@@ -4,18 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
-
-    <!--<include
-        android:id= "@+id/toolbar"
-        layout="@layout/toolbar"
-        />-->
+    tools:context=".ManagePopActivity">
 
 
     <!--    Module Code-->
 
     <ImageButton
-        android:id="@+id/popClose"
+        android:id="@+id/muClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_cancel"
@@ -29,136 +24,71 @@
 
     <!-- Module Title   -->
 
-    <TextView
-        android:id="@+id/popModuleCode2"
+    <!-- <EditText
+         android:id="@+id/muModuleCode2"
+         android:layout_width="190dp"
+         android:layout_height="29dp"
+         android:textSize="15dp"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintHorizontal_bias="0.773"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintRight_toRightOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+         app:layout_constraintVertical_bias="0.084" />
+ -->
+    <EditText
+        android:id="@+id/muModuleCode2"
         android:layout_width="190dp"
-        android:layout_height="29dp"
-        android:textSize="18dp"
+        android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.773"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.122" />
+        app:layout_constraintVertical_bias="0.105" />
 
     <TextView
-        android:id="@+id/popModuleTitle2"
-        android:layout_width="190dp"
-        android:layout_height="50dp"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.746"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19" />
-
-    <TextView
-        android:id="@+id/popCoRequisite1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Co-requisite: "
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.034"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.529" />
-
-    <TextView
-        android:id="@+id/popModuleLevel2"
-        android:layout_width="190dp"
-        android:layout_height="29dp"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.746"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.279" />
-
-    <TextView
-        android:id="@+id/popModuleLevel1"
+        android:id="@+id/muModuleLevel1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="Level: "
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.262" />
+        app:layout_constraintVertical_bias="0.24" />
 
-    <TextView
-        android:id="@+id/popCredit2"
-        android:layout_width="190dp"
-        android:layout_height="29dp"
-        android:textSize="18dp"
+    <EditText
+        android:id="@+id/muDescription2"
+        android:layout_width="230dp"
+        android:layout_height="155dp"
+        android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.746"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.356" />
+        app:layout_constraintVertical_bias="0.814" />
 
     <TextView
-        android:id="@+id/popDescription1"
+        android:id="@+id/muStream1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="Aim: "
+        android:text="Pathway: "
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.769" />
+        app:layout_constraintVertical_bias="0.552" />
 
-    <TextView
-        android:id="@+id/popStream2"
-        android:layout_width="230dp"
-        android:layout_height="70dp"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.856"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.692" />
-
-    <TextView
-        android:id="@+id/popCredit1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Credit: "
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.343" />
-
-    <TextView
-        android:id="@+id/popCoRequisite2"
-        android:layout_width="230dp"
-        android:layout_height="29dp"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.911"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.541" />
-
-    <TextView
-        android:id="@+id/popPreRequisite2"
+    <EditText
+        android:id="@+id/muPreRequisite2"
         android:layout_width="230dp"
         android:layout_height="50dp"
         android:textSize="15dp"
@@ -167,75 +97,151 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.455" />
+        app:layout_constraintVertical_bias="0.409" />
 
     <TextView
-        android:id="@+id/popDescription2"
-        android:layout_width="240dp"
-        android:layout_height="150dp"
+        android:id="@+id/muDescription1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Aim: "
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.638" />
+
+    <EditText
+        android:id="@+id/muCoRequisite2"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.906"
+        app:layout_constraintHorizontal_bias="0.944"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.939" />
+        app:layout_constraintVertical_bias="0.488" />
 
     <TextView
-        android:id="@+id/popStream1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Pathway: "
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.03"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.642" />
-
-    <TextView
-        android:id="@+id/popPreRequisite1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Pre-requisite: "
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.034"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.428" />
-
-    <TextView
-        android:id="@+id/popModuleCode1"
+        android:id="@+id/muModuleCode1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="Code: "
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.104" />
+        app:layout_constraintVertical_bias="0.088" />
+
+    <EditText
+        android:id="@+id/muCredit2"
+        android:layout_width="190dp"
+        android:layout_height="40dp"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.773"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.337" />
+
+    <EditText
+        android:id="@+id/muStream2"
+        android:layout_width="190dp"
+        android:layout_height="40dp"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.773"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.575" />
 
     <TextView
-        android:id="@+id/popModuleTitle1"
+        android:id="@+id/muPreRequisite1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Pre-requisite: "
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.399" />
+
+    <EditText
+        android:id="@+id/muModuleTitle2"
+        android:layout_width="190dp"
+        android:layout_height="40dp"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.773"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.183" />
+
+    <TextView
+        android:id="@+id/muModuleTitle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="Title: "
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.175" />
+        app:layout_constraintVertical_bias="0.165" />
+
+    <TextView
+        android:id="@+id/muCoRequisite1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Co-requisite: "
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.476" />
+
+    <TextView
+        android:id="@+id/muCredit1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Credit: "
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.057"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.325" />
+
+    <EditText
+        android:id="@+id/muModuleLevel2"
+        android:layout_width="190dp"
+        android:layout_height="40dp"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.773"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.257" />
 
 
     <!--    Pop ModuleLevel-->
@@ -251,5 +257,35 @@
 
     <!--    Pop Description-->
 
+    <Button
+        android:id="@+id/edit_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundedbutton"
+        android:text="SAVE"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.26"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+
+
+    <Button
+        android:id="@+id/edit_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundedbutton"
+        android:text="CANCEL"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.789"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

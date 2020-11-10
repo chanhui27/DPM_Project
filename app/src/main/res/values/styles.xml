@@ -5,6 +5,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor">@color/blackColor</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
     
     <style name="AppTheme.NoActionBar">
@@ -16,6 +18,17 @@
     <style name="AppTheme.PopMe">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+
+    <style name="MyThemeNoBar" parent="@style/Theme.AppCompat.Light">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="HeaderBar">
+        <item name="android:background">#303F9F</item>
     </style>
 
 </resources>

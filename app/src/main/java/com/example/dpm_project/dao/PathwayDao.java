@@ -14,7 +14,7 @@ import com.example.dpm_project.models.PathwayWithModules;
 import java.util.List;
 
 @Dao
-public interface PathwayDao {
+public  interface  PathwayDao {
     @Insert
     void insert(Pathway pathway);
 
@@ -26,4 +26,8 @@ public interface PathwayDao {
 
     @Query("SELECT * FROM pathway_table")
     LiveData<List<Pathway>> getAllPathways();
+
+    @Transaction
+    @Query("SELECT * FROM pathway_table")
+    LiveData<List<PathwayWithModules>> getPathwayWithModules();
 }

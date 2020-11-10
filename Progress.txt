@@ -1,0 +1,7 @@
+Sergei
+What is done:
+Pathway activity view (xml)
+Populate Recyclerview with 10 modules
+Module at the moment has code, title and isCompleted fields
+TODO:
+implement selection of modules by pathway, year and semester criteria

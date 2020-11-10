@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/mainColor">
+    android:background="@color/whiteColor">
 
     <include
         android:id= "@+id/toolbar"
@@ -19,7 +19,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="Client: WINTEC"
-        android:textColor="@color/whiteColor"
+        android:textColor="@color/blackColor"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.446"
@@ -35,7 +35,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="App Version: 0.5"
-        android:textColor="@color/whiteColor"
+        android:textColor="@color/blackColor"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.471"
@@ -51,7 +51,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="API Version: 8.0"
-        android:textColor="@color/whiteColor"
+        android:textColor="@color/blackColor"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.461"
@@ -67,7 +67,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="OS: Android"
-        android:textColor="@color/whiteColor"
+        android:textColor="@color/blackColor"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.455"
@@ -83,7 +83,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="Developer: IMD"
-        android:textColor="@color/whiteColor"
+        android:textColor="@color/blackColor"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.446"
