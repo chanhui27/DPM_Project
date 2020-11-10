@@ -19,11 +19,13 @@
     <item android:id="@+id/menu_home"
         android:title="HOME"
         app:showAsAction="never"/>
-  <item android:id="@+id/menu_about"
+
+    <item android:id="@+id/menu_about"
         android:title="ABOUT"
         app:showAsAction="never"/>
-  <!--<item android:id="@+id/menu_profile"
-        android:title="Profile"
-        app:showAsAction="never"/>-->
+
+    <item android:id="@+id/menu_profile"
+        android:title="PROFILE"
+        app:showAsAction="never"/>
 
 </menu>

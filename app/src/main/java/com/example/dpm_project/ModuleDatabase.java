@@ -13,19 +13,24 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.dpm_project.dao.ModuleDao;
 import com.example.dpm_project.dao.PathwayDao;
 import com.example.dpm_project.dao.PathwayModuleCrossRefDao;
+import com.example.dpm_project.dao.StudentDao;
 import com.example.dpm_project.models.Module;
 import com.example.dpm_project.models.Pathway;
 import com.example.dpm_project.models.PathwayModuleCrossRef;
+import com.example.dpm_project.models.Student;
+import com.example.dpm_project.models.StudentPathway;
 
 import java.util.concurrent.Executors;
 
-@Database(entities = {Module.class, Pathway.class, PathwayModuleCrossRef.class}, version = 1)
+@Database(entities = {Module.class, Student.class, Pathway.class, PathwayModuleCrossRef.class}, version = 1)
 public abstract class ModuleDatabase extends RoomDatabase {
     private static ModuleDatabase instance;
 
     public abstract ModuleDao moduleDao();
 
     public abstract PathwayDao pathwayDao();
+
+    public abstract StudentDao studentDao();
 
     public abstract PathwayModuleCrossRefDao pathwayModuleCrossRefDao();
 
@@ -45,6 +50,7 @@ public abstract class ModuleDatabase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
             Executors.newSingleThreadExecutor().execute(() -> {
+                //instance.studentDao().insert(new Student(1234,"asdf","asdf@asdf.com","asdfaasdfadf", 12345), "");
 
                 //String code, String title, int isCompleted, String aim, int level, int year, String coRequisite, int semester
 
