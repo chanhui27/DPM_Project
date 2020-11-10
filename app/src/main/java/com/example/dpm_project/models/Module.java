@@ -3,6 +3,8 @@ package com.example.dpm_project.models;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 @Entity(tableName = "module_table")
 public class Module {
     @PrimaryKey(autoGenerate = true)
@@ -17,12 +19,13 @@ public class Module {
     private String preRequisite;
     private String stream;
     private int semester;
+    private int isCompleted;
 
     public void setIsCompleted(int isCompleted) {
         this.isCompleted = isCompleted;
     }
 
-    private int isCompleted;
+
 
     public Module(String code, String title, int isCompleted, String aim, String level, String credit, int year, String coRequisite, String preRequisite, String stream, int semester) {
         this.code = code;
@@ -51,6 +54,20 @@ public class Module {
         this.coRequisite = coRequisite;
         this.semester = semester;
     }*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Module module = (Module) o;
+        return getModuleId() == module.getModuleId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getModuleId());
+    }
+
 
     public String getStream() {
         return stream;
