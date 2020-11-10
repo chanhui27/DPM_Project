@@ -21,8 +21,8 @@ public class about extends AppCompatActivity {
 
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("About");
-        mToolbar.setTitleMarginStart(400);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setLogo(R.mipmap.wintec_logo);
     }
 
 
@@ -47,10 +47,10 @@ public class about extends AppCompatActivity {
                 startActivity(intent2);
                 return true;
 
-            case R.id.menu_profile:
+            /*case R.id.menu_profile:
                 Intent intent3 = new Intent(this,ProfileActivity.class);
                 startActivity(intent3);
-                return true;
+                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }

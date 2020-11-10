@@ -22,9 +22,7 @@ import java.util.List;
 
 public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ModuleHolder> {
     private List<Module> modules = new ArrayList<>();
-
     private OnITemClickListener listener;
-
 
     @NonNull
     @Override
@@ -34,12 +32,13 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ModuleHold
         return new ModuleHolder(itemView);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull ModuleHolder holder, int position) {
         Module currentModule = modules.get(position);
-        if (currentModule.getIsCompleted() == 1){
+        if (currentModule.getIsCompleted() == 1) {
             holder.relativeLayout.setBackgroundColor(Color.GREEN);
-        }else{
+        } else {
             holder.relativeLayout.setBackgroundColor(0xEBEBEB);
         }
         holder.textViewCode.setText(currentModule.getCode());
@@ -47,13 +46,14 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ModuleHold
 
     }
 
+
     @Override
     public int getItemCount() {
         return modules.size();
     }
 
-    public  void setModules(List<Module> modules){
-        this.modules  = modules;
+    public void setModules(List<Module> modules) {
+        this.modules = modules;
         notifyDataSetChanged();
     }
 
@@ -75,9 +75,9 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ModuleHold
             //click item
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(View v) {
                     int position = getAdapterPosition();
-                    if(listener!=null && position != RecyclerView.NO_POSITION) {
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
                         listener.onItemClick(modules.get(position));
                     }
                 }
@@ -86,6 +86,7 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ModuleHold
         }
 
     }
+
 
     public interface OnITemClickListener {
         void onItemClick(Module module);

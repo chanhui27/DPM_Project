@@ -52,10 +52,15 @@ public class MainActivity extends AppCompatActivity {
 
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("Degree Program Mapper");
-        mToolbar.setTitleMarginStart(170);
+
         setSupportActionBar(mToolbar);
-        /*menuText = findViewById(R.id.Degree_title);
-        menuText.setText("Degree Program Mapper");*/
+        getSupportActionBar().setLogo(R.mipmap.wintec_logo);
+
+
+        /*
+        menuText = findViewById(R.id.Degree_title);
+
+        menuText.setText("Degree Program Mapper"); */
 
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firstStart", true);
@@ -79,13 +84,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*pathwayButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, DrawMenu.class));
-            }
-        });*/
-
 
         //student
         studentButton.setOnClickListener(new View.OnClickListener() {
@@ -103,23 +101,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(mIntent);
             }
         });
-
-        //toolbar
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-
-        /*Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        drawer = findViewById(R.id.drawer_layout);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();*/
-
-
-
-
 
     }
 
@@ -145,10 +126,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent2);
                 return true;
 
-            case R.id.menu_profile:
+           /* case R.id.menu_profile:
                 Intent intent3 = new Intent(this,ProfileActivity.class);
                 startActivity(intent3);
-                return true;
+                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }

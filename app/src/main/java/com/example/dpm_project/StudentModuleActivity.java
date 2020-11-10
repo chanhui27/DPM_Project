@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dpm_project.models.Module;
 import com.example.dpm_project.models.Pathway;
 import com.example.dpm_project.models.PathwayWithModules;
+import com.example.dpm_project.viewmodels.ModuleViewModel;
 import com.example.dpm_project.viewmodels.PathwayViewModel;
 import com.google.android.material.navigation.NavigationView;
 
@@ -36,7 +37,8 @@ import java.util.List;
 public class StudentModuleActivity extends AppCompatActivity {
     //private ModuleViewModel moduleViewModel;
     private PathwayViewModel pathwayViewModel;
-    private TextView menuText;
+    public static final int VIEW_REQUEST=1;
+    private ModuleViewModel moduleViewModel;
     private Toolbar mToolbar;
 
     @Override
@@ -47,8 +49,8 @@ public class StudentModuleActivity extends AppCompatActivity {
 
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("Student");
-        mToolbar.setTitleMarginStart(400);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setLogo(R.mipmap.wintec_logo);
 
         //sharedPReferences to keep the creating part is showing once
         SharedPreferences prefs = getSharedPreferences("don'tshow", MODE_PRIVATE);
@@ -79,20 +81,9 @@ public class StudentModuleActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 selectedPathway[0] = (Pathway) spinner.getSelectedItem();
-                pathwayViewModel.getPathwayWithModules().observe(StudentModuleActivity.this, pathwayWithModules -> {
-                    if (selectedPathway[0] != null) {
-                        for (PathwayWithModules p : pathwayWithModules) {
-                            if (selectedPathway[0].pathwayId == p.pathway.pathwayId) {
-                                adapter.setModules(p.modules);
-                                break;
-                            }
-                        }
-                    } else {
-                        List<Module> result = new ArrayList<>();
-                        pathwayWithModules.forEach(p -> result.addAll((p.modules)));
-                        adapter.setModules(result);
-                    }
-                });
+                pathwayViewModel.getPathwayWithModules(selectedPathway[0].pathwayId).observe(StudentModuleActivity.this, modules -> adapter.setModules(modules)
+
+                );
             }
 
             @Override
@@ -100,7 +91,47 @@ public class StudentModuleActivity extends AppCompatActivity {
 
             }
         });
+
+        //clicking change
+        adapter.setOnItemClickListener(new ModuleAdapter.OnITemClickListener() {
+            @Override
+            public void onItemClick(Module module) {
+                Intent intent = new Intent(StudentModuleActivity.this, PopActivity.class);
+                intent.putExtra(PopActivity.EXTRA_CODE, module.getCode());
+                intent.putExtra(PopActivity.EXTRA_TITLE, module.getTitle());
+                intent.putExtra(PopActivity.EXTRA_DESC, module.getAim());
+                intent.putExtra(PopActivity.EXTRA_LEVEL, module.getLevel());
+                intent.putExtra(PopActivity.EXTRA_CREDIT, module.getCredit());
+                intent.putExtra(PopActivity.EXTRA_CORE, module.getCoRequisite());
+                intent.putExtra(PopActivity.EXTRA_PRE, module.getPreRequisite());
+                intent.putExtra(PopActivity.EXTRA_STREAM, module.getStream());
+                startActivityForResult(intent, VIEW_REQUEST );
+            }
+        });
+
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode ==VIEW_REQUEST && resultCode == RESULT_OK) {
+            String code = data.getStringExtra(PopActivity.EXTRA_CODE);
+            String title = data.getStringExtra(PopActivity.EXTRA_TITLE);
+            String desc = data.getStringExtra(PopActivity.EXTRA_DESC);
+            String level = data.getStringExtra(PopActivity.EXTRA_LEVEL);
+            String credits = data.getStringExtra(PopActivity.EXTRA_CREDIT);
+            String core = data.getStringExtra(PopActivity.EXTRA_CORE);
+            String pre = data.getStringExtra(PopActivity.EXTRA_PRE);
+            String stream = data.getStringExtra(PopActivity.EXTRA_STREAM);
+
+            Module module = new Module(code,title,1,desc,level,credits,1,core,pre,stream,1);
+            moduleViewModel.insert(module);
+
+        }
+
+    }
+
+
     //popup profile
     public void openProfile() {
         AlertDialog.Builder alertDialoguilder = new AlertDialog.Builder(this);
@@ -151,10 +182,10 @@ public class StudentModuleActivity extends AppCompatActivity {
                 startActivity(intent2);
                 return true;
 
-            case R.id.menu_profile:
+            /*case R.id.menu_profile:
                 Intent intent3 = new Intent(this,ProfileActivity.class);
                 startActivity(intent3);
-                return true;
+                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }
