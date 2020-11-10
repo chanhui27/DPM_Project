@@ -29,6 +29,7 @@ import com.example.dpm_project.models.Pathway;
 import com.example.dpm_project.models.PathwayWithModules;
 import com.example.dpm_project.viewmodels.ModuleViewModel;
 import com.example.dpm_project.viewmodels.PathwayViewModel;
+import com.example.dpm_project.viewmodels.StudentViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -138,6 +139,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
             }
         });
 
+
         //clicking change
         adapter.setOnItemClickListener(new ModuleAdapter.OnITemClickListener() {
             @Override
@@ -155,6 +157,9 @@ public class ManagerModuleActivity extends AppCompatActivity {
                 startActivityForResult(intent, EDIT_REQUEST );
             }
         });
+
+        //change
+        moduleViewModel =  new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(ModuleViewModel.class);
 
     }
 

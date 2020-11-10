@@ -28,6 +28,7 @@ public class ManagePopActivity extends AppCompatActivity {
     private ImageButton exit;
     private Button saving, cancel;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
