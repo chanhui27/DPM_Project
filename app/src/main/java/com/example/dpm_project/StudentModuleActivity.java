@@ -151,6 +151,7 @@ public class StudentModuleActivity extends AppCompatActivity {
         alertDialoguilder.setPositiveButton("Create", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                //only show one time when student click "Create" button
                 SharedPreferences prefs = getSharedPreferences("don'tshow", MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putBoolean("first", false);
