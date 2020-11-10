@@ -3,6 +3,7 @@ package com.example.dpm_project.models;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+
 @Entity(tableName = "student_table")
 public  class  Student {
 

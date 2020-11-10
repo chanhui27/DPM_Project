@@ -81,6 +81,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        //cancel button
         cancelButton = findViewById(R.id.profileCancelbtn);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override

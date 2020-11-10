@@ -95,21 +95,41 @@ public class ManagerModuleActivity extends AppCompatActivity {
             }
         });
 
-        //clicking change
+        //clicking change show view
         adapter.setOnItemClickListener(new ModuleAdapter.OnITemClickListener() {
             @Override
             public void onItemClick(Module module) {
-                Intent intent = new Intent(ManagerModuleActivity.this, ManagePopActivity.class);
-                intent.putExtra(ManagePopActivity.EXTRA_ID, module.getModuleId());
-                intent.putExtra(ManagePopActivity.EXTRA_CODE, module.getCode());
-                intent.putExtra(ManagePopActivity.EXTRA_TITLE, module.getTitle());
-                intent.putExtra(ManagePopActivity.EXTRA_DESC, module.getAim());
-                intent.putExtra(ManagePopActivity.EXTRA_LEVEL, module.getLevel());
-                intent.putExtra(ManagePopActivity.EXTRA_CREDIT, module.getCredit());
-                intent.putExtra(ManagePopActivity.EXTRA_CORE, module.getCoRequisite());
-                intent.putExtra(ManagePopActivity.EXTRA_PRE, module.getPreRequisite());
-                intent.putExtra(ManagePopActivity.EXTRA_STREAM, module.getStream());
-                startActivityForResult(intent, EDIT_REQUEST );
+
+                AlertDialog.Builder alertDialoguilder = new AlertDialog.Builder(ManagerModuleActivity.this);
+                alertDialoguilder.setMessage("Would you like to edit this module?");
+
+                alertDialoguilder.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(ManagerModuleActivity.this, ManagePopActivity.class);
+                        intent.putExtra(ManagePopActivity.EXTRA_CODE, module.getCode());
+                        intent.putExtra(ManagePopActivity.EXTRA_TITLE, module.getTitle());
+                        intent.putExtra(ManagePopActivity.EXTRA_DESC, module.getAim());
+                        intent.putExtra(ManagePopActivity.EXTRA_LEVEL, module.getLevel());
+                        intent.putExtra(ManagePopActivity.EXTRA_CREDIT, module.getCredit());
+                        intent.putExtra(ManagePopActivity.EXTRA_CORE, module.getCoRequisite());
+                        intent.putExtra(ManagePopActivity.EXTRA_PRE, module.getPreRequisite());
+                        intent.putExtra(ManagePopActivity.EXTRA_STREAM, module.getStream());
+                        startActivityForResult(intent, VIEW_REQUEST );
+                    }
+                });
+
+                alertDialoguilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alertDialog = alertDialoguilder.create();
+                alertDialog.show();
+
+
             }
         });
 
