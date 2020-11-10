@@ -1,27 +1,21 @@
 package com.example.dpm_project.viewmodels;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.Transformations;
 
 import com.example.dpm_project.models.Module;
 import com.example.dpm_project.models.ModuleWithPathways;
 import com.example.dpm_project.models.Pathway;
 import com.example.dpm_project.repositories.ModuleRepository;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ModuleViewModel extends AndroidViewModel {
+public  class  ModuleViewModel  extends  AndroidViewModel {
 
     private ModuleRepository repository;
     private LiveData<List<Module>> allModules;
@@ -30,8 +24,7 @@ public class ModuleViewModel extends AndroidViewModel {
     MutableLiveData<Pathway> mPathway = new MutableLiveData<>();
     private Pathway pathway;
 
-
-    public ModuleViewModel(@NonNull Application application) {
+    public  ModuleViewModel ( @NonNull  Application  application ) {
         super(application);
         repository = new ModuleRepository(application);
         allModules = repository.getAllModules();
@@ -77,4 +70,3 @@ public class ModuleViewModel extends AndroidViewModel {
         return mPathway;
     }
 }
-

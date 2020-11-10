@@ -24,20 +24,26 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dpm_project.models.Module;
+import com.example.dpm_project.models.ModuleWithPathways;
 import com.example.dpm_project.models.Pathway;
 import com.example.dpm_project.models.PathwayWithModules;
 import com.example.dpm_project.viewmodels.ModuleViewModel;
 import com.example.dpm_project.viewmodels.PathwayViewModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ManagerModuleActivity extends AppCompatActivity {
     //private ModuleViewModel moduleViewModel;
     private PathwayViewModel pathwayViewModel;
-    public static final int VIEW_REQUEST = 1;
-    public static final int EDIT_REQUEST = 2;
+    public static final int VIEW_REQUEST=1;
+    public static final int EDIT_REQUEST=2;
     private ModuleViewModel moduleViewModel;
+    private ManagerModuleAdapter adapter;
+    private List<ModuleWithPathways> modules;
     private TextView menuText;
     private Toolbar mToolbar;
 
@@ -51,31 +57,79 @@ public class ManagerModuleActivity extends AppCompatActivity {
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("Manager");
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setLogo(R.mipmap.wintec_logo);
-        ;
+        getSupportActionBar().setLogo(R.mipmap.wintec_logo);;
+
 
         RecyclerView recyclerView = findViewById(R.id.manager_pathway_recyclerview);
-        Spinner spinner = findViewById(R.id.manager_pathway_spinner);
+        Spinner pathwaySpinner = findViewById(R.id.manager_pathway_spinner);
+        Spinner yearSpinner = findViewById(R.id.manager_year_spinner);
+        Spinner semesterSpinner = findViewById(R.id.manager_semester_spinner);
 
-        final Pathway[] selectedPathway = new Pathway[1];
+        List<String> years = Arrays.asList(getResources().getStringArray(R.array.years_array));
+        ArrayAdapter<String> yearSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, years);
+        yearSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        yearSpinner.setAdapter(yearSpinnerAdapter);
+
+        //final Pathway[] selectedPathway = new Pathway[1];
+
+        String[][] semesters = new String[][]{new String[]{"All semesters", "Semester 1", "Semester 2", "Semester 3", "Semester 4", "Semester 5", "Semester 6"},
+                new String[]{"All semesters", "Semester 1", "Semester 2"}, new String[]{"All semesters", "Semester 3", "Semester 4"}, new String[]{"All semesters", "Semester 5", "Semester 6"}};
+        semesterSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, semesters[0]));
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        ManagerModuleAdapter adapter = new ManagerModuleAdapter();
+        adapter = new ManagerModuleAdapter();
         recyclerView.setAdapter(adapter);
 
-        pathwayViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(PathwayViewModel.class);
-        pathwayViewModel.getAllPathways().observe(this, pathways -> {
-            ArrayAdapter<Pathway> spinnerAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, pathways);
-            spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner.setAdapter(spinnerAdapter);
+        moduleViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(ModuleViewModel.class);
+        moduleViewModel.getModulesWithPathways().observe(this, mwps -> {
+            this.modules = mwps;
         });
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//        pathwayViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(PathwayViewModel.class);
+        List<String> pathways = Arrays.asList(getResources().getStringArray(R.array.pathways_array));
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, pathways);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pathwaySpinner.setAdapter(spinnerAdapter);
+
+
+        pathwaySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedPathway[0] = (Pathway) spinner.getSelectedItem();
-                pathwayViewModel.getPathwayWithModules(selectedPathway[0].pathwayId).observe(ManagerModuleActivity.this, modules -> adapter.setModules(modules));
+                int year = yearSpinner.getSelectedItemPosition();
+                int semester = semesterSpinner.getSelectedItemPosition();
+                updateModules(i, year, semester);
 
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                semesterSpinner.setAdapter(new ArrayAdapter<>(ManagerModuleActivity.this, android.R.layout.simple_spinner_dropdown_item, semesters[pos]));
+                int semester = semesterSpinner.getSelectedItemPosition();
+                int pathway_id = pathwaySpinner.getSelectedItemPosition();
+                updateModules(pathway_id, pos, semester);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+        semesterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                int year = yearSpinner.getSelectedItemPosition();
+                int pathway_id = pathwaySpinner.getSelectedItemPosition();
+                updateModules(pathway_id, year, i);
             }
 
             @Override
@@ -98,7 +152,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
                 intent.putExtra(ManagePopActivity.EXTRA_CORE, module.getCoRequisite());
                 intent.putExtra(ManagePopActivity.EXTRA_PRE, module.getPreRequisite());
                 intent.putExtra(ManagePopActivity.EXTRA_STREAM, module.getStream());
-                startActivityForResult(intent, EDIT_REQUEST);
+                startActivityForResult(intent, EDIT_REQUEST );
             }
         });
 
@@ -107,7 +161,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == VIEW_REQUEST && resultCode == RESULT_OK) {
+        if(requestCode ==VIEW_REQUEST && resultCode == RESULT_OK) {
             String code = data.getStringExtra(ManagePopActivity.EXTRA_CODE);
             String title = data.getStringExtra(ManagePopActivity.EXTRA_TITLE);
             String desc = data.getStringExtra(ManagePopActivity.EXTRA_DESC);
@@ -117,13 +171,14 @@ public class ManagerModuleActivity extends AppCompatActivity {
             String pre = data.getStringExtra(ManagePopActivity.EXTRA_PRE);
             String stream = data.getStringExtra(ManagePopActivity.EXTRA_STREAM);
 
-            Module module = new Module(code, title, 1, desc, level, credits, 1, core, pre, stream, 1);
+            Module module = new Module(code,title,1,desc,level,credits,1,core,pre,stream,1);
             moduleViewModel.insert(module);
 
-        } else if (requestCode == EDIT_REQUEST && resultCode == RESULT_OK) {
+        }
+        else if(requestCode == EDIT_REQUEST && resultCode == RESULT_OK) {
             int id = data.getIntExtra(ManagePopActivity.EXTRA_ID, -1);
 
-            if (id == -1) {
+            if(id == -1) {
                 Toast.makeText(this, "can't update", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -136,7 +191,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
             String pre = data.getStringExtra(ManagePopActivity.EXTRA_PRE);
             String stream = data.getStringExtra(ManagePopActivity.EXTRA_STREAM);
 
-            Module module = new Module(code, title, 1, desc, level, credits, 1, core, pre, stream, 1);
+            Module module = new Module(code,title,1,desc,level,credits,1,core,pre,stream,1);
             module.setModuleId(id);
             moduleViewModel.update(module);
 
@@ -151,7 +206,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.draw_menu, menu);
+        inflater.inflate(R.menu.draw_menu,menu);
         return true;
 
     }
@@ -165,7 +220,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
                 return true;
 
             case R.id.menu_about:
-                Intent intent2 = new Intent(this, about.class);
+                Intent intent2 = new Intent(this,about.class);
                 startActivity(intent2);
                 return true;
 
@@ -176,6 +231,42 @@ public class ManagerModuleActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void updateModules(int pathway_id, int year, int semester) {
+        List<Module> byPathway = getModulesByPathway(pathway_id);
+        List<Module> byYear = getModulesByYear(year);
+        List<Module> bySemester = getModulesBySemester(year, semester);
+        byPathway.retainAll(byYear);
+        bySemester.retainAll(byPathway);
+        adapter.setModules(bySemester);
+    }
+
+    private List<Module> getModulesByYear(int year) {
+        Stream<ModuleWithPathways> result = modules.stream();
+        if (year != 0) {
+            result = modules.stream().filter(mwps -> mwps.module.getYear() == year);
+        }
+        return result.map(m -> m.module).collect(Collectors.toList());
+    }
+
+    private List<Module> getModulesByPathway(int pathway_id) {
+        Stream<ModuleWithPathways> result = modules.stream();
+        if (pathway_id != 0) {
+            result = modules.stream().filter(mwps -> mwps.pathways.stream().anyMatch(p -> p.pathwayId == pathway_id));
+        }
+        return result.map(m -> m.module).collect(Collectors.toList());
+    }
+
+    private List<Module> getModulesBySemester(int year, int semester) {
+        Stream<ModuleWithPathways> result = modules.stream();
+        if (semester != 0) {
+            int real_year = year == 0 ? semester / 2 + semester % 2 : year;
+            int real_semester = year == 0 ? semester == 5 ? 1 : semester / 3 + semester % 3 : semester;
+            result = modules.stream()
+                    .filter(mwps -> mwps.module.getSemester() == real_semester && mwps.module.getYear() == real_year);
+        }
+        return result.map(m -> m.module).collect(Collectors.toList());
     }
 
 }

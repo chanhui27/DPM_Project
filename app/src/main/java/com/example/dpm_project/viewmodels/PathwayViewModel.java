@@ -13,10 +13,10 @@ import com.example.dpm_project.repositories.PathwayRepository;
 
 import java.util.List;
 
-public class PathwayViewModel extends AndroidViewModel {
+public  class  PathwayViewModel  extends  AndroidViewModel {
     private PathwayRepository repository;
     private LiveData<List<Pathway>> allPathways;
-    public PathwayViewModel(@NonNull Application application) {
+    public  PathwayViewModel ( @NonNull  Application  application ) {
         super(application);
         repository = new PathwayRepository(application);
         allPathways = repository.getAllPathways();
