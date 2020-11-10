@@ -42,7 +42,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
     public static final int VIEW_REQUEST=1;
     public static final int EDIT_REQUEST=2;
     private ModuleViewModel moduleViewModel;
-    private ModuleAdapter adapter;
+    private ManagerModuleAdapter adapter;
     private List<ModuleWithPathways> modules;
     private TextView menuText;
     private Toolbar mToolbar;
@@ -79,7 +79,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        ManagerModuleAdapter adapter = new ManagerModuleAdapter();
+        adapter = new ManagerModuleAdapter();
         recyclerView.setAdapter(adapter);
 
         moduleViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(ModuleViewModel.class);

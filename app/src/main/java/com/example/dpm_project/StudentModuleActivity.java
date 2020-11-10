@@ -42,7 +42,7 @@ public class StudentModuleActivity extends AppCompatActivity {
     private ModuleViewModel moduleViewModel;
     //private PathwayViewModel pathwayViewModel;
     public static final int VIEW_REQUEST=1;
-    private ModuleAdapter adapter;
+    private StudentModuleAdapter adapter;
     private List<ModuleWithPathways> modules;
     private Toolbar mToolbar;
 
@@ -68,8 +68,8 @@ public class StudentModuleActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.student_pathway_recyclerview);
         Spinner pathwaySpinner = findViewById(R.id.student_pathway_spinner);
-        Spinner yearSpinner = findViewById(R.id.year_spinner);
-        Spinner semesterSpinner = findViewById(R.id.semester_spinner);
+        Spinner yearSpinner = findViewById(R.id.student_year_spinner);
+        Spinner semesterSpinner = findViewById(R.id.student_semester_spinner);
 
         //final Pathway[] selectedPathway = new Pathway[1];
 
@@ -86,8 +86,7 @@ public class StudentModuleActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-
-        StudentModuleAdapter adapter = new StudentModuleAdapter();
+        adapter = new StudentModuleAdapter();
         recyclerView.setAdapter(adapter);
 
         moduleViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(ModuleViewModel.class);
