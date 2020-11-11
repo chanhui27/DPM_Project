@@ -22,6 +22,7 @@ public class ManagerMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_main);
 
+        //toolbar menu setting with logo image
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("Manager");
         setSupportActionBar(mToolbar);
