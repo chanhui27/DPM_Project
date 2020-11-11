@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "pathway_table")
-public class Pathway {
+public  class  Pathway {
     @PrimaryKey(autoGenerate = true)
     public int pathwayId;
     public String name;

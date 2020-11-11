@@ -7,7 +7,8 @@ import androidx.room.Relation;
 import java.util.List;
 
 public class ModuleWithPathways {
-    @Embedded public Module module;
+    @Embedded
+    public Module module;
     @Relation(
             parentColumn = "moduleId",
             entityColumn = "pathwayId",
