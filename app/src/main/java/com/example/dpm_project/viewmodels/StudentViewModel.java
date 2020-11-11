@@ -14,15 +14,19 @@ import com.example.dpm_project.repositories.StudentRepository;
 
 import java.util.List;
 
-public  class  StudentViewModel  extends  AndroidViewModel {
+public class StudentViewModel extends AndroidViewModel {
 
     private StudentRepository repository;
     private LiveData<List<StudentPathway>> allStudent;
 
-    public   StudentViewModel ( @NonNull  Application  application ) {
+    public  StudentViewModel ( @NonNull Application application ) {
         super(application);
         repository = new StudentRepository(application);
         allStudent = repository.getAllStudent();
+    }
+
+    public LiveData<Student> getStudent(int id){
+        return repository.getStudent(id);
     }
 
     public void insert(Student student) {

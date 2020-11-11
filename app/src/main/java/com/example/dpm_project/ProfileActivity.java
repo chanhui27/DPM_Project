@@ -11,10 +11,10 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import  android.net.Uri ;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import  android.util.Log ;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -46,7 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText editText_Email;
     private EditText editText_Address;
     private EditText editText_Phone;
-    private  Toolbar mToolbar;
+    private Toolbar mToolbar;
     private Button cancelButton;
     private Button saveButton;
     private CircleImageView profileImage;
@@ -58,12 +58,12 @@ public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super . onCreate (savedInstanceState);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
 
-        mToolbar = findViewById ( R.id.toolbar);
+        mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("Student");
-        setSupportActionBar (mToolbar);
+        setSupportActionBar(mToolbar);
         getSupportActionBar().setLogo(R.mipmap.wintec_logo);
 
         editText_Id = findViewById(R.id.edit_id);
@@ -76,27 +76,24 @@ public class ProfileActivity extends AppCompatActivity {
         profileImage = (CircleImageView) findViewById(R.id.photo);
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public  void  onClick ( View  v ) {
-                openGallery ();
+            public void onClick(View v) {
+                openGallery();
             }
         });
 
-        //cancel button
         cancelButton = findViewById(R.id.profileCancelbtn);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public  void  onClick ( View  v ) {
-
-                finish();
-                /*Intent cIntent = new Intent(ProfileActivity.this, StudentModuleActivity.class);
-                startActivity (cIntent);*/
+            public void onClick(View v) {
+                Intent cIntent = new Intent(ProfileActivity.this, StudentModuleActivity.class);
+                startActivity(cIntent);
             }
         });
 
         saveButton = findViewById(R.id.profileSavebtn);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public  void  onClick ( View  v ) {
+            public void onClick(View v) {
                 if (save()) {
                     Toast.makeText(ProfileActivity.this, "Saved", Toast.LENGTH_SHORT).show();
                     finish();
@@ -115,12 +112,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         //testing update profile
          /*else {
+
             editText_Id.setText("");
             editText_Name.setText("");
             editText_Email.setText("");
             editText_Address.setText("");
             editText_Phone.setText("");
             profileImage.setImageURI(Uri.parse(""));
+
         }*/
 
 
@@ -141,7 +140,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
             imageUri = data.getData();
-            profileImage . setImageURI (imageUri);
+            profileImage.setImageURI(imageUri);
         }
 
     }
@@ -185,7 +184,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     @Override
-    public  boolean  onCreateOptionsMenu ( Menu  menu ) {
+    public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.draw_menu, menu);
         return true;
@@ -193,7 +192,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     @Override
-    public  boolean  onOptionsItemSelected ( @NonNull  MenuItem  item ) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_home:
                 Intent intent = new Intent(this, MainActivity.class);

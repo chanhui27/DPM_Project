@@ -3,9 +3,8 @@ package com.example.dpm_project.models;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-
 @Entity(tableName = "student_table")
-public  class  Student {
+public class Student {
 
     @PrimaryKey(autoGenerate = true)
     private int sid;
@@ -29,7 +28,7 @@ public  class  Student {
         return sid;
     }
 
-    public  void  setSid ( int  sid ) {
+    public void setSid(int sid) {
         this.sid = sid;
     }
 
@@ -43,7 +42,7 @@ public  class  Student {
 
     }
 
-    public  String  getImageUrl () {
+    public String getImageUrl() {
         return imageUrl;
     }
 
@@ -59,7 +58,7 @@ public  class  Student {
         this.studentId = studentId;
     }
 
-    public  String  getName () {
+    public String getName() {
         return name;
     }
 
@@ -75,7 +74,7 @@ public  class  Student {
         this.address = address;
     }
 
-    public  String  getEmail () {
+    public String getEmail() {
         return email;
     }
 

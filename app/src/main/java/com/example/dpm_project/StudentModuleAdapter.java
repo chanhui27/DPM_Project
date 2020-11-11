@@ -4,6 +4,8 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -30,13 +32,12 @@ public class StudentModuleAdapter extends RecyclerView.Adapter<StudentModuleAdap
     @Override
     public void onBindViewHolder(@NonNull ModuleHolder holder, int position) {
         Module currentModule = modules.get(position);
-        if (currentModule.getIsCompleted() == 1){
-            holder.relativeLayout.setBackgroundColor(Color.GREEN);
-        }else{
-            holder.relativeLayout.setBackgroundColor(0xEBEBEB);
-        }
+        holder.relativeLayout.setBackgroundColor(currentModule.getIsCompleted() == 1 ? Color.GREEN : 0xEBEBEB);
+        holder.imageViewLock.setVisibility(currentModule.isLocked() ? View.VISIBLE : View.GONE);
         holder.textViewCode.setText(currentModule.getCode());
         holder.textViewTitle.setText(currentModule.getTitle());
+
+
     }
 
     @Override
@@ -44,8 +45,8 @@ public class StudentModuleAdapter extends RecyclerView.Adapter<StudentModuleAdap
         return modules.size();
     }
 
-    public  void setModules(List<Module> modules){
-        this.modules  = modules;
+    public void setModules(List<Module> modules) {
+        this.modules = modules;
         notifyDataSetChanged();
     }
 
@@ -57,12 +58,16 @@ public class StudentModuleAdapter extends RecyclerView.Adapter<StudentModuleAdap
         private TextView textViewCode;
         private TextView textViewTitle;
         private RelativeLayout relativeLayout;
+        private FrameLayout frameLayout;
+        private ImageView imageViewLock;
 
         public ModuleHolder(View itemView) {
             super(itemView);
             textViewCode = itemView.findViewById(R.id.student_text_view_module_code);
             textViewTitle = itemView.findViewById(R.id.student_text_view_module_title);
             relativeLayout = itemView.findViewById(R.id.student_cardview_relative_layout);
+            imageViewLock = itemView.findViewById(R.id.cardview_lock);
+
 
             //click item
             itemView.setOnClickListener(new View.OnClickListener() {

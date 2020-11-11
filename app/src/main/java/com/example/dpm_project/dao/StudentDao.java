@@ -15,7 +15,7 @@ import com.example.dpm_project.models.StudentPathway;
 import java.util.List;
 
 @Dao
-public  interface  StudentDao {
+public interface StudentDao {
 
     @Insert
     void insert(Student student);
@@ -23,6 +23,9 @@ public  interface  StudentDao {
     void update(Student student);
     @Delete
     void delete(Student student);
+    @Query("SELECT * FROM student_table WHERE sid = :studentId")
+    public LiveData<Student> getStudent(int studentId);
+
     @Transaction
     @Query("SELECT * FROM student_table")
     /*LiveData<List<Student>> getAllStudent();*/

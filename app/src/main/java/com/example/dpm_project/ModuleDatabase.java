@@ -2,7 +2,7 @@ package com.example.dpm_project;
 
 import android.content.Context;
 import android.net.Network;
-import  android.os.Environment ;
+import android.os.Environment;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -23,14 +23,14 @@ import com.example.dpm_project.models.StudentPathway;
 import java.util.concurrent.Executors;
 
 @Database(entities = {Module.class, Student.class, Pathway.class, PathwayModuleCrossRef.class}, version = 2)
-public  abstract  class  ModuleDatabase  extends  RoomDatabase {
+public abstract class ModuleDatabase extends RoomDatabase {
     private static ModuleDatabase instance;
 
-    public  abstract  ModuleDao  moduleDao ();
+    public abstract ModuleDao moduleDao();
 
-    public  abstract  PathwayDao  pathwayDao ();
+    public abstract PathwayDao pathwayDao();
 
-    public  abstract  StudentDao  studentDao ();
+    public abstract StudentDao studentDao();
 
     public abstract PathwayModuleCrossRefDao pathwayModuleCrossRefDao();
 
@@ -47,7 +47,7 @@ public  abstract  class  ModuleDatabase  extends  RoomDatabase {
 
     private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
         @Override
-        public  void  onCreate ( @NonNull  SupportSQLiteDatabase  db ) {
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
             Executors.newSingleThreadExecutor().execute(() -> {
                 //instance.studentDao().insert(new Student(1234,"asdf","asdf@asdf.com","asdfaasdfadf", 12345), "");
@@ -96,7 +96,7 @@ public  abstract  class  ModuleDatabase  extends  RoomDatabase {
                 // id = 27
                 instance.moduleDao().insert(new Module("INFO704", "Data-Warehousing and Business Intelligence", 0, "To enable students to examine the main components of data warehousing and apply it to business intelligence applications, enabling them to provide solutions which incorporate extracting data from different sources, storing data in a data warehouse and developing applications for business decision-making", "7","15",3,"","INFO601","DATABASE",1));
                 // id = 28
-                instance.moduleDao().insert(new Module("COMP716", "Advanced Web Technologies", 0, "To enable students to gain an understanding of the architecture, components, and operation of server-based virtualisation infrastructure and meet organisational requirements","7","15",3,"","COMP504, INFO603","WEB DEVELOPMENT",2 ));
+                instance.moduleDao().insert(new Module("COMP717", "Advanced Web Technologies", 0, "To enable students to gain an understanding of the architecture, components, and operation of server-based virtualisation infrastructure and meet organisational requirements","7","15",3,"","COMP606","WEB DEVELOPMENT",1 ));
                 // id = 29
                 instance.moduleDao().insert(new Module("INFO702", "Cyber-Security", 0,"To enable students to investigate computer system attacks and vulnerabilities in relation to operating systems (OS), applications, networking and websites, and investigate the security techniques for protecting a computer system from such attacks.", "7","15",3,"","COMP504 OR INFO603","NETWORK, SOFTWARE, WEB DEVELOPMENT",1));
                 // id = 30

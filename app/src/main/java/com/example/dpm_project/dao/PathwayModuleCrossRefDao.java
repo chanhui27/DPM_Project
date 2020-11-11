@@ -16,6 +16,10 @@ import java.util.List;
 public interface PathwayModuleCrossRefDao {
     @Insert
     void insert(PathwayModuleCrossRef pathwayModuleCrossRef);
+    @Transaction
+    @Query("SELECT * FROM pathway_table")
+    List<PathwayWithModules> getAllPathwayWithModules();
+
 
 
     @Transaction
