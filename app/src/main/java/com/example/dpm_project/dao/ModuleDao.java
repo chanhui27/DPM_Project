@@ -10,24 +10,22 @@ import androidx.room.Update;
 
 import com.example.dpm_project.models.Module;
 import com.example.dpm_project.models.ModuleWithPathways;
-import com.example.dpm_project.models.PathwayWithModules;
 
 import java.util.List;
 
 @Dao
-public   interface   ModuleDao {
+public  interface  ModuleDao {
     @Insert
     void insert(Module module);
     @Update
-    void update(Module module);
+    void update(Module... module);
     @Delete
     void delete(Module module);
     @Query("SELECT * FROM module_table ORDER BY isCompleted")
     LiveData<List<Module>> getAllModules();
     @Transaction
-    @Query("SELECT * FROM module_table")
+    @Query("SELECT * FROM module_table ORDER BY isCompleted, year")
     LiveData<List<ModuleWithPathways>> getModuleWithPathways();
-
 
 
 }

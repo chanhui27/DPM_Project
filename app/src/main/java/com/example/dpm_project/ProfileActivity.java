@@ -1,43 +1,43 @@
 package com.example.dpm_project;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModelProvider;
+        import androidx.annotation.NonNull;
+        import androidx.annotation.Nullable;
+        import androidx.appcompat.app.AlertDialog;
+        import androidx.appcompat.app.AppCompatActivity;
+        import androidx.appcompat.widget.Toolbar;
+        import androidx.lifecycle.LiveData;
+        import androidx.lifecycle.ViewModelProvider;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import  android.net.Uri ;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import  android.util.Log ;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+        import android.content.DialogInterface;
+        import android.content.Intent;
+        import android.graphics.Bitmap;
+        import  android.net.Uri ;
+        import android.os.Bundle;
+        import android.provider.MediaStore;
+        import  android.util.Log ;
+        import android.view.Menu;
+        import android.view.MenuInflater;
+        import android.view.MenuItem;
+        import android.view.View;
+        import android.widget.Button;
+        import android.widget.EditText;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
-import com.example.dpm_project.models.Student;
-import com.example.dpm_project.models.StudentPathway;
-import com.example.dpm_project.viewmodels.ModuleViewModel;
-import com.example.dpm_project.viewmodels.StudentViewModel;
+        import com.example.dpm_project.models.Student;
+        import com.example.dpm_project.models.StudentPathway;
+        import com.example.dpm_project.viewmodels.ModuleViewModel;
+        import com.example.dpm_project.viewmodels.StudentViewModel;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.List;
+        import java.io.BufferedReader;
+        import java.io.FileInputStream;
+        import java.io.FileNotFoundException;
+        import java.io.FileOutputStream;
+        import java.io.IOException;
+        import java.io.InputStreamReader;
+        import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+        import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity {
     private List<StudentPathway> students;

@@ -15,6 +15,7 @@ import com.example.dpm_project.models.PathwayWithModules;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 public class PathwayRepository {
     private PathwayDao pathwayDao;
@@ -26,7 +27,7 @@ public class PathwayRepository {
         ModuleDatabase database = ModuleDatabase.getInstance(application);
         pathwayDao = database.pathwayDao();
         pathwayModuleCrossRefDao = database.pathwayModuleCrossRefDao();
-        allPathways = pathwayDao. getAllPathways ();
+        allPathways = pathwayDao . getAllPathways ();
 
     }
 
@@ -35,13 +36,23 @@ public class PathwayRepository {
 
     }
 
-    public LiveData<List<Module>> getPathwayWithModules(int pathwayId){
+    public LiveData<List<Module>> getPathwayWithModules(int pathwayId) {
         MutableLiveData<List<Module>> modules = new MutableLiveData<>();
-        executor.execute(() -> {
-            PathwayWithModules pathwayWithModules = pathwayModuleCrossRefDao.getPathwayWithModules(pathwayId);
-            modules.postValue(pathwayWithModules.modules);
-        });
+        if (pathwayId == 0) {
+            executor.execute(() -> {
+                List<PathwayWithModules> pathwayWithModules = pathwayModuleCrossRefDao.getAllPathwayWithModules();
+                modules.postValue(pathwayWithModules.stream()
+                        .map(p -> p.modules)
+                        .flatMap(List::stream)
+                        .collect(Collectors.toList()));
+            });
 
+        } else {
+            executor.execute(() -> {
+                PathwayWithModules pathwayWithModules = pathwayModuleCrossRefDao.getPathwayWithModules(pathwayId);
+                modules.postValue(pathwayWithModules.modules);
+            });
+        }
         return modules;
     }
 

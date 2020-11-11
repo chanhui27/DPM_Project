@@ -29,6 +29,9 @@ public class StudentRepository {
         executor.execute(() -> studentDao.insert(student));
 
     }
+    public LiveData<Student> getStudent(int id){
+        return studentDao.getStudent(id);
+    }
     public void update(Student student){
         executor.execute(() -> studentDao.update(student));
     }

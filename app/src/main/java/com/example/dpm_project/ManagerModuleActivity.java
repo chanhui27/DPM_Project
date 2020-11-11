@@ -1,4 +1,3 @@
-
 package com.example.dpm_project;
 
 import android.content.DialogInterface;
@@ -30,6 +29,7 @@ import com.example.dpm_project.models.Pathway;
 import com.example.dpm_project.models.PathwayWithModules;
 import com.example.dpm_project.viewmodels.ModuleViewModel;
 import com.example.dpm_project.viewmodels.PathwayViewModel;
+import com.example.dpm_project.viewmodels.StudentViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,18 +46,18 @@ public class ManagerModuleActivity extends AppCompatActivity {
     private ManagerModuleAdapter adapter;
     private List<ModuleWithPathways> modules;
     private TextView menuText;
-    private Toolbar mToolbar;
+    private  Toolbar mToolbar;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super . onCreate (savedInstanceState);
         setContentView(R.layout.manager_module_activity_main);
 
         //toolbar
-        mToolbar = findViewById(R.id.toolbar);
+        mToolbar = findViewById ( R . id . toolbar);
         mToolbar.setTitle("Manager");
-        setSupportActionBar(mToolbar);
+        setSupportActionBar (mToolbar);
         getSupportActionBar().setLogo(R.mipmap.wintec_logo);;
 
 
@@ -111,7 +111,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
 
         yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+            public  void  onItemSelected ( AdapterView <?>  parent , View  view , int  pos , long  id ) {
                 semesterSpinner.setAdapter(new ArrayAdapter<>(ManagerModuleActivity.this, android.R.layout.simple_spinner_dropdown_item, semesters[pos]));
                 int semester = semesterSpinner.getSelectedItemPosition();
                 int pathway_id = pathwaySpinner.getSelectedItemPosition();
@@ -139,6 +139,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
             }
         });
 
+
         //clicking change
         adapter.setOnItemClickListener(new ModuleAdapter.OnITemClickListener() {
             @Override
@@ -157,6 +158,9 @@ public class ManagerModuleActivity extends AppCompatActivity {
             }
         });
 
+        //change
+        moduleViewModel =  new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(ModuleViewModel.class);
+
     }
 
     @Override
@@ -172,8 +176,8 @@ public class ManagerModuleActivity extends AppCompatActivity {
             String pre = data.getStringExtra(ManagePopActivity.EXTRA_PRE);
             String stream = data.getStringExtra(ManagePopActivity.EXTRA_STREAM);
 
-            Module module = new Module(code,title,0,desc,level,credits,1,core,pre,stream,1);
-            moduleViewModel.update(module);
+            Module module = new Module(code,title,1,desc,level,credits,1,core,pre,stream,1);
+            moduleViewModel.insert(module);
 
         }
         else if(requestCode == EDIT_REQUEST && resultCode == RESULT_OK) {
@@ -192,8 +196,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
             String pre = data.getStringExtra(ManagePopActivity.EXTRA_PRE);
             String stream = data.getStringExtra(ManagePopActivity.EXTRA_STREAM);
 
-            //update module
-            Module module = new Module(code,title,0,desc,level,credits,1,core,pre,stream,1);
+            Module module = new Module(code,title,1,desc,level,credits,1,core,pre,stream,1);
             module.setModuleId(id);
             moduleViewModel.update(module);
 
@@ -206,15 +209,15 @@ public class ManagerModuleActivity extends AppCompatActivity {
 
     //toolbar
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public  boolean  onCreateOptionsMenu ( Menu  menu ) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.draw_menu,menu);
+        inflater.inflate(R.menu.draw_pm,menu);
         return true;
 
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public  boolean  onOptionsItemSelected ( @NonNull  MenuItem  item ) {
         switch (item.getItemId()) {
             case R.id.menu_home:
                 Intent intent = new Intent(this, MainActivity.class);
@@ -226,10 +229,6 @@ public class ManagerModuleActivity extends AppCompatActivity {
                 startActivity(intent2);
                 return true;
 
-            case R.id.menu_profile:
-                Intent intent3 = new Intent(this,ProfileActivity.class);
-                startActivity(intent3);
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

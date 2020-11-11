@@ -10,7 +10,6 @@
     tools:openDrawer="start">
 
 
-
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
@@ -32,13 +31,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blackColor"
-            android:gravity="center"
             android:paddingStart="5dp"
             android:paddingTop="10dp"
             android:paddingEnd="5dp"
             android:paddingBottom="10dp"
             android:spinnerMode="dropdown"
+            android:gravity="center"
             app:layout_constraintTop_toBottomOf="@id/pathway_toolbar" />
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            app:layout_constraintStart_toEndOf="@id/student_pathway_spinner" />
     </LinearLayout>
 
     <LinearLayout
@@ -82,7 +88,7 @@
         app:layout_constraintTop_toBottomOf="@+id/student_year_semester_linear_layout"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        tools:listitem="@layout/module_item" />
+        tools:listitem="@layout/student_module_item" />
 
 
     <!--<Spinner
