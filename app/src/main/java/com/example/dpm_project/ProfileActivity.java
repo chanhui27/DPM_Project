@@ -1,43 +1,44 @@
 package com.example.dpm_project;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModelProvider;
+        import androidx.annotation.NonNull;
+        import androidx.annotation.Nullable;
+        import androidx.appcompat.app.AlertDialog;
+        import androidx.appcompat.app.AppCompatActivity;
+        import androidx.appcompat.widget.Toolbar;
+        import androidx.lifecycle.LiveData;
+        import androidx.lifecycle.ViewModelProvider;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+        import android.content.DialogInterface;
+        import android.content.Intent;
+        import android.graphics.Bitmap;
+        import  android.net.Uri ;
+        import android.os.Bundle;
+        import android.provider.MediaStore;
+        import  android.util.Log ;
+        import android.view.Menu;
+        import android.view.MenuInflater;
+        import android.view.MenuItem;
+        import android.view.View;
+        import android.widget.Button;
+        import android.widget.EditText;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
-import com.example.dpm_project.models.Student;
-import com.example.dpm_project.models.StudentPathway;
-import com.example.dpm_project.viewmodels.ModuleViewModel;
-import com.example.dpm_project.viewmodels.StudentViewModel;
+        import com.example.dpm_project.models.Pathway;
+        import com.example.dpm_project.models.Student;
+        import com.example.dpm_project.models.StudentPathway;
+        import com.example.dpm_project.viewmodels.ModuleViewModel;
+        import com.example.dpm_project.viewmodels.StudentViewModel;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.List;
+        import java.io.BufferedReader;
+        import java.io.FileInputStream;
+        import java.io.FileNotFoundException;
+        import java.io.FileOutputStream;
+        import java.io.IOException;
+        import java.io.InputStreamReader;
+        import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+        import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity {
     private List<StudentPathway> students;
@@ -46,7 +47,8 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText editText_Email;
     private EditText editText_Address;
     private EditText editText_Phone;
-    private Toolbar mToolbar;
+    private TextView pathway;
+    private  Toolbar mToolbar;
     private Button cancelButton;
     private Button saveButton;
     private CircleImageView profileImage;
@@ -55,15 +57,15 @@ public class ProfileActivity extends AppCompatActivity {
 
     private Student student;
     private StudentViewModel studentViewModel;
-
+    private Pathway studentPathway;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super . onCreate (savedInstanceState);
         setContentView(R.layout.profile);
 
-        mToolbar = findViewById(R.id.toolbar);
+        mToolbar = findViewById ( R.id.toolbar);
         mToolbar.setTitle("Student");
-        setSupportActionBar(mToolbar);
+        setSupportActionBar (mToolbar);
         getSupportActionBar().setLogo(R.mipmap.wintec_logo);
 
         editText_Id = findViewById(R.id.edit_id);
@@ -71,29 +73,35 @@ public class ProfileActivity extends AppCompatActivity {
         editText_Email = findViewById(R.id.edit_email);
         editText_Address = findViewById(R.id.edit_address);
         editText_Phone = findViewById(R.id.edit_phone);
+        pathway = findViewById(R.id.text_pathway);
+
+
 
         //get image from gallery
         profileImage = (CircleImageView) findViewById(R.id.photo);
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                openGallery();
+            public  void  onClick ( View  v ) {
+                openGallery ();
             }
         });
 
+        //cancel button
         cancelButton = findViewById(R.id.profileCancelbtn);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent cIntent = new Intent(ProfileActivity.this, StudentModuleActivity.class);
-                startActivity(cIntent);
+            public  void  onClick ( View  v ) {
+
+                finish();
+                /*Intent cIntent = new Intent(ProfileActivity.this, StudentModuleActivity.class);
+                startActivity (cIntent);*/
             }
         });
 
         saveButton = findViewById(R.id.profileSavebtn);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public  void  onClick ( View  v ) {
                 if (save()) {
                     Toast.makeText(ProfileActivity.this, "Saved", Toast.LENGTH_SHORT).show();
                     finish();
@@ -106,20 +114,20 @@ public class ProfileActivity extends AppCompatActivity {
         studentViewModel.getAllStudent().observe(this, sp -> {
             if (sp.size() != 0) {
                 this.student = sp.get(0).student;
+                studentPathway = sp.get(0).pathway;
                 setStudentProfile();
             }
         });
 
+
         //testing update profile
          /*else {
-
             editText_Id.setText("");
             editText_Name.setText("");
             editText_Email.setText("");
             editText_Address.setText("");
             editText_Phone.setText("");
             profileImage.setImageURI(Uri.parse(""));
-
         }*/
 
 
@@ -132,6 +140,12 @@ public class ProfileActivity extends AppCompatActivity {
         editText_Address.setText(student.getAddress());
         editText_Phone.setText(student.getPhone());
         profileImage.setImageURI(Uri.parse(student.getImageUrl()));
+        if(studentPathway != null) {
+            pathway.setText(studentPathway.name);
+        }
+        else{
+            pathway.setText(" ");
+        }
     }
 
     @Override
@@ -140,7 +154,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
             imageUri = data.getData();
-            profileImage.setImageURI(imageUri);
+            profileImage . setImageURI (imageUri);
         }
 
     }
@@ -184,7 +198,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public  boolean  onCreateOptionsMenu ( Menu  menu ) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.draw_menu, menu);
         return true;
@@ -192,7 +206,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public  boolean  onOptionsItemSelected ( @NonNull  MenuItem  item ) {
         switch (item.getItemId()) {
             case R.id.menu_home:
                 Intent intent = new Intent(this, MainActivity.class);

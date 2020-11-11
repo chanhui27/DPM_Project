@@ -123,7 +123,7 @@ public class StudentModuleActivity extends AppCompatActivity {
                     if (student != null) {
                         studentPathwayId = student.getStudentPathwayId();
                         pathwaySpinner.setSelection(studentPathwayId);
-                        MODE = 1;
+                        MODE = pathwaySpinner.getSelectedItemPosition() == 0 ? 0 : 1;
                     }
                 }
         );

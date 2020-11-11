@@ -27,7 +27,7 @@ public class PathwayRepository {
         ModuleDatabase database = ModuleDatabase.getInstance(application);
         pathwayDao = database.pathwayDao();
         pathwayModuleCrossRefDao = database.pathwayModuleCrossRefDao();
-        allPathways = pathwayDao. getAllPathways ();
+        allPathways = pathwayDao . getAllPathways ();
 
     }
 

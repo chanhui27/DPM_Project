@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 import java.util.Objects;
 
 @Entity(tableName = "module_table")
-public class Module {
+public  class  Module {
     @PrimaryKey(autoGenerate = true)
     private int moduleId;
     private String code;
@@ -58,7 +58,7 @@ public class Module {
 
 
     @Override
-    public boolean equals(Object o) {
+    public  boolean  equals ( Object  o ) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Module module = (Module) o;
@@ -66,7 +66,7 @@ public class Module {
     }
 
     @Override
-    public int hashCode() {
+    public  int  hashCode () {
         return Objects.hash(getModuleId());
     }
 
@@ -83,7 +83,7 @@ public class Module {
         this.moduleId = moduleId;
     }
 
-    public int getModuleId() {
+    public  int  getModuleId () {
         return moduleId;
     }
 
@@ -95,13 +95,13 @@ public class Module {
         return title;
     }
 
-    public int getIsCompleted() {
+    public  int  getIsCompleted () {
         return isCompleted;
     }
 
     public String getAim(){ return aim;}
 
-    public int getYear() {
+    public  int  getYear () {
         return year;
     }
 
@@ -111,15 +111,15 @@ public class Module {
 
     public String getCredit(){return credit;}
 
-    public String getCoRequisite(){
+    public  String  getCoRequisite () {
         return coRequisite;
     }
 
-    public int getSemester(){
+    public  int  getSemester () {
         return semester;
     }
 
-    public String getPreRequisite() {
+    public  String  getPreRequisite () {
         return preRequisite;
     }
 

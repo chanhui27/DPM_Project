@@ -30,11 +30,11 @@ public class ManagerModuleAdapter extends RecyclerView.Adapter<ManagerModuleAdap
     @Override
     public void onBindViewHolder(@NonNull ModuleHolder holder, int position) {
         Module currentModule = modules.get(position);
-        if (currentModule.getIsCompleted() == 1){
+        /*if (currentModule.getIsCompleted() == 1){
             holder.relativeLayout.setBackgroundColor(Color.GREEN);
         }else{
             holder.relativeLayout.setBackgroundColor(0xEBEBEB);
-        }
+        }*/
         holder.textViewCode.setText(currentModule.getCode());
         holder.textViewTitle.setText(currentModule.getTitle());
     }

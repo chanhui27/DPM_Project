@@ -2,7 +2,7 @@ package com.example.dpm_project;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import  android.util.Log ;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -43,7 +43,7 @@ public class ModuleActivity extends AppCompatActivity {
     //private PathwayViewModel pathwayViewModel;
     //menu
     //private DrawerLayout drawer;
-    private Toolbar mToolbar;
+    private  Toolbar mToolbar;
     public static final int VIEW_REQUEST=1;
     private ModuleAdapter adapter;
     private List<ModuleWithPathways> modules;
@@ -51,12 +51,12 @@ public class ModuleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super . onCreate (savedInstanceState);
         setContentView(R.layout.module_activity_main);
 
-        mToolbar = findViewById(R.id.toolbar);
+        mToolbar = findViewById ( R . id . toolbar);
         mToolbar.setTitle("Pathway");
-        setSupportActionBar(mToolbar);
+        setSupportActionBar (mToolbar);
         getSupportActionBar().setLogo(R.mipmap.wintec_logo);
 
         RecyclerView recyclerView = findViewById(R.id.pathway_recyclerview);
@@ -107,7 +107,7 @@ public class ModuleActivity extends AppCompatActivity {
 
         yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+            public  void  onItemSelected ( AdapterView <?>  parent , View  view , int  pos , long  id ) {
                 semesterSpinner.setAdapter(new ArrayAdapter<>(ModuleActivity.this, android.R.layout.simple_spinner_dropdown_item, semesters[pos]));
                 int semester = semesterSpinner.getSelectedItemPosition();
                 int pathway_id = pathwaySpinner.getSelectedItemPosition();
@@ -199,7 +199,7 @@ public class ModuleActivity extends AppCompatActivity {
 
     //options Menu
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public  boolean  onCreateOptionsMenu ( Menu  menu ) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.draw_pm,menu);
         return true;
@@ -207,7 +207,7 @@ public class ModuleActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public  boolean  onOptionsItemSelected ( @NonNull  MenuItem  item ) {
         switch (item.getItemId()) {
             case R.id.menu_home:
                 Intent intent = new Intent(this, MainActivity.class);
@@ -219,10 +219,6 @@ public class ModuleActivity extends AppCompatActivity {
                 startActivity(intent2);
                 return true;
 
-//            case R.id.menu_profile:
-//                Intent intent3 = new Intent(this,ProfileActivity.class);
-//                startActivity(intent3);
-//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -240,4 +236,3 @@ public class ModuleActivity extends AppCompatActivity {
 
 
 }
-

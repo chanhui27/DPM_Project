@@ -8,7 +8,6 @@ import com.example.dpm_project.ModuleDatabase;
 import com.example.dpm_project.dao.ModuleDao;
 import com.example.dpm_project.models.Module;
 import com.example.dpm_project.models.ModuleWithPathways;
-import com.example.dpm_project.models.PathwayWithModules;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -23,7 +22,7 @@ public class ModuleRepository {
     public ModuleRepository(Application application){
         ModuleDatabase database = ModuleDatabase.getInstance(application);
         moduleDao = database.moduleDao();
-        allModules = moduleDao . getAllModules ();
+        allModules = moduleDao.getAllModules();
         modulesWithPathways = moduleDao.getModuleWithPathways();
 
     }
@@ -44,5 +43,4 @@ public class ModuleRepository {
     public LiveData<List<ModuleWithPathways>> getModulesWithPathways(){
         return modulesWithPathways;
     }
-
 }

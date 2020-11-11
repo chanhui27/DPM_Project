@@ -1,12 +1,10 @@
 package com.example.dpm_project.dao;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
 
-import com.example.dpm_project.models.Pathway;
 import com.example.dpm_project.models.PathwayModuleCrossRef;
 import com.example.dpm_project.models.PathwayWithModules;
 
@@ -21,10 +19,8 @@ public interface PathwayModuleCrossRefDao {
     List<PathwayWithModules> getAllPathwayWithModules();
 
 
-
     @Transaction
     @Query("SELECT * FROM pathway_table WHERE pathwayId = :pathwayId")
     PathwayWithModules getPathwayWithModules(int pathwayId);
-
 
 }

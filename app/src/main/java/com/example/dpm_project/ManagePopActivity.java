@@ -18,12 +18,15 @@ public class ManagePopActivity extends AppCompatActivity {
     public static final String EXTRA_ID = "com.eample.dpm_project.EXTRA_ID";
     public static final String EXTRA_CODE = "com.example.dpm_project.EXTRA_CODE";
     public static final String EXTRA_TITLE = "com.example.dpm_project.EXTRA_TITLE";
+    public static final String EXTRA_COMPLET = "com.example.dpm_project.EXTRA_COMPLET";
     public static final String EXTRA_DESC = "com.example.dpm_project.EXTRA_DESC";
     public static final String EXTRA_LEVEL = "com.example.dpm_project.EXTRA_LEVEL";
     public static final String EXTRA_CREDIT = "com.example.dpm_project.EXTRA_CREDIT";
+    public static final String EXTRA_YEAR = "com.example.dpm-project.EXTRA_YEAR";
     public static final String EXTRA_PRE = "com.example.dpm_project.EXTRA_PRE";
     public static final String EXTRA_CORE = "com.example.dpm_project.EXTRA_CORE";
     public static final String EXTRA_STREAM = "com.example.dpm_project.EXTRA_STREAM";
+    public static final String EXTRA_SEMESTER = "com.example.dpm_project.EXTRA_SEMESTER";
 
     private TextView code, title, desc, level,credit, core,pre, stream;
     private ImageButton exit;
@@ -60,6 +63,7 @@ public class ManagePopActivity extends AppCompatActivity {
             core.setText(intent.getStringExtra(EXTRA_CORE));
             pre.setText(intent.getStringExtra(EXTRA_PRE));
             stream.setText(intent.getStringExtra(EXTRA_STREAM));
+
         }
 
         //clicking exist image
@@ -114,6 +118,13 @@ public class ManagePopActivity extends AppCompatActivity {
         data.putExtra(EXTRA_CORE, updateCore);
         data.putExtra(EXTRA_PRE, updatePre);
         data.putExtra(EXTRA_STREAM, updateStream);
+        int isco = getIntent().getIntExtra(EXTRA_COMPLET, -1);
+        int year1 = getIntent().getIntExtra(EXTRA_YEAR, 0);
+        int semester1 = getIntent().getIntExtra(EXTRA_SEMESTER, 0);
+
+        data.putExtra(EXTRA_COMPLET, isco);
+        data.putExtra(EXTRA_YEAR, year1);
+        data.putExtra(EXTRA_SEMESTER, semester1);
 
         //check id is exist
         int id = getIntent () . getIntExtra ( EXTRA_ID , - 1 );

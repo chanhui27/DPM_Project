@@ -1,4 +1,3 @@
-
 package com.example.dpm_project;
 
 import androidx.annotation.NonNull;
@@ -15,7 +14,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.net.Uri;
+import  android.net.Uri ;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.security.identity.AccessControlProfileId;
@@ -41,64 +40,56 @@ public class MainActivity extends AppCompatActivity {
     private Button managerButton;
     private Button studentButton;
     private Button pathwayButton;
-    private TextView menuText;
-
-    private Toolbar mToolbar;
+    private  Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super . onCreate (savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mToolbar = findViewById(R.id.toolbar);
+        //toolbar menu setting with logo image
+        mToolbar = findViewById ( R . id . toolbar);
         mToolbar.setTitle("Degree Program Mapper");
 
-        setSupportActionBar(mToolbar);
+        setSupportActionBar (mToolbar);
         getSupportActionBar().setLogo(R.mipmap.wintec_logo);
 
-
-        /*
-        menuText = findViewById(R.id.Degree_title);
-
-        menuText.setText("Degree Program Mapper"); */
-
+        //create shared preferences to set only one time to show the dialog message
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firstStart", true);
 
+        //check if it is true
         if(firstStart){
             openDisclaimer();
         }
-
-        //toolbar
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //testing popup screen
+        //initialize id from activity main xml
         managerButton = findViewById(R.id.ManagerBtn);
         pathwayButton = findViewById(R.id.PathwayBtn);
         studentButton = findViewById(R.id.StudentBtn);
 
-        //pathway
+        //clicking pathway button
         pathwayButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public  void  onClick ( View  view ) {
                 startActivity(new Intent(MainActivity.this, ModuleActivity.class));
             }
         });
 
 
-        //student
+        //clicking student button
         studentButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public  void  onClick ( View  v ) {
                 startActivity(new Intent(MainActivity.this,StudentModuleActivity.class));
             }
         });
 
-        //go to manager screen
+        //cliking manager button
         managerButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public  void  onClick ( View  v ) {
                 Intent mIntent = new Intent(getApplicationContext(), ManagerPassword.class);
-                startActivity(mIntent);
+                startActivity (mIntent);
             }
         });
 
@@ -106,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public  boolean  onCreateOptionsMenu ( Menu  menu ) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.draw_pm,menu);
         return true;
@@ -114,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public  boolean  onOptionsItemSelected ( @NonNull  MenuItem  item ) {
         switch (item.getItemId()) {
             case R.id.menu_home:
                 Intent intent = new Intent(this, MainActivity.class);
@@ -126,17 +117,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent2);
                 return true;
 
-//            case R.id.menu_profile:
-//                Intent intent3 = new Intent(this,ProfileActivity.class);
-//                startActivity(intent3);
-//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
     //popup disclaimer
-    public void openDisclaimer() {
+    public  void  openDisclaimer () {
         LayoutInflater adbInflater = LayoutInflater.from(this);
         AlertDialog.Builder alertDialoguilder = new AlertDialog.Builder(this);
         alertDialoguilder.setTitle("                     Disclaimer");
