@@ -234,10 +234,10 @@ public class ModuleActivity extends AppCompatActivity {
                 startActivity(intent2);
                 return true;
 
-            /*case R.id.menu_profile:
+            case R.id.menu_profile:
                 Intent intent3 = new Intent(this,ProfileActivity.class);
                 startActivity(intent3);
-                return true;*/
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -255,3 +255,4 @@ public class ModuleActivity extends AppCompatActivity {
 
 
 }
+

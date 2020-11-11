@@ -10,7 +10,7 @@
     <!--    Module Code-->
 
     <ImageButton
-        android:id="@+id/muClose"
+        android:id="@+id/mClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_cancel"
@@ -37,7 +37,7 @@
          app:layout_constraintVertical_bias="0.084" />
  -->
     <EditText
-        android:id="@+id/muModuleCode2"
+        android:id="@+id/mModuleCode2"
         android:layout_width="190dp"
         android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,7 +48,7 @@
         app:layout_constraintVertical_bias="0.105" />
 
     <TextView
-        android:id="@+id/muModuleLevel1"
+        android:id="@+id/mModuleLevel1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -62,7 +62,7 @@
         app:layout_constraintVertical_bias="0.24" />
 
     <EditText
-        android:id="@+id/muDescription2"
+        android:id="@+id/mDescription2"
         android:layout_width="230dp"
         android:layout_height="155dp"
         android:textSize="10dp"
@@ -74,7 +74,7 @@
         app:layout_constraintVertical_bias="0.814" />
 
     <TextView
-        android:id="@+id/muStream1"
+        android:id="@+id/mStream1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -88,7 +88,7 @@
         app:layout_constraintVertical_bias="0.552" />
 
     <EditText
-        android:id="@+id/muPreRequisite2"
+        android:id="@+id/mPreRequisite2"
         android:layout_width="230dp"
         android:layout_height="50dp"
         android:textSize="15dp"
@@ -100,7 +100,7 @@
         app:layout_constraintVertical_bias="0.409" />
 
     <TextView
-        android:id="@+id/muDescription1"
+        android:id="@+id/mDescription1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -114,7 +114,7 @@
         app:layout_constraintVertical_bias="0.638" />
 
     <EditText
-        android:id="@+id/muCoRequisite2"
+        android:id="@+id/mCoRequisite2"
         android:layout_width="230dp"
         android:layout_height="40dp"
         android:textSize="15dp"
@@ -126,7 +126,7 @@
         app:layout_constraintVertical_bias="0.488" />
 
     <TextView
-        android:id="@+id/muModuleCode1"
+        android:id="@+id/mModuleCode1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -140,7 +140,7 @@
         app:layout_constraintVertical_bias="0.088" />
 
     <EditText
-        android:id="@+id/muCredit2"
+        android:id="@+id/mCredit2"
         android:layout_width="190dp"
         android:layout_height="40dp"
         android:textSize="15dp"
@@ -152,7 +152,7 @@
         app:layout_constraintVertical_bias="0.337" />
 
     <EditText
-        android:id="@+id/muStream2"
+        android:id="@+id/mStream2"
         android:layout_width="190dp"
         android:layout_height="40dp"
         android:textSize="15dp"
@@ -164,7 +164,7 @@
         app:layout_constraintVertical_bias="0.575" />
 
     <TextView
-        android:id="@+id/muPreRequisite1"
+        android:id="@+id/mPreRequisite1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -178,7 +178,7 @@
         app:layout_constraintVertical_bias="0.399" />
 
     <EditText
-        android:id="@+id/muModuleTitle2"
+        android:id="@+id/mModuleTitle2"
         android:layout_width="190dp"
         android:layout_height="40dp"
         android:textSize="15dp"
@@ -190,7 +190,7 @@
         app:layout_constraintVertical_bias="0.183" />
 
     <TextView
-        android:id="@+id/muModuleTitle1"
+        android:id="@+id/mModuleTitle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -204,7 +204,7 @@
         app:layout_constraintVertical_bias="0.165" />
 
     <TextView
-        android:id="@+id/muCoRequisite1"
+        android:id="@+id/mCoRequisite1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -218,7 +218,7 @@
         app:layout_constraintVertical_bias="0.476" />
 
     <TextView
-        android:id="@+id/muCredit1"
+        android:id="@+id/mCredit1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -232,7 +232,7 @@
         app:layout_constraintVertical_bias="0.325" />
 
     <EditText
-        android:id="@+id/muModuleLevel2"
+        android:id="@+id/mModuleLevel2"
         android:layout_width="190dp"
         android:layout_height="40dp"
         android:textSize="15dp"
@@ -258,11 +258,11 @@
     <!--    Pop Description-->
 
     <Button
-        android:id="@+id/edit_save"
+        android:id="@+id/editbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/roundedbutton"
-        android:text="SAVE"
+        android:text="EDIT"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -274,7 +274,7 @@
 
 
     <Button
-        android:id="@+id/edit_cancel"
+        android:id="@+id/editcancelbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/roundedbutton"

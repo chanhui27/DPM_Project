@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
-import android.view.WindowManager;
+import  android.view.WindowManager ;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ManagePopActivity extends AppCompatActivity {
+    //initialize extra variables
     public static final String EXTRA_ID = "com.eample.dpm_project.EXTRA_ID";
     public static final String EXTRA_CODE = "com.example.dpm_project.EXTRA_CODE";
     public static final String EXTRA_TITLE = "com.example.dpm_project.EXTRA_TITLE";
@@ -30,23 +31,25 @@ public class ManagePopActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_popmanagerupdate);
+        super . onCreate (savedInstanceState);
+        setContentView(R.layout.activity_popmanage);
 
-        code = findViewById(R.id.muModuleCode2);
-        title = findViewById(R.id.muModuleTitle2);
-        desc = findViewById(R.id.muDescription2);
-        level = findViewById(R.id.muModuleLevel2);
-        credit = findViewById(R.id.muCredit2);
-        core = findViewById(R.id.muCoRequisite2);
-        pre= findViewById(R.id.muPreRequisite2);
-        stream = findViewById(R.id.muStream2);
-        exit = findViewById(R.id.muClose);
-        saving = findViewById(R.id.edit_save);
-        cancel = findViewById(R.id.edit_cancel);
+        //initialize the id
+        code = findViewById(R.id.mModuleCode2);
+        title = findViewById(R.id.mModuleTitle2);
+        desc = findViewById(R.id.mDescription2);
+        level = findViewById(R.id.mModuleLevel2);
+        credit = findViewById(R.id.mCredit2);
+        core = findViewById(R.id.mCoRequisite2);
+        pre= findViewById(R.id.mPreRequisite2);
+        stream = findViewById(R.id.mStream2);
+        exit = findViewById(R.id.mClose);
+        saving = findViewById(R.id.editbtn);
+        cancel = findViewById(R.id.editcancelbtn);
 
         Intent intent = getIntent();
 
+        //get intent data from manager module activity
         if(intent.hasExtra(EXTRA_ID)) {
             code.setText(intent.getStringExtra(EXTRA_CODE));
             title.setText(intent.getStringExtra(EXTRA_TITLE));
@@ -58,29 +61,32 @@ public class ManagePopActivity extends AppCompatActivity {
             stream.setText(intent.getStringExtra(EXTRA_STREAM));
         }
 
+        //clicking exist image
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public  void  onClick ( View  v ) {
                 finish();
             }
         });
 
-
+        //clicking save button
         saving.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public  void  onClick ( View  v ) {
                 savePop();
             }
         });
 
+        //clicking cancel button
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public  void  onClick ( View  v ) {
                 finish();
             }
         });
     }
 
+    //save edit module
     private void savePop() {
         String updateCode = code.getText().toString();
         String updateTitle = title.getText().toString();
@@ -91,11 +97,13 @@ public class ManagePopActivity extends AppCompatActivity {
         String updatePre = pre.getText().toString();
         String updateStream = stream.getText().toString();
 
+        //check whether every edit text is empty or not
         if(updateCode.trim().isEmpty() || updateTitle.trim().isEmpty() || updateDesc.trim().isEmpty() || updateLevel.trim().isEmpty() ||
                 updateCredit.trim().isEmpty() ||updateStream.trim().isEmpty()){
             Toast.makeText(this,"Please insert details", Toast.LENGTH_SHORT).show();
             return;
         }
+        //create intent and put updated string values
         Intent data = new Intent();
         data.putExtra(EXTRA_CODE, updateCode);
         data.putExtra(EXTRA_TITLE, updateTitle);
@@ -106,12 +114,13 @@ public class ManagePopActivity extends AppCompatActivity {
         data.putExtra(EXTRA_PRE, updatePre);
         data.putExtra(EXTRA_STREAM, updateStream);
 
-        int id = getIntent().getIntExtra(EXTRA_ID, -1);
+        //check id is exist
+        int id = getIntent () . getIntExtra ( EXTRA_ID , - 1 );
         if(id != -1) {
             data.putExtra(EXTRA_ID, id);
         }
 
-        setResult(RESULT_OK,data);
+        setResult ( RESULT_OK , data);
         finish();
     }
 

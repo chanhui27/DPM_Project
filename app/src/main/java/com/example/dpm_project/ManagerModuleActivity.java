@@ -1,3 +1,4 @@
+
 package com.example.dpm_project;
 
 import android.content.DialogInterface;
@@ -171,8 +172,8 @@ public class ManagerModuleActivity extends AppCompatActivity {
             String pre = data.getStringExtra(ManagePopActivity.EXTRA_PRE);
             String stream = data.getStringExtra(ManagePopActivity.EXTRA_STREAM);
 
-            Module module = new Module(code,title,1,desc,level,credits,1,core,pre,stream,1);
-            moduleViewModel.insert(module);
+            Module module = new Module(code,title,0,desc,level,credits,1,core,pre,stream,1);
+            moduleViewModel.update(module);
 
         }
         else if(requestCode == EDIT_REQUEST && resultCode == RESULT_OK) {
@@ -191,7 +192,8 @@ public class ManagerModuleActivity extends AppCompatActivity {
             String pre = data.getStringExtra(ManagePopActivity.EXTRA_PRE);
             String stream = data.getStringExtra(ManagePopActivity.EXTRA_STREAM);
 
-            Module module = new Module(code,title,1,desc,level,credits,1,core,pre,stream,1);
+            //update module
+            Module module = new Module(code,title,0,desc,level,credits,1,core,pre,stream,1);
             module.setModuleId(id);
             moduleViewModel.update(module);
 
@@ -224,10 +226,10 @@ public class ManagerModuleActivity extends AppCompatActivity {
                 startActivity(intent2);
                 return true;
 
-            /*case R.id.menu_profile:
+            case R.id.menu_profile:
                 Intent intent3 = new Intent(this,ProfileActivity.class);
                 startActivity(intent3);
-                return true;*/
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

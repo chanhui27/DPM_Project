@@ -66,6 +66,8 @@ public class ManagerModuleAdapter extends RecyclerView.Adapter<ManagerModuleAdap
 
             //click item
             itemView.setOnClickListener(new View.OnClickListener() {
+
+
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();

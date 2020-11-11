@@ -10,11 +10,12 @@ import androidx.room.Update;
 
 import com.example.dpm_project.models.Module;
 import com.example.dpm_project.models.ModuleWithPathways;
+import com.example.dpm_project.models.PathwayWithModules;
 
 import java.util.List;
 
 @Dao
-public  interface  ModuleDao {
+public   interface   ModuleDao {
     @Insert
     void insert(Module module);
     @Update
@@ -26,6 +27,7 @@ public  interface  ModuleDao {
     @Transaction
     @Query("SELECT * FROM module_table")
     LiveData<List<ModuleWithPathways>> getModuleWithPathways();
+
 
 
 }

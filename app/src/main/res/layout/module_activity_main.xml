@@ -88,7 +88,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-
         android:background="@android:drawable/spinner_background"
         android:spinnerMode="dropdown"
         app:layout_constraintStart_toStartOf="parent"
