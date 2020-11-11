@@ -61,10 +61,10 @@ public class DrawMenu extends AppCompatActivity implements NavigationView.OnNavi
                 startActivity(intent2);
                 break;
 
-            case R.id.menu_profile:
-                Intent intent3 = new Intent(this,ProfileActivity.class);
-                startActivity(intent3);
-                break;
+//            case R.id.menu_profile:
+//                Intent intent3 = new Intent(this,ProfileActivity.class);
+//                startActivity(intent3);
+//                break;
 
             default:
         }
