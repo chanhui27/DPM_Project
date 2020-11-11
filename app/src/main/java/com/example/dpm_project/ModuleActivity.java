@@ -144,7 +144,6 @@ public class ModuleActivity extends AppCompatActivity {
 
 
 
-        //clicking change
         adapter.setOnItemClickListener(new ModuleAdapter.OnITemClickListener() {
             @Override
             public void onItemClick(Module module) {
@@ -196,20 +195,6 @@ public class ModuleActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode ==VIEW_REQUEST && resultCode == RESULT_OK) {
-            String code = data.getStringExtra(PopActivity.EXTRA_CODE);
-            String title = data.getStringExtra(PopActivity.EXTRA_TITLE);
-            String desc = data.getStringExtra(PopActivity.EXTRA_DESC);
-            String level = data.getStringExtra(PopActivity.EXTRA_LEVEL);
-            String credits = data.getStringExtra(PopActivity.EXTRA_CREDIT);
-            String core = data.getStringExtra(PopActivity.EXTRA_CORE);
-            String pre = data.getStringExtra(PopActivity.EXTRA_PRE);
-            String stream = data.getStringExtra(PopActivity.EXTRA_STREAM);
-
-            Module module = new Module(code,title,1,desc,level,credits,1,core,pre,stream,1);
-            moduleViewModel.insert(module);
-
-        }
     }
 
     //options Menu

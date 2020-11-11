@@ -32,13 +32,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/blackColor"
-                android:gravity="center"
                 android:paddingStart="5dp"
                 android:paddingTop="10dp"
                 android:paddingEnd="5dp"
                 android:paddingBottom="10dp"
                 android:spinnerMode="dropdown"
+                android:gravity="center"
                 app:layout_constraintTop_toBottomOf="@id/pathway_toolbar" />
+
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                app:layout_constraintStart_toEndOf="@id/student_pathway_spinner" />
         </LinearLayout>
 
         <LinearLayout

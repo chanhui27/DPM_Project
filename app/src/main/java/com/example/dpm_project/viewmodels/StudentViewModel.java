@@ -25,6 +25,10 @@ public class StudentViewModel extends AndroidViewModel {
         allStudent = repository.getAllStudent();
     }
 
+    public LiveData<Student> getStudent(int id){
+        return repository.getStudent(id);
+    }
+
     public void insert(Student student) {
         repository.insert(student);
     }

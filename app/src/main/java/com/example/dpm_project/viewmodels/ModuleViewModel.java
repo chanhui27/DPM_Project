@@ -20,9 +20,6 @@ public  class  ModuleViewModel  extends  AndroidViewModel {
     private ModuleRepository repository;
     private LiveData<List<Module>> allModules;
     private LiveData<List<ModuleWithPathways>> modulesWithPathways;
-    //    private MutableLiveData<List<Module>> filteredModules = new MutableLiveData<>();
-    MutableLiveData<Pathway> mPathway = new MutableLiveData<>();
-    private Pathway pathway;
 
     public  ModuleViewModel ( @NonNull  Application  application ) {
         super(application);
@@ -47,26 +44,8 @@ public  class  ModuleViewModel  extends  AndroidViewModel {
         return modulesWithPathways;
     }
 
-    public List<Module> getFilteredModules() {
-        if (modulesWithPathways.getValue() != null) {
-            return modulesWithPathways.getValue().stream()
-                    .filter(mwp -> mwp.pathways.stream()
-                            .anyMatch(p -> p.pathwayId == mPathway.getValue().pathwayId))
-                    .map(mwp -> mwp.module)
-                    .collect(Collectors.toList());
-        }
-        return allModules.getValue();
-    }
-
     public LiveData<List<Module>> getAllModules() {
         return allModules;
     }
 
-    public void setPathway(Pathway selectedPathway) {
-        mPathway.setValue(selectedPathway);
-    }
-
-    public LiveData<Pathway> getPathway() {
-        return mPathway;
-    }
 }

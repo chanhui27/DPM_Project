@@ -17,6 +17,7 @@ import java.util.List;
 
 public class StudentModuleAdapter extends RecyclerView.Adapter<StudentModuleAdapter.ModuleHolder> {
     private List<Module> modules = new ArrayList<>();
+    private int MODE;
     private ModuleAdapter.OnITemClickListener listener;
 
     @NonNull
@@ -29,14 +30,19 @@ public class StudentModuleAdapter extends RecyclerView.Adapter<StudentModuleAdap
 
     @Override
     public void onBindViewHolder(@NonNull ModuleHolder holder, int position) {
+
         Module currentModule = modules.get(position);
-        if (currentModule.getIsCompleted() == 1){
-            holder.relativeLayout.setBackgroundColor(Color.GREEN);
-        }else{
-            holder.relativeLayout.setBackgroundColor(0xEBEBEB);
+        if (MODE != 0) {
+            if (currentModule.getIsCompleted() == 1) {
+                holder.relativeLayout.setBackgroundColor(Color.GREEN);
+            } else {
+                holder.relativeLayout.setBackgroundColor(0xEBEBEB);
+            }
         }
         holder.textViewCode.setText(currentModule.getCode());
         holder.textViewTitle.setText(currentModule.getTitle());
+
+
     }
 
     @Override
@@ -44,13 +50,17 @@ public class StudentModuleAdapter extends RecyclerView.Adapter<StudentModuleAdap
         return modules.size();
     }
 
-    public  void setModules(List<Module> modules){
-        this.modules  = modules;
+    public void setModules(List<Module> modules) {
+        this.modules = modules;
         notifyDataSetChanged();
     }
 
     public Module getModuleAt(int adapterPosition) {
         return modules.get(adapterPosition);
+    }
+
+    public void setMode(int mode) {
+        MODE = mode;
     }
 
     class ModuleHolder extends RecyclerView.ViewHolder {

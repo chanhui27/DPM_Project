@@ -4,14 +4,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +23,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,8 +33,10 @@ import com.example.dpm_project.models.Module;
 import com.example.dpm_project.models.ModuleWithPathways;
 import com.example.dpm_project.models.Pathway;
 import com.example.dpm_project.models.PathwayWithModules;
+import com.example.dpm_project.models.Student;
 import com.example.dpm_project.viewmodels.ModuleViewModel;
 import com.example.dpm_project.viewmodels.PathwayViewModel;
+import com.example.dpm_project.viewmodels.StudentViewModel;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -39,12 +46,21 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StudentModuleActivity extends AppCompatActivity {
+    //    private ModuleViewModel moduleViewModel;
+    private PathwayViewModel pathwayViewModel;
+    private StudentViewModel studentViewModel;
     private ModuleViewModel moduleViewModel;
-    //private PathwayViewModel pathwayViewModel;
-    public static final int VIEW_REQUEST=1;
+    public static final int VIEW_REQUEST = 1;
     private StudentModuleAdapter adapter;
-    private List<ModuleWithPathways> modules;
+    private List<Module> modules;
+    private List<ModuleWithPathways> modulesWithPathways;
+    private Student student;
+    Spinner pathwaySpinner;
+
     private Toolbar mToolbar;
+    private int studentPathwayId = 0;
+    private static int STUDENT_ID = 1;
+    private int MODE;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,15 +77,16 @@ public class StudentModuleActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("don'tshow", MODE_PRIVATE);
         boolean first = prefs.getBoolean("first", true);
 
-        if(first) {
+        if (first) {
             openProfile();
         }
 
 
         RecyclerView recyclerView = findViewById(R.id.student_pathway_recyclerview);
-        Spinner pathwaySpinner = findViewById(R.id.student_pathway_spinner);
+        pathwaySpinner = findViewById(R.id.student_pathway_spinner);
         Spinner yearSpinner = findViewById(R.id.student_year_spinner);
         Spinner semesterSpinner = findViewById(R.id.student_semester_spinner);
+        CheckBox checkBox = findViewById(R.id.checkbox);
 
         //final Pathway[] selectedPathway = new Pathway[1];
 
@@ -83,29 +100,88 @@ public class StudentModuleActivity extends AppCompatActivity {
                 new String[]{"All semesters", "Semester 1", "Semester 2"}, new String[]{"All semesters", "Semester 3", "Semester 4"}, new String[]{"All semesters", "Semester 5", "Semester 6"}};
         semesterSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, semesters[0]));
 
-
+        List<String> pathways = Arrays.asList(getResources().getStringArray(R.array.pathways_array));
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, pathways);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pathwaySpinner.setAdapter(spinnerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         adapter = new StudentModuleAdapter();
         recyclerView.setAdapter(adapter);
 
+
+        studentViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(StudentViewModel.class);
+        studentViewModel.getStudent(STUDENT_ID).observe(this, student -> {
+                    this.student = student;
+                    studentPathwayId = this.student.getStudentPathwayId();
+                    pathwaySpinner.setSelection(studentPathwayId);
+                    MODE = 1;
+                }
+        );
+
+
         moduleViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(ModuleViewModel.class);
         moduleViewModel.getModulesWithPathways().observe(this, mwps -> {
-            this.modules = mwps;
+            this.modulesWithPathways = mwps;
         });
 //        pathwayViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(PathwayViewModel.class);
-        List<String> pathways = Arrays.asList(getResources().getStringArray(R.array.pathways_array));
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, pathways);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        pathwaySpinner.setAdapter(spinnerAdapter);
+//        Log.d("STUDENT_MODE", String.valueOf(pathwaySpinner.getSelectedItemPosition()));
 
+        /*pathwayViewModel.getPathwayWithModules(student.getStudentPathwayId()).observe(this, pathwaysWithModules -> {
+            this.modules = pathwaysWithModules;
+            adapter.setModules(modules);
+        });*/
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                Module module = adapter.getModuleAt(viewHolder.getAdapterPosition());
+                module.setIsCompleted(1);
+                adapter.setMode(MODE);
+                moduleViewModel.update(module);
+//                    Toast.makeText(MainActivity.this, "Note deleted", Toast.LENGTH_SHORT).show();
+            }
+        }).attachToRecyclerView(recyclerView);
+
+
+
+
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Log.d("STUDENT_", String.valueOf(student == null));
+                if (student != null) {
+                    Log.d("STUDENT_", student.toString());
+                    if (student.getStudentPathwayId() == 0) {
+
+                    }
+                    student.setStudentPathwayId(pathwaySpinner.getSelectedItemPosition());
+
+                    studentViewModel.update(student);
+                }
+            }
+        });
 
         pathwaySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 int year = yearSpinner.getSelectedItemPosition();
                 int semester = semesterSpinner.getSelectedItemPosition();
+                Log.d("STUD_pathwaySpinner position", String.valueOf(i));
+                MODE = i == studentPathwayId ? 1 : 0;
                 updateModules(i, year, semester);
+                checkBox.setEnabled(i != 0);
+                if (checkBox.isChecked() && i != studentPathwayId) {
+                    checkBox.setChecked(false);
+                } else if (i == studentPathwayId) {
+                    checkBox.setChecked(true);
+                }
 
             }
 
@@ -159,30 +235,29 @@ public class StudentModuleActivity extends AppCompatActivity {
                 intent.putExtra(PopActivity.EXTRA_CORE, module.getCoRequisite());
                 intent.putExtra(PopActivity.EXTRA_PRE, module.getPreRequisite());
                 intent.putExtra(PopActivity.EXTRA_STREAM, module.getStream());
-                startActivityForResult(intent, VIEW_REQUEST );
+                startActivityForResult(intent, VIEW_REQUEST);
             }
         });
 
     }
 
+    private void setMode(int mode) {
+        MODE = mode;
+/*        Log.d("STUD_", String.valueOf(student == null));
+        Log.d("STUD_", String.valueOf(student.getStudentPathwayId() == 0));
+        Log.d("STUD_", String.valueOf(student.getStudentPathwayId() != pathwaySpinner.getSelectedItemPosition()));
+
+
+        if (student == null || student.getStudentPathwayId() == 0) {
+            MODE = 0;
+        } else {
+            MODE = 1;
+        }*/
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode ==VIEW_REQUEST && resultCode == RESULT_OK) {
-            String code = data.getStringExtra(PopActivity.EXTRA_CODE);
-            String title = data.getStringExtra(PopActivity.EXTRA_TITLE);
-            String desc = data.getStringExtra(PopActivity.EXTRA_DESC);
-            String level = data.getStringExtra(PopActivity.EXTRA_LEVEL);
-            String credits = data.getStringExtra(PopActivity.EXTRA_CREDIT);
-            String core = data.getStringExtra(PopActivity.EXTRA_CORE);
-            String pre = data.getStringExtra(PopActivity.EXTRA_PRE);
-            String stream = data.getStringExtra(PopActivity.EXTRA_STREAM);
-
-            Module module = new Module(code,title,1,desc,level,credits,1,core,pre,stream,1);
-            moduleViewModel.insert(module);
-
-        }
-
     }
 
 
@@ -218,7 +293,7 @@ public class StudentModuleActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.draw_menu,menu);
+        inflater.inflate(R.menu.draw_menu, menu);
         return true;
 
     }
@@ -232,7 +307,7 @@ public class StudentModuleActivity extends AppCompatActivity {
                 return true;
 
             case R.id.menu_about:
-                Intent intent2 = new Intent(this,about.class);
+                Intent intent2 = new Intent(this, about.class);
                 startActivity(intent2);
                 return true;
 
@@ -255,27 +330,27 @@ public class StudentModuleActivity extends AppCompatActivity {
     }
 
     private List<Module> getModulesByYear(int year) {
-        Stream<ModuleWithPathways> result = modules.stream();
+        Stream<ModuleWithPathways> result = modulesWithPathways.stream();
         if (year != 0) {
-            result = modules.stream().filter(mwps -> mwps.module.getYear() == year);
+            result = modulesWithPathways.stream().filter(mwps -> mwps.module.getYear() == year);
         }
         return result.map(m -> m.module).collect(Collectors.toList());
     }
 
     private List<Module> getModulesByPathway(int pathway_id) {
-        Stream<ModuleWithPathways> result = modules.stream();
+        Stream<ModuleWithPathways> result = modulesWithPathways.stream();
         if (pathway_id != 0) {
-            result = modules.stream().filter(mwps -> mwps.pathways.stream().anyMatch(p -> p.pathwayId == pathway_id));
+            result = modulesWithPathways.stream().filter(mwps -> mwps.pathways.stream().anyMatch(p -> p.pathwayId == pathway_id));
         }
         return result.map(m -> m.module).collect(Collectors.toList());
     }
 
     private List<Module> getModulesBySemester(int year, int semester) {
-        Stream<ModuleWithPathways> result = modules.stream();
+        Stream<ModuleWithPathways> result = modulesWithPathways.stream();
         if (semester != 0) {
             int real_year = year == 0 ? semester / 2 + semester % 2 : year;
             int real_semester = year == 0 ? semester == 5 ? 1 : semester / 3 + semester % 3 : semester;
-            result = modules.stream()
+            result = modulesWithPathways.stream()
                     .filter(mwps -> mwps.module.getSemester() == real_semester && mwps.module.getYear() == real_year);
         }
         return result.map(m -> m.module).collect(Collectors.toList());

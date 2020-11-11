@@ -1,6 +1,7 @@
 package com.example.dpm_project.models;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.Objects;
@@ -20,6 +21,16 @@ public class Module {
     private String stream;
     private int semester;
     private int isCompleted;
+    @Ignore
+    private boolean isLocked;
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
+    }
 
     public void setIsCompleted(int isCompleted) {
         this.isCompleted = isCompleted;
@@ -39,21 +50,12 @@ public class Module {
         this.preRequisite = preRequisite;
         this.stream=stream;
         this.semester = semester;
+        this.isLocked = !this.preRequisite.isEmpty();
+
+
 
     }
 
-
-    /*public Module(String code, String title, int isCompleted, String aim, String level, String credit, int year, String coRequisite, int semester) {
-        this.code = code;
-        this.title = title;
-        this.isCompleted = isCompleted;
-        this.aim = aim;
-        this.level = level;
-        this.credit = credit;
-        this.year = year;
-        this.coRequisite = coRequisite;
-        this.semester = semester;
-    }*/
 
     @Override
     public boolean equals(Object o) {
