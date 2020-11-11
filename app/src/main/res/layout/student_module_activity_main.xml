@@ -45,6 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:enabled="false"
+            android:background="@color/whiteColor"
             app:layout_constraintStart_toEndOf="@id/student_pathway_spinner" />
     </LinearLayout>
 
