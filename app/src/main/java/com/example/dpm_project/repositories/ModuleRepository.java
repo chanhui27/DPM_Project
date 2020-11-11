@@ -31,7 +31,7 @@ public class ModuleRepository {
         executor.execute(() -> moduleDao.insert(module));
 
     }
-    public void update(Module module){
+    public void update(Module... module){
         executor.execute(() -> moduleDao.update(module));
     }
     public void delete(Module module){

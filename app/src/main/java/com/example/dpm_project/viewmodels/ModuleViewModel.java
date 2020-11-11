@@ -32,7 +32,7 @@ public  class  ModuleViewModel  extends  AndroidViewModel {
         repository.insert(module);
     }
 
-    public void update(Module module) {
+    public void update(Module... module) {
         repository.update(module);
     }
 
