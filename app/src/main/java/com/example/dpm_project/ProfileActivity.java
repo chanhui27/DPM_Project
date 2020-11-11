@@ -24,6 +24,7 @@ package com.example.dpm_project;
         import android.widget.TextView;
         import android.widget.Toast;
 
+        import com.example.dpm_project.models.Pathway;
         import com.example.dpm_project.models.Student;
         import com.example.dpm_project.models.StudentPathway;
         import com.example.dpm_project.viewmodels.ModuleViewModel;
@@ -46,6 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText editText_Email;
     private EditText editText_Address;
     private EditText editText_Phone;
+    private TextView pathway;
     private  Toolbar mToolbar;
     private Button cancelButton;
     private Button saveButton;
@@ -55,7 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private Student student;
     private StudentViewModel studentViewModel;
-
+    private Pathway studentPathway;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super . onCreate (savedInstanceState);
@@ -71,6 +73,9 @@ public class ProfileActivity extends AppCompatActivity {
         editText_Email = findViewById(R.id.edit_email);
         editText_Address = findViewById(R.id.edit_address);
         editText_Phone = findViewById(R.id.edit_phone);
+        pathway = findViewById(R.id.text_pathway);
+
+
 
         //get image from gallery
         profileImage = (CircleImageView) findViewById(R.id.photo);
@@ -109,9 +114,11 @@ public class ProfileActivity extends AppCompatActivity {
         studentViewModel.getAllStudent().observe(this, sp -> {
             if (sp.size() != 0) {
                 this.student = sp.get(0).student;
+                studentPathway = sp.get(0).pathway;
                 setStudentProfile();
             }
         });
+
 
         //testing update profile
          /*else {
@@ -133,6 +140,12 @@ public class ProfileActivity extends AppCompatActivity {
         editText_Address.setText(student.getAddress());
         editText_Phone.setText(student.getPhone());
         profileImage.setImageURI(Uri.parse(student.getImageUrl()));
+        if(studentPathway != null) {
+            pathway.setText(studentPathway.name);
+        }
+        else{
+            pathway.setText(" ");
+        }
     }
 
     @Override

@@ -7,7 +7,7 @@
     android:background="@color/yellowColor"
     android:elevation="4dp"
     android:id="@+id/toolbar"
-    >
+    android:screenOrientation="portrait">
 
 
         <!--<ImageView

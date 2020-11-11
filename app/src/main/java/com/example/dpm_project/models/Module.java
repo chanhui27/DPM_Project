@@ -19,7 +19,7 @@ public  class  Module {
     private String coRequisite;
     private String preRequisite;
     private String stream;
-    private  int semester;
+    private int semester;
     private int isCompleted;
     @Ignore
     private boolean isLocked;

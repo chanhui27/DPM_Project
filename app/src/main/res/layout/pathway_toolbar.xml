@@ -4,7 +4,8 @@
     android:layout_height="?attr/actionBarSize"
     android:background="@color/yellowColor"
     android:elevation="4dp"
-    android:id="@+id/pathway_toolbar">
+    android:id="@+id/pathway_toolbar"
+    android:screenOrientation="portrait">
 
     <ImageView
         android:id="@+id/hamburger_menu"
