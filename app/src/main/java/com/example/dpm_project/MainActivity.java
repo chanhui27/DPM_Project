@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public  boolean  onCreateOptionsMenu ( Menu  menu ) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.draw_menu,menu);
+        inflater.inflate(R.menu.draw_pm,menu);
         return true;
 
     }
@@ -117,10 +117,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent2);
                 return true;
 
-            case R.id.menu_profile:
-                Intent intent3 = new Intent(this,ProfileActivity.class);
-                startActivity(intent3);
-                return true;
+//            case R.id.menu_profile:
+//                Intent intent3 = new Intent(this,ProfileActivity.class);
+//                startActivity(intent3);
+//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

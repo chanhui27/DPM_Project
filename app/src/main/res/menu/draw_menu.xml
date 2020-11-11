@@ -23,7 +23,7 @@
         android:title="ABOUT"
         app:showAsAction="never"/>
   <item android:id="@+id/menu_profile"
-        android:title="Profile"
+        android:title="PROFILE"
         app:showAsAction="never"/>
 
 </menu>
