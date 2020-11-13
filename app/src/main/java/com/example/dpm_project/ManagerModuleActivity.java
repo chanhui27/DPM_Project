@@ -1,8 +1,6 @@
 package com.example.dpm_project;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -17,7 +15,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
@@ -26,14 +23,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dpm_project.models.Module;
 import com.example.dpm_project.models.ModuleWithPathways;
-import com.example.dpm_project.models.Pathway;
-import com.example.dpm_project.models.PathwayWithModules;
 import com.example.dpm_project.models.Student;
 import com.example.dpm_project.viewmodels.ModuleViewModel;
-import com.example.dpm_project.viewmodels.PathwayViewModel;
-import com.example.dpm_project.viewmodels.StudentViewModel;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,7 +33,6 @@ import java.util.stream.Stream;
 
 public class ManagerModuleActivity extends AppCompatActivity {
     //private ModuleViewModel moduleViewModel;
-    private PathwayViewModel pathwayViewModel;
     public static final int VIEW_REQUEST=1;
     public static final int EDIT_REQUEST=2;
     private ModuleViewModel moduleViewModel;

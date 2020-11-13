@@ -1,5 +1,6 @@
 package com.example.dpm_project.models;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -9,6 +10,7 @@ import java.util.Objects;
 @Entity(tableName = "module_table")
 public  class  Module {
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(index = true)
     private int moduleId;
     private String code;
     private String title;
