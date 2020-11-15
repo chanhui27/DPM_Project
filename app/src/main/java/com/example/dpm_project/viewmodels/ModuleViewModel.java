@@ -20,12 +20,14 @@ public  class  ModuleViewModel  extends  AndroidViewModel {
     private ModuleRepository repository;
     private LiveData<List<Module>> allModules;
     private LiveData<List<ModuleWithPathways>> modulesWithPathways;
+    private LiveData<List<ModuleWithPathways>> modulesWithPathwaysOrderedByYear;
 
     public  ModuleViewModel ( @NonNull  Application  application ) {
         super(application);
         repository = new ModuleRepository(application);
         allModules = repository.getAllModules();
         modulesWithPathways = repository.getModulesWithPathways();
+        modulesWithPathwaysOrderedByYear = repository.getModuleWithPathwaysOrderedByYear();
     }
 
     public void insert(Module module) {
@@ -38,6 +40,9 @@ public  class  ModuleViewModel  extends  AndroidViewModel {
 
     public void delete(Module module) {
         repository.delete(module);
+    }
+    public LiveData<List<ModuleWithPathways>> getModulesWithPathwaysOrderedByYear() {
+        return modulesWithPathwaysOrderedByYear;
     }
 
     public LiveData<List<ModuleWithPathways>> getModulesWithPathways() {

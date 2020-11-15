@@ -26,6 +26,9 @@ public  interface  ModuleDao {
     @Transaction
     @Query("SELECT * FROM module_table ORDER BY isCompleted, year")
     LiveData<List<ModuleWithPathways>> getModuleWithPathways();
+    @Transaction
+    @Query("SELECT * FROM module_table ORDER BY year, semester")
+    LiveData<List<ModuleWithPathways>> getModuleWithPathwaysOrderedByYear();
 
 
 }

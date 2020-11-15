@@ -82,7 +82,7 @@ public class ManagerModuleActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         moduleViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(ModuleViewModel.class);
-        moduleViewModel.getModulesWithPathways().observe(this, this::updateModulesWithPathways);
+        moduleViewModel.getModulesWithPathwaysOrderedByYear().observe(this, this::updateModulesWithPathways);
 //        pathwayViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(PathwayViewModel.class);
         List<String> pathways = Arrays.asList(getResources().getStringArray(R.array.pathways_array));
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, pathways);

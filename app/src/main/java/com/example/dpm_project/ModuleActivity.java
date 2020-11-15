@@ -69,7 +69,7 @@ public class ModuleActivity extends AppCompatActivity {
         adapter = new ModuleAdapter();
         recyclerView.setAdapter(adapter);
         moduleViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(ModuleViewModel.class);
-        moduleViewModel.getModulesWithPathways().observe(this, mwps -> {
+        moduleViewModel.getModulesWithPathwaysOrderedByYear().observe(this, mwps -> {
             this.modules = mwps;
         });
 //        pathwayViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(PathwayViewModel.class);

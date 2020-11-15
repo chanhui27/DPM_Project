@@ -17,6 +17,7 @@ public class ModuleRepository {
     private ModuleDao moduleDao;
     private LiveData<List<Module>> allModules;
     private LiveData<List<ModuleWithPathways>> modulesWithPathways;
+    private LiveData<List<ModuleWithPathways>> modulesWithPathwaysOrderedByYear;
     private Executor executor = Executors.newSingleThreadExecutor();
 
     public ModuleRepository(Application application){
@@ -24,6 +25,7 @@ public class ModuleRepository {
         moduleDao = database.moduleDao();
         allModules = moduleDao.getAllModules();
         modulesWithPathways = moduleDao.getModuleWithPathways();
+        modulesWithPathwaysOrderedByYear = moduleDao.getModuleWithPathwaysOrderedByYear();
 
     }
 
@@ -40,6 +42,7 @@ public class ModuleRepository {
     public LiveData<List<Module>> getAllModules() {
         return allModules;
     }
+    public LiveData<List<ModuleWithPathways>> getModuleWithPathwaysOrderedByYear() {return modulesWithPathwaysOrderedByYear;}
     public LiveData<List<ModuleWithPathways>> getModulesWithPathways(){
         return modulesWithPathways;
     }
