@@ -1,8 +1,10 @@
 package com.example.dpm_project;
 
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -111,8 +113,11 @@ public class StudentModuleActivity extends AppCompatActivity {
                     }
                     if (student != null) {
                         studentPathwayId = student.getStudentPathwayId();
-                        pathwaySpinner.setSelection(studentPathwayId);
-                        MODE = pathwaySpinner.getSelectedItemPosition() == 0 ? 0 : 1;
+                        if(studentPathwayId != 0){
+                            pathwaySpinner.setSelection(studentPathwayId);
+                        }
+
+                        MODE = pathwaySpinner.getSelectedItemPosition() == 0 || studentPathwayId == 0 ? 0 : 1;
                     }
                 }
         );
@@ -169,12 +174,24 @@ public class StudentModuleActivity extends AppCompatActivity {
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                CheckBox box = (CheckBox) view;
+                Log.d("STUD_is checked", String.valueOf(box.isChecked()));
                 if (student != null) {
-                    student.setStudentPathwayId(pathwaySpinner.getSelectedItemPosition());
+                    if (!box.isChecked()){
+                        student.setStudentPathwayId(0);
+                    }else{
+                        Log.d("STUD_checkbox listener", String.valueOf(pathwaySpinner.getSelectedItemPosition()));
+                        student.setStudentPathwayId(pathwaySpinner.getSelectedItemPosition());
+                    }
                     studentViewModel.update(student);
-                    checkBox.setEnabled(false);
                 } else {
-                    Student student = new Student("", "", "", "", "", "");
+                    Uri imageUri = (new Uri.Builder())
+                            .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
+                            .authority(getResources().getResourcePackageName(R.drawable.ic_person))
+                            .appendPath(getResources().getResourceTypeName(R.drawable.ic_person))
+                            .appendPath(getResources().getResourceEntryName(R.drawable.ic_person))
+                            .build();
+                    Student student = new Student("", "", "", "", "", imageUri.toString());
                     student.setStudentPathwayId(pathwaySpinner.getSelectedItemPosition());
                     studentViewModel.insert(student);
                 }
@@ -184,15 +201,12 @@ public class StudentModuleActivity extends AppCompatActivity {
         pathwaySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                int year = yearSpinner.getSelectedItemPosition();
-                int semester = semesterSpinner.getSelectedItemPosition();
                 MODE = ((i == studentPathwayId) && (i != 0)) ? 1 : 0;
                 checkBox.setEnabled(i != 0);
                 if (checkBox.isChecked() && i != studentPathwayId) {
                     checkBox.setChecked(false);
                 } else if (i == studentPathwayId && i != 0) {
                     checkBox.setChecked(true);
-                    checkBox.setEnabled(false);
                 }
                 updateModules();
             }
