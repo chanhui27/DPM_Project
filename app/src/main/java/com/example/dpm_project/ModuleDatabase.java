@@ -78,7 +78,7 @@ public abstract class ModuleDatabase extends RoomDatabase {
                 // id = 18
                 instance.moduleDao().insert(new Module("INFO603", "Systems Administration", 0, "To enable students to gain the skills and knowledge required to effectively plan, install and administer a Microsoft Windows Server.", "6","15",2,"","", "NETWORK",2));
                 // id = 19
-                instance.moduleDao().insert(new Module("COMP609", "Applications Development", 0,"Students will gain in-depth programming and problem solving skills. They will be able to use a modern development environment and a programming language to implement a working solution. This includes rigorous programming and effective use of built-in data structures and other useful features of the development environment.","6","15",2,"","CMOP601, MATH601","SOFTWARE",2));
+                instance.moduleDao().insert(new Module("COMP609", "Applications Development", 0,"Students will gain in-depth programming and problem solving skills. They will be able to use a modern development environment and a programming language to implement a working solution. This includes rigorous programming and effective use of built-in data structures and other useful features of the development environment.","6","15",2,"","COMP601, MATH601","SOFTWARE",2));
                 // id = 20
                 instance.moduleDao().insert(new Module("COMP606", "Web Programming", 0,"To enable students to gain the in depth knowledge and skills required to be able to write programs in web programming languages that solve various web programming tasks.","6","15",2,"","COMP602","DATABASE, WEB DEVELOPMENT",2));
                 // id = 21
@@ -104,7 +104,7 @@ public abstract class ModuleDatabase extends RoomDatabase {
                 // id = 31
                 instance.moduleDao().insert(new Module("COMP704", "Network Security", 0, "To enable students to gain core security knowledge and skills needed for installation, troubleshooting, and monitoring of networks to maintain the integrity, confidentiality, and availability of data and devices.", "7","15",3,"","COMP604","NETWORK",1 ));
                 // id = 32
-                instance.moduleDao().insert(new Module("COMP709", "Mobile Applications Development", 0, "To enable students to design, develop and implement mobile applications on a given platform", "7","15",3,"","COMP601, MATH602","DATABASE, SOFTWARE, WEB DEVELOPMENT",1));
+                instance.moduleDao().insert(new Module("COMP709", "Mobile Applications Development", 0, "To enable students to design, develop and implement mobile applications on a given platform", "7","15",3,"","COMP601, MATH601","DATABASE, SOFTWARE, WEB DEVELOPMENT",1));
                 // id = 33
                 instance.moduleDao().insert(new Module("COMP702", "Scaling Networks", 0, "To enable students to gain an understanding of the architecture, components, security, troubleshooting and operation of large-scale networks","7","15",3,"","COMP603, COMP604","NETWORK",1 ));
                 // id = 34
@@ -116,7 +116,7 @@ public abstract class ModuleDatabase extends RoomDatabase {
                 // id = 37
                 instance.moduleDao().insert(new Module("COMP716", "Virtualisation Essentials", 0,"To enable students to gain an understanding of the architecture, components, and operation of server-based virtualisation infrastructure and meet organisational requirements","7","15",3,"","COMP504, INFO603","NETWORK",2));
                 // id = 38
-                instance.moduleDao().insert(new Module("INFO703", "Big Data and Analytics", 0, "To enable students to gain the practical knowledge and skills required to store, manage and analyse large amounts of data, using appropriate algorithms.", "7","15",3,"","COMP605, MATH602","DATABASE, SOFTWARE",2));
+                instance.moduleDao().insert(new Module("INFO703", "Big Data and Analytics", 0, "To enable students to gain the practical knowledge and skills required to store, manage and analyse large amounts of data, using appropriate algorithms.", "7","15",3,"","COMP605, MATH601","DATABASE, SOFTWARE",2));
                 // id = 39
                 instance.moduleDao().insert(new Module("INFO708", "Data Visualisation", 0,"To enable students to study and apply visual techniques that transform data into a format efficient for human perception, cognition, and communication, thus allowing for extraction of meaningful information and insight. Students will investigate data visualisation techniques, human visual systems and cognitive perception, and design, construct, and evaluate data visualisations", "7","15",3,"","COMP606, COMP607","WEB DEVELOPMENT",2));
                 // id = 40

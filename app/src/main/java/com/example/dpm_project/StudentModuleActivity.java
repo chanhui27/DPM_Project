@@ -34,7 +34,9 @@ import com.example.dpm_project.viewmodels.StudentViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -110,10 +112,9 @@ public class StudentModuleActivity extends AppCompatActivity {
                     this.student = student;
                     if (student == null) {
                         openProfile();
-                    }
-                    if (student != null) {
+                    } else {
                         studentPathwayId = student.getStudentPathwayId();
-                        if(studentPathwayId != 0){
+                        if (studentPathwayId != 0) {
                             pathwaySpinner.setSelection(studentPathwayId);
                         }
 
@@ -159,7 +160,20 @@ public class StudentModuleActivity extends AppCompatActivity {
                 Module module = adapter.getModuleAt(viewHolder.getAdapterPosition());
                 module.setIsCompleted(module.getIsCompleted() == 0 ? 1 : 0);
                 if (module.getIsCompleted() == 0) {
-                    pre = modules.stream().filter(m -> m.getPreRequisite().contains(module.getCode())).collect(Collectors.toList());
+                    Queue<Module> prereq = new LinkedList<>();
+                    prereq.add(module);
+                    while (!prereq.isEmpty()) {
+                        Module cur = prereq.poll();
+                        for (Module m : modules) {
+                            if (m.getPreRequisite().contains(cur.getCode())) {
+                                pre.add(m);
+                                prereq.add(m);
+                            }
+                        }
+                    }
+
+
+//                    pre = modules.stream().filter(m -> m.getPreRequisite().contains(module.getCode())).collect(Collectors.toList());
                     pre.stream().forEach(prem -> prem.setIsCompleted(0));
                 }
                 pre.add(module);
@@ -177,9 +191,9 @@ public class StudentModuleActivity extends AppCompatActivity {
                 CheckBox box = (CheckBox) view;
                 Log.d("STUD_is checked", String.valueOf(box.isChecked()));
                 if (student != null) {
-                    if (!box.isChecked()){
+                    if (!box.isChecked()) {
                         student.setStudentPathwayId(0);
-                    }else{
+                    } else {
                         Log.d("STUD_checkbox listener", String.valueOf(pathwaySpinner.getSelectedItemPosition()));
                         student.setStudentPathwayId(pathwaySpinner.getSelectedItemPosition());
                     }
@@ -355,7 +369,7 @@ public class StudentModuleActivity extends AppCompatActivity {
                 return true;
 
             case R.id.menu_profile:
-                Intent intent3 = new Intent(this,ProfileActivity.class);
+                Intent intent3 = new Intent(this, ProfileActivity.class);
                 startActivity(intent3);
                 return true;
             default:
@@ -382,10 +396,8 @@ public class StudentModuleActivity extends AppCompatActivity {
     }
 
     private List<Module> getModulesByPathway() {
-        Log.d("STUD_modules", String.valueOf(modulesWithPathways.size()));
         Stream<ModuleWithPathways> result = modulesWithPathways.stream();
         int pathway_id = pathwaySpinner.getSelectedItemPosition();
-        Log.d("STUD_pathwaySpinner position", String.valueOf(pathway_id));
         if (pathway_id != 0) {
             result = modulesWithPathways.stream().filter(mwps -> mwps.pathways.stream().anyMatch(p -> p.pathwayId == pathway_id));
         }

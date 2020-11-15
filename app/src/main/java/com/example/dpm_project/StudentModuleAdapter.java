@@ -32,8 +32,9 @@ public class StudentModuleAdapter extends RecyclerView.Adapter<StudentModuleAdap
     @Override
     public void onBindViewHolder(@NonNull ModuleHolder holder, int position) {
         Module currentModule = modules.get(position);
-        holder.relativeLayout.setBackgroundColor(currentModule.getIsCompleted() == 1 ? Color.GREEN : 0xEBEBEB);
         holder.imageViewLock.setVisibility(currentModule.isLocked() ? View.VISIBLE : View.GONE);
+        holder.relativeLayout.setBackgroundColor(currentModule.getIsCompleted() == 1 ? Color.GREEN : currentModule.isLocked() ? Color.LTGRAY: 0xEBEBEB);
+
         holder.textViewCode.setText(currentModule.getCode());
         holder.textViewTitle.setText(currentModule.getTitle());
 
