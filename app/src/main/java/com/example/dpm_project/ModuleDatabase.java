@@ -104,9 +104,9 @@ public abstract class ModuleDatabase extends RoomDatabase {
                 // id = 31
                 instance.moduleDao().insert(new Module("COMP704", "Network Security", 0, "To enable students to gain core security knowledge and skills needed for installation, troubleshooting, and monitoring of networks to maintain the integrity, confidentiality, and availability of data and devices.", "7","15",3,"","COMP604","NETWORK",1 ));
                 // id = 32
-                instance.moduleDao().insert(new Module("COMP709", "Mobile Applications Development", 0, "To enable students to design, develop and implement mobile applications on a given platform", "7","15",3,"","COMP601, MATH601","DATABASE, SOFTWARE, WEB DEVELOPMENT",1));
+                instance.moduleDao().insert(new Module("COMP709", "Mobile Applications Development", 0, "To enable students to design, develop and implement mobile applications on a given platform", "7","15",3,"","COMP601, MATH601","DATABASE, WEB DEVELOPMENT",1));
                 // id = 33
-                instance.moduleDao().insert(new Module("COMP702", "Scaling Networks", 0, "To enable students to gain an understanding of the architecture, components, security, troubleshooting and operation of large-scale networks","7","15",3,"","COMP603, COMP604","NETWORK",1 ));
+                instance.moduleDao().insert(new Module("COMP702", "Scaling Networks", 0, "To enable students to gain an understanding of the architecture, components, security, troubleshooting and operation of large-scale networks","7","15",3,"","COMP604","NETWORK",1 ));
                 // id = 34
                 instance.moduleDao().insert(new Module("COMP706", "Game Development", 0, "To enable students to understand supporting theories and principles of game design and apply these to the art and science of game design, development and programming.", "7","15",3,"","COMP601, COMP605, MATH602","SOFTWARE",1));
                 // id = 35
@@ -116,7 +116,7 @@ public abstract class ModuleDatabase extends RoomDatabase {
                 // id = 37
                 instance.moduleDao().insert(new Module("COMP716", "Virtualisation Essentials", 0,"To enable students to gain an understanding of the architecture, components, and operation of server-based virtualisation infrastructure and meet organisational requirements","7","15",3,"","COMP504, INFO603","NETWORK",2));
                 // id = 38
-                instance.moduleDao().insert(new Module("INFO703", "Big Data and Analytics", 0, "To enable students to gain the practical knowledge and skills required to store, manage and analyse large amounts of data, using appropriate algorithms.", "7","15",3,"","COMP605, MATH601","DATABASE, SOFTWARE",2));
+                instance.moduleDao().insert(new Module("INFO703", "Big Data and Analytics", 0, "To enable students to gain the practical knowledge and skills required to store, manage and analyse large amounts of data, using appropriate algorithms.", "7","15",3,"","COMP605, MATH601","DATABASE",2));
                 // id = 39
                 instance.moduleDao().insert(new Module("INFO708", "Data Visualisation", 0,"To enable students to study and apply visual techniques that transform data into a format efficient for human perception, cognition, and communication, thus allowing for extraction of meaningful information and insight. Students will investigate data visualisation techniques, human visual systems and cognitive perception, and design, construct, and evaluate data visualisations", "7","15",3,"","COMP606, COMP607","WEB DEVELOPMENT",2));
                 // id = 40
@@ -131,6 +131,16 @@ public abstract class ModuleDatabase extends RoomDatabase {
                 instance.moduleDao().insert(new Module("INFO712", "Database Architecture Project", 0, "To enable students to further develop their knowledge of Database Architecture by analysing, designing and implementing a database solution. This module is the Database Architecture Capstone Project", "7","15",3,"","INFO707, INFO704, INFO706","DATABASE",2));
                 // id = 45
                 instance.moduleDao().insert(new Module("COMP713", "Web Application Project", 0, "To enable students to further develop their knowledge of Web Applications by analysing, designing and implementing a web solution. This module is the Web Application Capstone Project.", "7","15",3,"INFO710","COMP606, COMP710","WEB DEVELOPMENT",2));
+                // id = 46
+                instance.moduleDao().insert(new Module("INFO703", "Big Data and Analytics", 0, "To enable students to gain the practical knowledge and skills required to store, manage and analyse large amounts of data, using appropriate algorithms.", "7","15",3,"","COMP605, MATH602","SOFTWARE",2));
+                // id = 47
+                instance.moduleDao().insert(new Module("COMP709", "Mobile Applications Development", 0, "To enable students to design, develop and implement mobile applications on a given platform", "7","15",3,"","COMP601, MATH602","SOFTWARE",1));
+                // id = 48
+                instance.moduleDao().insert(new Module("INFO710", "Internship", 0,"This module will enable students to demonstrate that they can successfully undertake original work that applies the theoretical and practical knowledge gained in other modules in a workplace environment.Enable student to gain real world experience and build and Industry portfolio. Making professional contacts to build future industry networks.", "7","15",3,"","INFO704, INFO706, INFO707","DATABASE",2));
+                // id = 49
+                instance.moduleDao().insert(new Module("INFO710", "Internship", 0,"This module will enable students to demonstrate that they can successfully undertake original work that applies the theoretical and practical knowledge gained in other modules in a workplace environment.Enable student to gain real world experience and build and Industry portfolio. Making professional contacts to build future industry networks.", "7","15",3,"","COMP707","SOFTWARE",2));
+                // id = 50
+                instance.moduleDao().insert(new Module("INFO710", "Internship", 0,"This module will enable students to demonstrate that they can successfully undertake original work that applies the theoretical and practical knowledge gained in other modules in a workplace environment.Enable student to gain real world experience and build and Industry portfolio. Making professional contacts to build future industry networks.", "7","15",3,"","COMP606, COMP710","WEB DEVELOPMENT",2));
 
                 //changed COMP602 to MATH602(Maths for Programming), not added INFO701(Project Management),
 
@@ -145,9 +155,7 @@ public abstract class ModuleDatabase extends RoomDatabase {
                     }
                 }
                 for (int i = 1; i <= 4; i++) {
-                    for (int j = 41; j <= 42; j++) {
-                        instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(i, j));
-                    }
+                        instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(i, 42));
                 }
                 instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(2, 15));
                 instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(3, 16));
@@ -171,7 +179,6 @@ public abstract class ModuleDatabase extends RoomDatabase {
                 instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(1, 30));
                 instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(2, 31));
                 instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(1, 32));
-                instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(3, 32));
                 instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(4, 32));
                 instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(2, 33));
                 instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(3, 34));
@@ -179,12 +186,17 @@ public abstract class ModuleDatabase extends RoomDatabase {
                 instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(4, 36));
                 instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(2, 37));
                 instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(1, 38));
-                instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(3, 38));
                 instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(4, 39));
                 instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(2, 40));
                 instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(3, 43));
                 instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(1, 44));
                 instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(4, 45));
+                instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(3, 46));
+                instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(3, 47));
+                instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(2, 41));
+                instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(1, 48));
+                instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(3, 49));
+                instance.pathwayModuleCrossRefDao().insert(new PathwayModuleCrossRef(4, 50));
 
             });
         }
