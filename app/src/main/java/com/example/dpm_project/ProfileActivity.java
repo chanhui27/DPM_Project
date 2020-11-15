@@ -170,7 +170,7 @@ public class ProfileActivity extends AppCompatActivity {
         String email = editText_Email.getText().toString();
         String address = editText_Address.getText().toString();
         String phone = editText_Phone.getText().toString();
-        if (imageUri == null) {
+        if (imageUri == null && this.student == null) {
             imageUri = (new Uri.Builder())
                     .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
                     .authority(getResources().getResourcePackageName(R.drawable.ic_person))
@@ -178,7 +178,7 @@ public class ProfileActivity extends AppCompatActivity {
                     .appendPath(getResources().getResourceEntryName(R.drawable.ic_person))
                     .build();
         }
-        String url = imageUri.toString();
+        String url = imageUri == null ? this.student.getImageUrl() : imageUri.toString();
 
 
         if (email.trim().isEmpty()) {
@@ -193,6 +193,7 @@ public class ProfileActivity extends AppCompatActivity {
             studentViewModel.insert(student1);
         } else {
             student1.setSid(this.student.getSid());
+            student1.setStudentPathwayId(this.student.getStudentPathwayId());
             studentViewModel.update(student1);
         }
 
