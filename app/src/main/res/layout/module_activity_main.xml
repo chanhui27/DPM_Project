@@ -4,20 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e5e0cc">
+    android:background="@color/greyColor"
+    android:screenOrientation="portrait">
+
 
     <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+    <!--<include
         android:id="@+id/pathway_toolbar"
         layout="@layout/pathway_toolbar"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteY="0dp" />-->
 
     <LinearLayout
         android:id="@+id/pathway_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/pathway_toolbar">
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <Spinner
             android:id="@+id/pathway_spinner"
@@ -58,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blackColor"
-            android:entries="@array/semesters_array"
+
             android:paddingStart="5dp"
             android:paddingTop="10dp"
             android:paddingEnd="5dp"
@@ -84,7 +89,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-
         android:background="@android:drawable/spinner_background"
         android:spinnerMode="dropdown"
         app:layout_constraintStart_toStartOf="parent"

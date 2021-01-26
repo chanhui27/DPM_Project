@@ -1,6 +1,7 @@
 package com.example.dpm_project;
 
 import android.graphics.Color;
+import android.text.NoCopySpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,15 +9,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dpm_project.models.Module;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ModuleHolder> {
     private List<Module> modules = new ArrayList<>();
+    private OnITemClickListener listener;
 
     @NonNull
     @Override
@@ -26,25 +32,23 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ModuleHold
         return new ModuleHolder(itemView);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull ModuleHolder holder, int position) {
         Module currentModule = modules.get(position);
-        if (currentModule.getIsCompleted() == 1){
-            holder.relativeLayout.setBackgroundColor(Color.GREEN);
-        }else{
-            holder.relativeLayout.setBackgroundColor(0xEBEBEB);
-        }
         holder.textViewCode.setText(currentModule.getCode());
         holder.textViewTitle.setText(currentModule.getTitle());
+
     }
+
 
     @Override
     public int getItemCount() {
         return modules.size();
     }
 
-    public  void setModules(List<Module> modules){
-        this.modules  = modules;
+    public void setModules(List<Module> modules) {
+        this.modules = modules;
         notifyDataSetChanged();
     }
 
@@ -63,7 +67,29 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ModuleHold
             textViewTitle = itemView.findViewById(R.id.text_view_module_title);
             relativeLayout = itemView.findViewById(R.id.cardview_relative_layout);
 
+            //click item
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(modules.get(position));
+                    }
+                }
+            });
+
         }
 
     }
+
+
+    public interface OnITemClickListener {
+        void onItemClick(Module module);
+    }
+
+    public void setOnItemClickListener(OnITemClickListener listener) {
+        this.listener = listener;
+    }
+
+
 }

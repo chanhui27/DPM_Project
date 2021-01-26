@@ -14,7 +14,7 @@ import com.example.dpm_project.models.PathwayWithModules;
 import java.util.List;
 
 @Dao
-public interface PathwayDao {
+public   interface   PathwayDao {
     @Insert
     void insert(Pathway pathway);
 

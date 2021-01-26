@@ -5,7 +5,9 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
-    android:layout_marginEnd="8dp">
+    android:layout_marginEnd="8dp"
+    android:screenOrientation="portrait">
+
 
     <RelativeLayout
         android:id="@+id/cardview_relative_layout"
@@ -16,34 +18,34 @@
         <TextView
             android:id="@+id/text_view_module_code"
             android:layout_width="110sp"
-            android:textColor="@color/blackColor"
-            android:maxLines="1"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:background="@drawable/border"
+            android:maxLines="1"
             android:paddingLeft="10dp"
             android:paddingTop="8dp"
             android:paddingRight="10dp"
             android:paddingBottom="8dp"
             android:text="Code"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/blackColor" />
 
         <TextView
             android:id="@+id/text_view_module_title"
-            android:background="@drawable/border"
-            android:textColor="@color/blackColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/text_view_module_code"
+            android:background="@drawable/border"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:paddingLeft="10dp"
             android:paddingTop="8dp"
             android:paddingRight="10dp"
             android:paddingBottom="8dp"
-            android:layout_toEndOf="@id/text_view_module_code"
-            android:ellipsize="end"
-            android:maxLines="1"
             android:text="Title"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/blackColor" />
     </RelativeLayout>
+
+
 </androidx.cardview.widget.CardView>
